@@ -229,5 +229,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0.5
   projectileStartTransform: {fileID: 1457852087668590877}
-  projectilePrefab: {fileID: 5696184266115383263, guid: f21862b8394616340bd9470a40882938, type: 3}
+  projectilePrefabReference:
+    m_AssetGUID: f21862b8394616340bd9470a40882938
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   projectileVelocity: 10
