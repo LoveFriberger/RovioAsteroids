@@ -22,6 +22,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe744eb54f5cb1b45983e64673cc7d7c
+    m_Address: Assets/Prefabs/RockSmall.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cea8d9d0b219e8649985e4b16bae2e91
+    m_Address: Assets/Prefabs/RockMedium.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 784b3fbf0b6f91b4fb60e6c555a03d88
+    m_Address: Assets/Prefabs/RockLarge.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c1b85eea7c0d80b41813ca226897930a
+    m_Address: Assets/Prefabs/Player.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0952d51253b527a499fbdb9b9c5f828a, type: 2}
   m_SchemaSet:
