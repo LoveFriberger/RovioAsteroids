@@ -1,25 +1,62 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
-public class Level : MonoBehaviour
+public class Level : Scene
 {
     [SerializeField]
     int startRocks = 3;
     [SerializeField]
-    GameObject rockPrefab = null;
-    [SerializeField]
     float startVelocity = 3;
     [SerializeField]
     ExitLevelCollider exitLevelCollider = null;
+    [SerializeField]
+    Transform playerStart = null;
+
+    [SerializeField]
+    AssetReferenceGameObject playerPrefabReference = null;
+    [SerializeField]
+    AssetReferenceGameObject rockPrefabReference = null;
+
+    GameObject LoadedPlayerPrefab = null;
+    GameObject LoadedRockPrefab = null;
 
     float timeBetweenSpawns = 5;
     float lastRockSpawnTime = 0;
 
-    private void Start()
+    protected override void Setup()
     {
+        StartCoroutine(CoSetup());
+    }
+
+    IEnumerator CoSetup()
+    {
+        yield return LoadAssetAsync(playerPrefabReference, (loadedObject) => { LoadedPlayerPrefab = loadedObject; });
+        yield return LoadAssetAsync(rockPrefabReference, (loadedObject) => { LoadedRockPrefab = loadedObject; });
+
+        InstantiatePlayer();
         for (int i = 0; i < startRocks; i++)
             InstantiateRock();
+    }
+
+    IEnumerator LoadAssetAsync(AssetReferenceGameObject assetReferenceGameObject, System.Action<GameObject> onAssetLoaded)
+    {
+        var asyncLoadHandle = assetReferenceGameObject.LoadAssetAsync();
+        yield return asyncLoadHandle;
+        if(asyncLoadHandle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Failed)
+        {
+            Debug.LogError(assetReferenceGameObject.RuntimeKey + " failed to load!");
+        }
+        else if (asyncLoadHandle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+        {
+            onAssetLoaded?.Invoke(asyncLoadHandle.Result);
+            Addressables.Release(asyncLoadHandle);
+        }
+    }
+
+    void InstantiatePlayer()
+    {
+        Instantiate(LoadedPlayerPrefab, playerStart.position, playerStart.rotation);
     }
 
     void Update()
@@ -31,7 +68,7 @@ public class Level : MonoBehaviour
     void InstantiateRock()
     {
         GetRockStartPositionAndRotation(out Vector2 position, out Quaternion rotation);
-        var rockClone = Instantiate(rockPrefab, position, rotation);
+        var rockClone = Instantiate(LoadedRockPrefab, position, rotation);
         rockClone.GetComponent<Rigidbody2D>().velocity = rockClone.transform.up * startVelocity;
         lastRockSpawnTime = Time.time;
     }
