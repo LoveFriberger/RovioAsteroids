@@ -167,3 +167,5 @@ MonoBehaviour:
   smallerRock: {fileID: 8850613836007727017, guid: cea8d9d0b219e8649985e4b16bae2e91, type: 3}
   splitSpeed: 0.5
   initSpeed: 3
+  circleCollider: {fileID: 3291283477498549237}
+  rockRigidbody: {fileID: 3311124676174835223}

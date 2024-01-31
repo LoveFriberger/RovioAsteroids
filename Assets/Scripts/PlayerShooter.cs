@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class PlayerShooter : MonoBehaviour
@@ -11,11 +12,13 @@ public class PlayerShooter : MonoBehaviour
     [SerializeField]
     Transform projectileStartTransform = null;
     [SerializeField]
-    AssetReferenceGameObject projectilePrefabReference = null;
-    [SerializeField]
     float projectileVelocity = 10;
 
+    [SerializeField]
+    AssetReferenceGameObject projectilePrefabReference = null;
+
     float timeLastShot = 0f;
+    bool actionInputValue = false;
 
     void Start()
     {
@@ -29,9 +32,14 @@ public class PlayerShooter : MonoBehaviour
             Debug.LogError(projectilePrefabReference.RuntimeKey + " failed to load!");
     }
 
-    void Update()
+    public void OnActionInput(InputAction.CallbackContext context)
     {
-        if (Input.GetKey(KeyCode.Space))
+        actionInputValue = context.ReadValueAsButton();
+    }
+
+    void FixedUpdate()
+    {
+        if (actionInputValue)
             Shoot();
     }
 

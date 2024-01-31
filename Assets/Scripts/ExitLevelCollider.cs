@@ -12,10 +12,14 @@ public class ExitLevelCollider : MonoBehaviour
 
     private void OnEnable()
     {
-        var cameraOrthographicWidth = levelCamera.orthographicSize * levelCamera.aspect;
-        boxCollider.size = new Vector2 (cameraOrthographicWidth, levelCamera.orthographicSize) * 2;
+        SetColliderToCameraFrameSize();
     }
 
+    void SetColliderToCameraFrameSize()
+    {
+        var cameraOrthographicWidth = levelCamera.orthographicSize * levelCamera.aspect;
+        boxCollider.size = new Vector2(cameraOrthographicWidth, levelCamera.orthographicSize) * 2;
+    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
