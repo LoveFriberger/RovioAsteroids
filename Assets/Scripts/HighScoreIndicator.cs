@@ -12,7 +12,7 @@ public class HighScoreIndicator : MonoBehaviour
 
     void Start()
     {
-        var points = Core.Get<PointsManager>().Points;
+        var points = Core.Get<PointsManager>().HighScore;
         highScoreText.text = points > 0 ? string.Format(highScoreString, points) : "";
     }
 }

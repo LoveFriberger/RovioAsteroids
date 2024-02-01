@@ -44,6 +44,13 @@ public class Rock : MonoBehaviour, IHitable
 
     void GivePoints()
     {
+        Core.Get<PointsManager>().AddPoints(1);
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var hitable = collision.gameObject.GetComponent<IHitable>();
+        if (hitable != null)
+            hitable.TakeDamage();
     }
 }

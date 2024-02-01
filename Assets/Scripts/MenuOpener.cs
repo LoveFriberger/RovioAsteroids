@@ -6,16 +6,32 @@ using UnityEngine.InputSystem;
 public class MenuOpener : MonoBehaviour
 {
     [SerializeField]
-    GameObject menuObject = null;
+    GameMenu menuObject = null;
+
     public void OnToggleMenuInput(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
         {
-            var openMenu = !menuObject.activeSelf;
-            SetPause(openMenu);
-            menuObject.SetActive(openMenu);
+            if (!menuObject.isActiveAndEnabled)
+                OpenMenu(false);
+            else if (menuObject.CanCloseWithKey)
+                CloseMenu();
         }
     }
+
+    public void OpenMenu(bool died)
+    {
+        SetPause(true);
+        menuObject.gameObject.SetActive(true);
+        menuObject.Setup(died);
+    }
+
+    public void CloseMenu()
+    {
+        SetPause(false);
+        menuObject.gameObject.SetActive(false);
+    }
+
 
     void SetPause(bool Pause)
     {

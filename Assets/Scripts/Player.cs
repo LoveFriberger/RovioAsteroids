@@ -6,6 +6,7 @@ public class Player : MonoBehaviour, IHitable
 {
     public void TakeDamage()
     {
-        Debug.Log("Killed!");
+        var gameManager = Core.Get<GameManager>();
+        gameManager.PlayerKilled?.Invoke();
     }
 }

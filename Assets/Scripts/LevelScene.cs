@@ -13,7 +13,10 @@ public class LevelScene : MonoBehaviour
     ExitLevelCollider exitLevelCollider = null;
     [SerializeField]
     Transform playerStart = null;
-
+    [SerializeField]
+    Transform rocksParent = null;
+    [SerializeField]
+    MenuOpener menuOpener = null;
     [SerializeField]
     AssetReferenceGameObject playerPrefabReference = null;
     [SerializeField]
@@ -27,6 +30,8 @@ public class LevelScene : MonoBehaviour
 
     IEnumerator Start()
     {
+        Core.Get<GameManager>().PlayerKilled += OnPlayerKilled;
+
         lastRockSpawnTime = Time.time;
 
         LoadedPlayerHandle = new();
@@ -41,7 +46,34 @@ public class LevelScene : MonoBehaviour
             InstantiateRock();
     }
 
-    IEnumerator LoadAssetAsync(AssetReferenceGameObject assetReferenceGameObject, System.Action<AsyncOperationHandle<GameObject>> onAssetLoaded)
+    private void OnDisable()
+    {
+        Core.Get<GameManager>().PlayerKilled -= OnPlayerKilled;
+    }
+
+    void OnPlayerKilled()
+    {
+        menuOpener.OpenMenu(true);
+    }
+
+    public void ResetGame()
+    {
+        menuOpener.CloseMenu();
+        var pointsManager = Core.Get<PointsManager>();
+        pointsManager.Reset();
+        for (int i = rocksParent.childCount -1 ; i >= 0; i--)
+        {
+            Destroy(rocksParent.GetChild(i).gameObject);
+        }
+
+        Destroy(playerStart.GetChild(0).gameObject);
+
+        InstantiatePlayer();
+        for (int i = 0; i < startRocks; i++)
+            InstantiateRock();
+    }
+
+    public IEnumerator LoadAssetAsync(AssetReferenceGameObject assetReferenceGameObject, System.Action<AsyncOperationHandle<GameObject>> onAssetLoaded)
     {
         var asyncLoadHandle = assetReferenceGameObject.LoadAssetAsync();
         yield return asyncLoadHandle;
@@ -57,7 +89,7 @@ public class LevelScene : MonoBehaviour
 
     void InstantiatePlayer()
     {
-        Instantiate(LoadedPlayerHandle.Result, playerStart.position, playerStart.rotation);
+        Instantiate(LoadedPlayerHandle.Result, playerStart.position, playerStart.rotation, playerStart);
     }
 
     void Update()
@@ -69,7 +101,7 @@ public class LevelScene : MonoBehaviour
     void InstantiateRock()
     {
         GetRockStartPositionAndRotation(out Vector2 position, out Quaternion rotation);
-        var rockClone = Instantiate(LoadedRockHandle.Result, position, rotation);
+        var rockClone = Instantiate(LoadedRockHandle.Result, position, rotation, rocksParent);
         rockClone.GetComponent<Rigidbody2D>().velocity = rockClone.transform.up * startVelocity;
         lastRockSpawnTime = Time.time;
     }

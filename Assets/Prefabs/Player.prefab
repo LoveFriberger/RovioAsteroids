@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4256099964381120878}
   - component: {fileID: 8747372741240092789}
   - component: {fileID: 7999205907238005640}
+  - component: {fileID: 6382182082139526084}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -85,7 +86,6 @@ MonoBehaviour:
   maxVelocity: 10
   turnSpeed: 80
   playerRigidbody: {fileID: 767682083691188615}
-  inputActionAsset: {fileID: 0}
 --- !u!212 &3626648580193070407
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -295,8 +295,32 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 04b27885-828e-4b18-bfcb-037304c49dbf
     m_ActionName: 'Player/Action[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e71dc760-86dd-4759-af6e-48da2bdeda0a
+    m_ActionName: 'UI/Movement[/Keyboard/downArrow,/Keyboard/upArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed71c704-54d2-47cf-b403-bb4f6aec05fc
+    m_ActionName: 'UI/Action[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7662d2af-eea9-4ec9-b7c9-27632ef462c8
+    m_ActionName: 'UI/ToggleMenu[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6382182082139526084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610704979799590238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1940b12074d1e749a067b4ce09cd0f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
