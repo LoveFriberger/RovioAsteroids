@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Core : MonoBehaviour
 {
+    [SerializeField]
+    string startSceneKey = "";
+
     static Dictionary<System.Type, Manager> ManagerMap = new Dictionary<System.Type, Manager>();
     public static bool IsLoaded { get; private set; }
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
         LoadManagers();
         IsLoaded = true;
+        StartCoroutine(Get<SceneLoadingManager>().ChangeScene(startSceneKey));
     }
 
     void LoadManagers()

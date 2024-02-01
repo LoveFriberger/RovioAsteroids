@@ -13,8 +13,6 @@ public class PlayerMover : MonoBehaviour
     float turnSpeed = 50;
     [SerializeField]
     Rigidbody2D playerRigidbody = null;
-    [SerializeField]
-    InputActionAsset inputActionAsset = null;
 
     Vector2 movementInputValues = new();
 

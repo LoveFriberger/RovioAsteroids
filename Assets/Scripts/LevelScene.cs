@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class Level : Scene
+public class LevelScene : MonoBehaviour
 {
     [SerializeField]
     int startRocks = 3;
@@ -18,45 +19,45 @@ public class Level : Scene
     [SerializeField]
     AssetReferenceGameObject rockPrefabReference = null;
 
-    GameObject LoadedPlayerPrefab = null;
-    GameObject LoadedRockPrefab = null;
+    AsyncOperationHandle<GameObject> LoadedPlayerHandle;
+    AsyncOperationHandle<GameObject> LoadedRockHandle;
 
     float timeBetweenSpawns = 5;
     float lastRockSpawnTime = 0;
 
-    protected override void Setup()
+    IEnumerator Start()
     {
-        StartCoroutine(CoSetup());
-    }
+        lastRockSpawnTime = Time.time;
 
-    IEnumerator CoSetup()
-    {
-        yield return LoadAssetAsync(playerPrefabReference, (loadedObject) => { LoadedPlayerPrefab = loadedObject; });
-        yield return LoadAssetAsync(rockPrefabReference, (loadedObject) => { LoadedRockPrefab = loadedObject; });
+        LoadedPlayerHandle = new();
+        LoadedRockHandle = new();
+
+        yield return LoadAssetAsync(playerPrefabReference, (loadedHandle) => { LoadedPlayerHandle = loadedHandle; });
+        yield return LoadAssetAsync(rockPrefabReference, (loadedHandle) => { LoadedRockHandle = loadedHandle; });
+        
 
         InstantiatePlayer();
         for (int i = 0; i < startRocks; i++)
             InstantiateRock();
     }
 
-    IEnumerator LoadAssetAsync(AssetReferenceGameObject assetReferenceGameObject, System.Action<GameObject> onAssetLoaded)
+    IEnumerator LoadAssetAsync(AssetReferenceGameObject assetReferenceGameObject, System.Action<AsyncOperationHandle<GameObject>> onAssetLoaded)
     {
         var asyncLoadHandle = assetReferenceGameObject.LoadAssetAsync();
         yield return asyncLoadHandle;
-        if(asyncLoadHandle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Failed)
+        if(asyncLoadHandle.Status == AsyncOperationStatus.Failed)
         {
             Debug.LogError(assetReferenceGameObject.RuntimeKey + " failed to load!");
         }
-        else if (asyncLoadHandle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+        else if (asyncLoadHandle.Status == AsyncOperationStatus.Succeeded)
         {
-            onAssetLoaded?.Invoke(asyncLoadHandle.Result);
-            Addressables.Release(asyncLoadHandle);
+            onAssetLoaded?.Invoke(asyncLoadHandle);
         }
     }
 
     void InstantiatePlayer()
     {
-        Instantiate(LoadedPlayerPrefab, playerStart.position, playerStart.rotation);
+        Instantiate(LoadedPlayerHandle.Result, playerStart.position, playerStart.rotation);
     }
 
     void Update()
@@ -68,7 +69,7 @@ public class Level : Scene
     void InstantiateRock()
     {
         GetRockStartPositionAndRotation(out Vector2 position, out Quaternion rotation);
-        var rockClone = Instantiate(LoadedRockPrefab, position, rotation);
+        var rockClone = Instantiate(LoadedRockHandle.Result, position, rotation);
         rockClone.GetComponent<Rigidbody2D>().velocity = rockClone.transform.up * startVelocity;
         lastRockSpawnTime = Time.time;
     }
@@ -88,5 +89,11 @@ public class Level : Scene
     {
         var levelBounds = exitLevelCollider.GetComponent<Collider2D>().bounds;
         return new Vector2(Random.Range(levelBounds.min.x, levelBounds.max.x), Random.Range(levelBounds.min.y, levelBounds.max.y));
+    }
+
+    void OnDestroy()
+    {
+        playerPrefabReference.ReleaseAsset();
+        rockPrefabReference.ReleaseAsset();
     }
 }
