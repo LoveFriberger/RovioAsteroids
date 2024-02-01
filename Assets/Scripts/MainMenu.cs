@@ -8,9 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField]
-    string levelSceneName = "";
-
     public void QuitGame()
     {
         Application.Quit();
