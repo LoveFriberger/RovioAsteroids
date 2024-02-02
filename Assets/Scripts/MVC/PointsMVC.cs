@@ -13,6 +13,7 @@ public class PointsModel
 public class PointsViewer
 {
     protected PointsModel model = new();
+
     public PointsViewer(string playerPrefsHighScoreKey)
     {
         model.playerPrefsHighScoreKey = playerPrefsHighScoreKey;

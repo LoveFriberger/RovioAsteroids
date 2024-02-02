@@ -6,12 +6,12 @@ using Zenject;
 public class SceneLoaderButton : MonoBehaviour
 {
     [Inject]
-    SceneLoadingManager sceneLoadingManager = null;
+    SceneLoadingController sceneLoadingController = null;
 
     [SerializeField]
     string sceneKey = "";
     public void LoadScene()
     {
-        StartCoroutine(sceneLoadingManager.ChangeScene(sceneKey));
+        StartCoroutine(sceneLoadingController.ChangeScene(sceneKey));
     }
 }

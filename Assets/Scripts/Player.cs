@@ -6,10 +6,10 @@ using Zenject;
 public class Player : MonoBehaviour, IHitable
 {
     [Inject]
-    GameManager gameManager = null;
+    GameController gameController = null;
 
     public void TakeDamage()
     {
-        Core.Get<GameManager>().PlayerKilled?.Invoke();
+        gameController.InvokePlayerKilledAction();
     }
 }

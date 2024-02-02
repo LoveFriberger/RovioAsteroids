@@ -30,7 +30,7 @@ public class LevelScene : MonoBehaviour
     float lastRockSpawnTime = 0;
 
     [Inject]
-    GameManager gameManager = null;
+    GameController gameController = null;
     [Inject]
     PointsController pointsController = null;
     [Inject]
@@ -38,7 +38,7 @@ public class LevelScene : MonoBehaviour
 
     IEnumerator Start()
     {
-        gameManager.PlayerKilled += OnPlayerKilled;
+        gameController.AddOnPlayerKilledAction(OnPlayerKilled);
 
         lastRockSpawnTime = Time.time;
 
@@ -56,7 +56,7 @@ public class LevelScene : MonoBehaviour
 
     private void OnDisable()
     {
-        gameManager.PlayerKilled -= OnPlayerKilled;
+        gameController.RemovePlayerKilledAction(OnPlayerKilled);
     }
 
     void OnPlayerKilled()
