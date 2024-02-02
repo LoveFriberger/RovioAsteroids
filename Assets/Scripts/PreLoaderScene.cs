@@ -5,7 +5,7 @@ using Zenject;
 
 public class PreLoaderScene : MonoBehaviour
 {
-    [SerializeField]
+    [Inject]
     string startSceneKey = "";
 
     [Inject]
