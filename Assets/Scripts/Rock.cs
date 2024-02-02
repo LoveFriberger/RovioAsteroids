@@ -57,4 +57,6 @@ public class Rock : MonoBehaviour, IHitable
         if (hitable != null)
             hitable.TakeDamage();
     }
+
+    public class Factory : PlaceholderFactory<Rock> { }
 }

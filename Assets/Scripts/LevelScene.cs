@@ -33,6 +33,8 @@ public class LevelScene : MonoBehaviour
     GameManager gameManager = null;
     [Inject]
     PointsManager pointsManager = null;
+    [Inject]
+    Rock.Factory rockFactory = null;
 
     IEnumerator Start()
     {
@@ -106,8 +108,12 @@ public class LevelScene : MonoBehaviour
     void InstantiateRock()
     {
         GetRockStartPositionAndRotation(out Vector2 position, out Quaternion rotation);
-        var rockClone = Instantiate(LoadedRockHandle.Result, position, rotation, rocksParent);
+        var rockClone = rockFactory.Create();
+        rockClone.transform.position = position;
+        rockClone.transform.rotation = rotation;
+        //var rockClone = Instantiate(LoadedRockHandle.Result, position, rotation, rocksParent);
         rockClone.GetComponent<Rigidbody2D>().velocity = rockClone.transform.up * startVelocity;
+        
         lastRockSpawnTime = Time.time;
     }
 
