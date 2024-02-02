@@ -74,5 +74,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf5cbd224871e4b812211d228d493d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corePrefab: {fileID: -9186175996898722548, guid: d8501e8a14bc71c49a1d761c64f83f91, type: 3}
-  rockPrefab: {fileID: 1765633817962168975, guid: 784b3fbf0b6f91b4fb60e6c555a03d88, type: 3}
+  startSceneKey: Assets/Scenes/MainMenu.unity
+  highScorePlayerPrefsKey: HighScore

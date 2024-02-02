@@ -6,10 +6,13 @@ using Zenject;
 public class ProjectInstaller : MonoInstaller
 {
     [SerializeField]
-    string highScorePlayerPrefsKey = "HighScore";
+    string startSceneKey = "";
+    [SerializeField]
+    string highScorePlayerPrefsKey = "";
 
     public override void InstallBindings()
     {
+        Container.BindInstance(startSceneKey).WhenInjectedInto<PreLoaderScene>();
 
         Container.BindInstance(new PointsController(highScorePlayerPrefsKey));
         Container.BindInstance(new GameController());

@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class ExitLevelCollider : MonoBehaviour
 {
-    [SerializeField]
-    Camera levelCamera = null;
-
-    [SerializeField]
+    [Inject]
     BoxCollider2D boxCollider = null;
 
     private void OnEnable()
@@ -17,8 +15,8 @@ public class ExitLevelCollider : MonoBehaviour
 
     void SetColliderToCameraFrameSize()
     {
-        var cameraOrthographicWidth = levelCamera.orthographicSize * levelCamera.aspect;
-        boxCollider.size = new Vector2(cameraOrthographicWidth, levelCamera.orthographicSize) * 2;
+        var cameraOrthographicWidth = Camera.main.orthographicSize * Camera.main.aspect;
+        boxCollider.size = new Vector2(cameraOrthographicWidth, Camera.main.orthographicSize) * 2;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -2,11 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 public class MenuOpener : MonoBehaviour
 {
     [SerializeField]
     GameMenu menuObject = null;
+
+    [Inject]
+    protected GameController gameController = null;
+
+    void OnEnable()
+    {
+        gameController.AddOnPlayerKilledAction(OnPlayerKilled);
+        gameController.AddResetGameAction(CloseMenu);
+    }
+
+    void OnDisable()
+    {
+        gameController.RemovePlayerKilledAction(OnPlayerKilled);
+        gameController.RemoveResetGameAction(CloseMenu);
+        SetPause(false);
+    }
+
+    void OnPlayerKilled()
+    {
+        OpenMenu(true);
+    }
 
     public void OnToggleMenuInput(InputAction.CallbackContext context)
     {
@@ -36,10 +58,5 @@ public class MenuOpener : MonoBehaviour
     void SetPause(bool Pause)
     {
         Time.timeScale = Pause ? 0 : 1;
-    }
-
-    private void OnDisable()
-    {
-        SetPause(false);
     }
 }

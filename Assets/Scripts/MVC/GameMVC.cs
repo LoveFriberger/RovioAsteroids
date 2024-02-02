@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameModel
 {
     public Action onPlayerKilled = null;
+    public Action onResetGame = null;
 }
 
 public class GameViewer
@@ -29,6 +30,20 @@ public class GameController : GameViewer
     }
 
     public void InvokePlayerKilledAction()
+    {
+        model.onPlayerKilled?.Invoke();
+    }
+    public void AddResetGameAction(Action action)
+    {
+        model.onResetGame += action;
+    }
+
+    public void RemoveResetGameAction(Action action)
+    {
+        model.onResetGame -= action;
+    }
+
+    public void InvokeResetGameAction()
     {
         model.onPlayerKilled?.Invoke();
     }
