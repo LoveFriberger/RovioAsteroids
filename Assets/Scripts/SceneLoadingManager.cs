@@ -15,7 +15,9 @@ public class SceneLoadingManager : Manager
     {
         var oldLoadedSceneHandle = loadedSceneHandle;
 
-        loadedSceneHandle = Addressables.LoadSceneAsync(key, LoadSceneMode.Additive);
+        var loadMode = oldLoadedSceneHandle.IsValid() ? LoadSceneMode.Additive : LoadSceneMode.Single;
+
+        loadedSceneHandle = Addressables.LoadSceneAsync(key, loadMode);
 
         yield return loadedSceneHandle;
 
