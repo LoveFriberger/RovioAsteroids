@@ -10,21 +10,21 @@ public class Rock : MonoBehaviour, IHitable
     [SerializeField]
     float splitSpeed = 0.5f;
     [SerializeField]
-    float initSpeed = 0;
+    float initSpeed = 3;
     [SerializeField]
     CircleCollider2D circleCollider = null;
     [SerializeField]
     Rigidbody2D rockRigidbody;
+    
+
     public Rigidbody2D RockRigidbody => rockRigidbody;
 
     [Inject]
-    PointsController pointsController;
+    PointsController pointsController = null;
 
-    void OnEnable()
+    void Start()
     {
-        //The big rocks are the only ones that have a initial speed.
-        if(initSpeed > 0)
-            RockRigidbody.velocity = transform.up * initSpeed;
+        RockRigidbody.velocity += (Vector2)transform.up * initSpeed;
     }
 
     public void TakeDamage()
@@ -41,8 +41,8 @@ public class Rock : MonoBehaviour, IHitable
             var firstSmallerRock = Instantiate(smallerRock, firstSpawnPosition, transform.rotation);
             var secondSmallerRock = Instantiate(smallerRock, secondSpawnPosition, transform.rotation);
 
-            firstSmallerRock.RockRigidbody.velocity = RockRigidbody.velocity + (Vector2)transform.right * splitSpeed;
-            secondSmallerRock.RockRigidbody.velocity = RockRigidbody.velocity - (Vector2)transform.right * splitSpeed;
+            firstSmallerRock.RockRigidbody.velocity = (Vector2)transform.right * splitSpeed;
+            secondSmallerRock.RockRigidbody.velocity = -(Vector2)transform.right * splitSpeed;
         }
     }
 

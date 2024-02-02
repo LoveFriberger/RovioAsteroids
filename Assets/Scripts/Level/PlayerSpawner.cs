@@ -7,8 +7,12 @@ using Zenject;
 
 public class PlayerSpawner : Spawner
 {
+    public class Settings
+    {
+        public Transform playerStart = null;
+    }
     [Inject]
-    Transform playerStart = null;
+    Settings settings = null;
     [SerializeField]
     AssetReferenceGameObject playerPrefabReference = null;
     [Inject]
@@ -25,16 +29,16 @@ public class PlayerSpawner : Spawner
 
     protected override void ResetSpawns()
     {
-        Destroy(playerStart.GetChild(0).gameObject);
+        Destroy(settings.playerStart.GetChild(0).gameObject);
         InstantiatePlayer();
     }
 
     void InstantiatePlayer()
     {
         var playerClone = playerFactory.Create(); 
-        playerClone.transform.position = playerStart.position;
-        playerClone.transform.rotation = playerStart.rotation;
-        playerClone.transform.SetParent(playerStart);
+        playerClone.transform.position = settings.playerStart.position;
+        playerClone.transform.rotation = settings.playerStart.rotation;
+        playerClone.transform.SetParent(settings.playerStart);
         //Instantiate(LoadedPlayerHandle.Result, playerStart.position, playerStart.rotation, playerStart);
     }
 

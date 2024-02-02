@@ -10,6 +10,11 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField]
     string highScorePlayerPrefsKey = "";
 
+    [SerializeField]
+    Player playerPrefab = null;
+    [SerializeField]
+    Rock rockPrefab = null;
+
     public override void InstallBindings()
     {
         Container.BindInstance(startSceneKey).WhenInjectedInto<PreLoaderScene>();
@@ -17,5 +22,8 @@ public class ProjectInstaller : MonoInstaller
         Container.BindInstance(new PointsController(highScorePlayerPrefsKey));
         Container.BindInstance(new GameController());
         Container.BindInstance(new SceneLoadingController());
+
+        Container.BindFactory<Player, Player.Factory>().FromComponentInNewPrefab(playerPrefab);
+        Container.BindFactory<Rock, Rock.Factory>().FromComponentInNewPrefab(rockPrefab);
     }
 }

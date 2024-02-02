@@ -76,3 +76,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSceneKey: Assets/Scenes/MainMenu.unity
   highScorePlayerPrefsKey: HighScore
+  playerPrefab: {fileID: 6382182082139526084, guid: c1b85eea7c0d80b41813ca226897930a, type: 3}
+  rockPrefab: {fileID: 1765633817962168975, guid: 784b3fbf0b6f91b4fb60e6c555a03d88, type: 3}
