@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Zenject;
 
 public class ScoreIndicator : MonoBehaviour
 {
@@ -10,13 +11,12 @@ public class ScoreIndicator : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI scoreText = null;
 
-
+    [Inject]
     PointsManager pointsManager = null;
     int oldHighScore = 0;
 
     void Start()
     {
-        pointsManager = Core.Get<PointsManager>();
         oldHighScore = pointsManager.HighScore;
         pointsManager.OnScoreUpdated += UpdateScoreIndicator;
         UpdateScoreIndicator();

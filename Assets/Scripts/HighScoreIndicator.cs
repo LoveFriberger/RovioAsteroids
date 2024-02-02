@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Zenject;
+
 public class HighScoreIndicator : MonoBehaviour
 {
     [SerializeField]
@@ -10,9 +12,11 @@ public class HighScoreIndicator : MonoBehaviour
     [SerializeField]
     string highScoreString = "High Score: {0}";
 
+    [Inject]
+    PointsManager pointsManager = null;
+
     void Start()
     {
-        var points = Core.Get<PointsManager>().HighScore;
-        highScoreText.text = points > 0 ? string.Format(highScoreString, points) : "";
+        highScoreText.text = pointsManager.HighScore > 0 ? string.Format(highScoreString, pointsManager.HighScore) : "";
     }
 }

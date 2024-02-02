@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Rock : MonoBehaviour, IHitable
 {
@@ -15,6 +16,9 @@ public class Rock : MonoBehaviour, IHitable
     [SerializeField]
     Rigidbody2D rockRigidbody;
     public Rigidbody2D RockRigidbody => rockRigidbody;
+
+    [Inject]
+    PointsManager pointsManager;
 
     void OnEnable()
     {
@@ -44,7 +48,7 @@ public class Rock : MonoBehaviour, IHitable
 
     void GivePoints()
     {
-        Core.Get<PointsManager>().AddPoints(1);
+        pointsManager.AddPoints(1);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

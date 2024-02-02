@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Zenject;
 
 public class LevelScene : MonoBehaviour
 {
@@ -28,9 +29,14 @@ public class LevelScene : MonoBehaviour
     float timeBetweenSpawns = 5;
     float lastRockSpawnTime = 0;
 
+    [Inject]
+    GameManager gameManager = null;
+    [Inject]
+    PointsManager pointsManager = null;
+
     IEnumerator Start()
     {
-        Core.Get<GameManager>().PlayerKilled += OnPlayerKilled;
+        gameManager.PlayerKilled += OnPlayerKilled;
 
         lastRockSpawnTime = Time.time;
 
@@ -48,7 +54,7 @@ public class LevelScene : MonoBehaviour
 
     private void OnDisable()
     {
-        Core.Get<GameManager>().PlayerKilled -= OnPlayerKilled;
+        gameManager.PlayerKilled -= OnPlayerKilled;
     }
 
     void OnPlayerKilled()
@@ -59,7 +65,6 @@ public class LevelScene : MonoBehaviour
     public void ResetGame()
     {
         menuOpener.CloseMenu();
-        var pointsManager = Core.Get<PointsManager>();
         pointsManager.Reset();
         for (int i = rocksParent.childCount -1 ; i >= 0; i--)
         {
@@ -125,7 +130,7 @@ public class LevelScene : MonoBehaviour
 
     void OnDestroy()
     {
-        playerPrefabReference.ReleaseAsset();
-        rockPrefabReference.ReleaseAsset();
+        playerPrefabReference?.ReleaseAsset();
+        //rockPrefabReference?.ReleaseAsset();
     }
 }

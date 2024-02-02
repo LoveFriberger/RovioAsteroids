@@ -6,10 +6,11 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu :MonoBehaviour
 {
     public void QuitGame()
     {
         Application.Quit();
     }
+
 }

@@ -7,12 +7,11 @@ public class Core : MonoBehaviour
     [SerializeField]
     string startSceneKey = "";
 
-    static Dictionary<System.Type, Manager> ManagerMap = new Dictionary<System.Type, Manager>();
     public static bool IsLoaded { get; private set; }
+    public static Dictionary<System.Type, Manager> ManagerMap = new Dictionary<System.Type, Manager>();
     void Awake()
     {
         LoadManagers();
-        IsLoaded = true;
         StartCoroutine(Get<SceneLoadingManager>().ChangeScene(startSceneKey));
     }
 
@@ -22,12 +21,12 @@ public class Core : MonoBehaviour
         {
             ManagerMap.Add(manager.GetType(), manager);
         }
+        IsLoaded = true;
     }
 
     public static T Get<T>() where T : Manager
-    {
-        Manager manager = null;
-        if (ManagerMap.TryGetValue(typeof(T), out manager))
+    {;
+        if (ManagerMap.TryGetValue(typeof(T), out Manager manager))
             return manager as T;
         return null;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Zenject; 
 
 public class GameMenu : MonoBehaviour
 {
@@ -17,15 +18,19 @@ public class GameMenu : MonoBehaviour
     [SerializeField]
     string pausedString = "Paused";
 
+
+    [Inject]
+    PointsManager pointsManager = null;
+
     public bool CanCloseWithKey { get; private set; }
     public void Setup(bool died)
     {
         CanCloseWithKey = !died;
 
-        scoreText.text = Core.Get<PointsManager>().CurrentPoints.ToString();
+        scoreText.text = pointsManager.CurrentPoints.ToString();
         string titleString = pausedString;
         if (died)
-            titleString = Core.Get<PointsManager>().NewHighScore ? newHighScoreString : scoreString;
+            titleString = pointsManager.NewHighScore ? newHighScoreString : scoreString;
 
         titleText.text = titleString;
     }

@@ -598,6 +598,7 @@ GameObject:
   - component: {fileID: 1095357095}
   - component: {fileID: 1095357097}
   - component: {fileID: 1095357098}
+  - component: {fileID: 1095357100}
   m_Layer: 0
   m_Name: Main Menu
   m_TagString: Untagged
@@ -617,7 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c265770a6641314ca7d53137c644f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelSceneName: Assets/Scenes/Level.unity
+  corePrefab: {fileID: -9186175996898722548, guid: d8501e8a14bc71c49a1d761c64f83f91, type: 3}
 --- !u!4 &1095357096
 Transform:
   m_ObjectHideFlags: 0
@@ -713,11 +714,46 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ed71c704-54d2-47cf-b403-bb4f6aec05fc
     m_ActionName: 'UI/Action[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7662d2af-eea9-4ec9-b7c9-27632ef462c8
+    m_ActionName: 'UI/ToggleMenu[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1095357100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095357094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers: []
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
 --- !u!1 &1180685150
 GameObject:
   m_ObjectHideFlags: 0
