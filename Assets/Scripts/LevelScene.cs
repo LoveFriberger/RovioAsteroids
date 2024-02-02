@@ -32,7 +32,7 @@ public class LevelScene : MonoBehaviour
     [Inject]
     GameManager gameManager = null;
     [Inject]
-    PointsManager pointsManager = null;
+    PointsController pointsController = null;
     [Inject]
     Rock.Factory rockFactory = null;
 
@@ -67,7 +67,7 @@ public class LevelScene : MonoBehaviour
     public void ResetGame()
     {
         menuOpener.CloseMenu();
-        pointsManager.Reset();
+        pointsController.Reset();
         for (int i = rocksParent.childCount -1 ; i >= 0; i--)
         {
             Destroy(rocksParent.GetChild(i).gameObject);

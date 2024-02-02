@@ -12,23 +12,23 @@ public class ScoreIndicator : MonoBehaviour
     TextMeshProUGUI scoreText = null;
 
     [Inject]
-    PointsManager pointsManager = null;
+    PointsController pointsController = null;
     int oldHighScore = 0;
 
     void Start()
     {
-        oldHighScore = pointsManager.HighScore;
-        pointsManager.OnScoreUpdated += UpdateScoreIndicator;
+        oldHighScore = pointsController.HighScore();
+        pointsController.AddOnScoreUpdatedAction(UpdateScoreIndicator);
         UpdateScoreIndicator();
     }
 
     private void OnDisable()
     {
-        pointsManager.OnScoreUpdated -= UpdateScoreIndicator;
+        pointsController.RemoveOnScoreUpdatedAction(UpdateScoreIndicator);
     }
 
     void UpdateScoreIndicator()
     {
-        scoreText.text = string.Format(scoreString, pointsManager.CurrentPoints, oldHighScore);
+        scoreText.text = string.Format(scoreString, pointsController.CurrentPoints(), oldHighScore);
     }
 }

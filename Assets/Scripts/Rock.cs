@@ -18,7 +18,7 @@ public class Rock : MonoBehaviour, IHitable
     public Rigidbody2D RockRigidbody => rockRigidbody;
 
     [Inject]
-    PointsManager pointsManager;
+    PointsController pointsController;
 
     void OnEnable()
     {
@@ -48,7 +48,7 @@ public class Rock : MonoBehaviour, IHitable
 
     void GivePoints()
     {
-        pointsManager.AddPoints(1);
+        pointsController.AddPoints(1);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

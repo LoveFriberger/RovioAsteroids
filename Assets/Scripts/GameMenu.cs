@@ -20,17 +20,17 @@ public class GameMenu : MonoBehaviour
 
 
     [Inject]
-    PointsManager pointsManager = null;
+    PointsController pointsController = null;
 
     public bool CanCloseWithKey { get; private set; }
     public void Setup(bool died)
     {
         CanCloseWithKey = !died;
 
-        scoreText.text = pointsManager.CurrentPoints.ToString();
+        scoreText.text = pointsController.CurrentPoints().ToString();
         string titleString = pausedString;
         if (died)
-            titleString = pointsManager.NewHighScore ? newHighScoreString : scoreString;
+            titleString = pointsController.NewHighScore() ? newHighScoreString : scoreString;
 
         titleText.text = titleString;
     }

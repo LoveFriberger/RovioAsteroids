@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5066139473243318377}
   - component: {fileID: -9186175996898722548}
   - component: {fileID: 3055802654629256850}
-  - component: {fileID: 1726033095799056016}
   - component: {fileID: 4433907668817461730}
   m_Layer: 0
   m_Name: Core
@@ -47,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace241c052d76594694861da9e65028f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSceneKey: Assets/Scenes/MainMenu.unity
 --- !u!114 &3055802654629256850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,18 +56,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3dc893120edd4814f99fd24506c604e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1726033095799056016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5230607341340412378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c33c4704df943ed4e9554d5205448afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &4433907668817461730

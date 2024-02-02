@@ -7,6 +7,8 @@ public class ProjectInstaller : MonoInstaller
 {
     [SerializeField]
     Core corePrefab = null;
+    [SerializeField]
+    string highScorePlayerPrefsKey = "HighScore";
 
     public override void InstallBindings()
     {
@@ -16,7 +18,7 @@ public class ProjectInstaller : MonoInstaller
             DontDestroyOnLoad(core);
         }
 
-        Container.Bind<PointsManager>().FromInstance(Core.Get<PointsManager>());
+        Container.BindInstance(new PointsController(highScorePlayerPrefsKey));
         Container.Bind<SceneLoadingManager>().FromInstance(Core.Get<SceneLoadingManager>());
         Container.Bind<GameManager>().FromInstance(Core.Get<GameManager>());
     }
