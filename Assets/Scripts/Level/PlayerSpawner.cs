@@ -9,10 +9,10 @@ public class PlayerSpawner : Spawner
 {
     [Inject]
     Transform playerStart = null;
-    [Inject]
-    AssetReferenceGameObject playerPrefabReference = null;
     [SerializeField]
-    GameObject playerPrefab = null;
+    AssetReferenceGameObject playerPrefabReference = null;
+    [Inject]
+    Player.Factory playerFactory = null;
 
     AsyncOperationHandle<GameObject> LoadedPlayerHandle;
 
@@ -31,7 +31,11 @@ public class PlayerSpawner : Spawner
 
     void InstantiatePlayer()
     {
-        Instantiate(LoadedPlayerHandle.Result, playerStart.position, playerStart.rotation, playerStart);
+        var playerClone = playerFactory.Create(); 
+        playerClone.transform.position = playerStart.position;
+        playerClone.transform.rotation = playerStart.rotation;
+        playerClone.transform.SetParent(playerStart);
+        //Instantiate(LoadedPlayerHandle.Result, playerStart.position, playerStart.rotation, playerStart);
     }
 
     void OnDestroy()

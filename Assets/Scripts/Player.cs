@@ -12,4 +12,6 @@ public class Player : MonoBehaviour, IHitable
     {
         gameController.InvokePlayerKilledAction();
     }
+
+    public class Factory : PlaceholderFactory<Player> { }
 }

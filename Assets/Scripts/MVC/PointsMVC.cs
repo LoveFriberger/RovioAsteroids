@@ -58,6 +58,8 @@ public class PointsController : PointsViewer
     {
         model.currentPoints = 0;
         model.newHighScore = false;
+
+        model.onScoreUpdated?.Invoke();
     }
 
     public void AddOnScoreUpdatedAction(Action action)
@@ -68,10 +70,5 @@ public class PointsController : PointsViewer
     public void RemoveOnScoreUpdatedAction(Action action)
     {
         model.onScoreUpdated -= action;
-    }
-
-    public void InvokeOnScoreUpdatedAction()
-    {
-        model.onScoreUpdated?.Invoke();
     }
 }

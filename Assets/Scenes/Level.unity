@@ -839,7 +839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResetLevel
+      value: ResetGame
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1627,6 +1627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStart: {fileID: 5334652648066067246}
+  playerPrefab: {fileID: 6382182082139526084, guid: c1b85eea7c0d80b41813ca226897930a, type: 3}
   rockPrefab: {fileID: 1765633817962168975, guid: 784b3fbf0b6f91b4fb60e6c555a03d88, type: 3}
   levelCollider: {fileID: 1557863633}
   startRocks: 3
@@ -1716,7 +1717,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d1ffe1fe3a78643b86391a7a7a6f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
+  playerPrefabReference:
+    m_AssetGUID: c1b85eea7c0d80b41813ca226897930a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!114 &7772568289677079449
 MonoBehaviour:
   m_ObjectHideFlags: 0

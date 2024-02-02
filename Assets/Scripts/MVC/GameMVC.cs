@@ -45,6 +45,6 @@ public class GameController : GameViewer
 
     public void InvokeResetGameAction()
     {
-        model.onPlayerKilled?.Invoke();
+        model.onResetGame?.Invoke();
     }
 }
