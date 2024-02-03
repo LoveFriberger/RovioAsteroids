@@ -43,10 +43,6 @@ public class LevelInstaller : MonoInstaller
         };
         Container.BindInstance(rockSpawnerSettings);
 
-        var rockSpawnerInterface
-
-        Container.Bind<>
-
         //Other
         Container.BindInstance(levelCollider).WhenInjectedInto<ExitLevelCollider>();
     }
