@@ -1382,37 +1382,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2056386089
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2056386090}
-  m_Layer: 0
-  m_Name: Rocks Parent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2056386090
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2056386089}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7772568289677079447}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2081224183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,8 +1529,9 @@ GameObject:
   - component: {fileID: 2087255601}
   - component: {fileID: 2087255600}
   - component: {fileID: 2087255602}
+  - component: {fileID: 2087255603}
   m_Layer: 0
-  m_Name: SceneContext
+  m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1579,7 +1549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
+  _scriptableObjectInstallers:
+  - {fileID: 11400000, guid: e393e43150b7b9b4cbe6fd253ed7330d, type: 2}
   _monoInstallers:
   - {fileID: 2087255602}
   _installerPrefabs: []
@@ -1626,39 +1597,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce025b044e261842857a46ac1ec3887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStart: {fileID: 5334652648066067246}
-  playerPrefabReference:
-    m_AssetGUID: c1b85eea7c0d80b41813ca226897930a
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  levelObject: {fileID: 2087255603}
+  assetReferenceSpawner: {fileID: 6855908490376689513}
   levelCollider: {fileID: 1557863633}
-  rocksParent: {fileID: 2056386090}
-  startRocks: 3
-  timeBetweenRockSpawns: 5
-  rockPrefabReference:
-    m_AssetGUID: 784b3fbf0b6f91b4fb60e6c555a03d88
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
---- !u!1 &731549149358083211
-GameObject:
+--- !u!114 &2087255603
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7772568289677079447}
-  - component: {fileID: 7772568289677079449}
-  - component: {fileID: 7772568289677079448}
-  m_Layer: 0
-  m_Name: Spawners
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_GameObject: {fileID: 2087255599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0257d2292d55074dbf2683e4d9a93f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5334652648066067246
 Transform:
   m_ObjectHideFlags: 0
@@ -1672,7 +1625,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7772568289677079447}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6855908490376689512
 GameObject:
@@ -1683,52 +1636,24 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5334652648066067246}
+  - component: {fileID: 6855908490376689513}
   m_Layer: 0
-  m_Name: Player Start
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7772568289677079447
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731549149358083211}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5334652648066067246}
-  - {fileID: 2056386090}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7772568289677079448
+--- !u!114 &6855908490376689513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731549149358083211}
+  m_GameObject: {fileID: 6855908490376689512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70d1ffe1fe3a78643b86391a7a7a6f71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7772568289677079449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731549149358083211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21672ae4c83f4864a88c417acd548c09, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b3351270b0a76043b6df87c47776f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
@@ -1736,7 +1661,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1557863635}
-  - {fileID: 7772568289677079447}
   - {fileID: 450512184}
+  - {fileID: 5334652648066067246}
+  - {fileID: 1557863635}
   - {fileID: 2087255601}

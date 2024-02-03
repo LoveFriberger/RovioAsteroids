@@ -19,8 +19,24 @@ MonoBehaviour:
       turnSpeed: 50
     playerShooterSettings:
       cooldown: 0.5
+      projectileVelocity: 5
       projectilePrefabReference:
         m_AssetGUID: f21862b8394616340bd9470a40882938
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
+  levelSettings:
+    playerSpawnerSettings:
+      playerPrefabReference:
+        m_AssetGUID: 54c42a2196d7d9c49bf123d3d989ec2b
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+    rockSpawnerSettings:
+      rockPrefabReference:
+        m_AssetGUID: 784b3fbf0b6f91b4fb60e6c555a03d88
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      startRocks: 3
+      timeBetweenRockSpawns: 5

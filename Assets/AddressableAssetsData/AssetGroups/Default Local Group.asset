@@ -37,11 +37,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c1b85eea7c0d80b41813ca226897930a
-    m_Address: Assets/Prefabs/Player.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2cda990e2423bbf4892e6590ba056729
     m_Address: Assets/Scenes/Level.unity
     m_ReadOnly: 0
@@ -58,7 +53,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 54c42a2196d7d9c49bf123d3d989ec2b
-    m_Address: Assets/Prefabs/Player Test.prefab
+    m_Address: Assets/Prefabs/Player.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

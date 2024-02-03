@@ -16,6 +16,7 @@ public class PlayerInstaller : MonoInstaller
 
         Container.BindInterfacesTo<PlayerMover>().AsSingle();
         Container.BindInterfacesTo<PlayerShooter>().AsSingle();
+
         Container.BindInstances(playerObject);
     }
 

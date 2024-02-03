@@ -6,7 +6,7 @@ using Zenject;
 public class ExitLevelCollider : MonoBehaviour
 {
     [Inject]
-    BoxCollider2D boxCollider = null;
+    LevelModel levelModel = null;
 
     private void OnEnable()
     {
@@ -16,19 +16,19 @@ public class ExitLevelCollider : MonoBehaviour
     void SetColliderToCameraFrameSize()
     {
         var cameraOrthographicWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        boxCollider.size = new Vector2(cameraOrthographicWidth, Camera.main.orthographicSize) * 2;
+        levelModel.ExitLevelColliderSize = new Vector2(cameraOrthographicWidth, Camera.main.orthographicSize) * 2;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         var velocity = collision.GetComponent<Rigidbody2D>().velocity;
-        if (collision.bounds.max.x > boxCollider.bounds.max.x && velocity.x > 0)
+        if (collision.bounds.max.x > levelModel.ExitLevelColliderBounds.max.x && velocity.x > 0)
             TeleportXAxisPosition(collision, false);
-        if (collision.bounds.min.x < boxCollider.bounds.min.x && velocity.x < 0)
+        if (collision.bounds.min.x < levelModel.ExitLevelColliderBounds.min.x && velocity.x < 0)
             TeleportXAxisPosition(collision, true);
-        if (collision.bounds.max.y > boxCollider.bounds.max.y && velocity.y > 0)
+        if (collision.bounds.max.y > levelModel.ExitLevelColliderBounds.max.y && velocity.y > 0)
             TeleportYAxisPosition(collision, false);
-        if (collision.bounds.min.y < boxCollider.bounds.min.y && velocity.y < 0)
+        if (collision.bounds.min.y < levelModel.ExitLevelColliderBounds.min.y && velocity.y < 0)
             TeleportYAxisPosition(collision, true);
 
     }
@@ -39,7 +39,7 @@ public class ExitLevelCollider : MonoBehaviour
         var collisionBoundsEdgeValue = leftToRight ? collision.bounds.min.x : collision.bounds.max.x;
         var collisionBoundingBoxOffset = oldXValue - collisionBoundsEdgeValue;
 
-        var boxColliderBoundsEdgeValue = leftToRight ? boxCollider.bounds.max.x : boxCollider.bounds.min.x;
+        var boxColliderBoundsEdgeValue = leftToRight ? levelModel.ExitLevelColliderBounds.max.x : levelModel.ExitLevelColliderBounds.min.x;
         collision.transform.position = new Vector2(boxColliderBoundsEdgeValue + collisionBoundingBoxOffset, collision.transform.position.y);
     }
 
@@ -49,7 +49,7 @@ public class ExitLevelCollider : MonoBehaviour
         var collisionBoundsEdgeValue = bottomToTop ? collision.bounds.min.y : collision.bounds.max.y;
         var collisionBoundingBoxOffset = oldYValue - collisionBoundsEdgeValue;
 
-        var boxColliderBoundsEdgeValue = bottomToTop ? boxCollider.bounds.max.y : boxCollider.bounds.min.y;
+        var boxColliderBoundsEdgeValue = bottomToTop ? levelModel.ExitLevelColliderBounds.max.y : levelModel.ExitLevelColliderBounds.min.y;
         collision.transform.position = new Vector2(collision.transform.position.x, boxColliderBoundsEdgeValue + collisionBoundingBoxOffset);
     }
 }
