@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using Zenject;
 
 public class RockSpawner : Spawner
@@ -13,24 +14,22 @@ public class RockSpawner : Spawner
         public float timeBetweenRockSpawns = 0;
         public Transform rocksParent = null;
         public BoxCollider2D exitLevelCollider = null;
+        public AssetReferenceGameObject rockPrefabReference = null;
     }
 
     [Inject]
     Settings settings = null;
-    [Inject]
-    public Rock.Factory rockFactory = null;
-    [SerializeField]
-    public AssetReferenceGameObject rockPrefabReference = null;
 
     float lastRockSpawnTime = 0;
     AsyncOperationHandle<GameObject> LoadedRockHandle;
+
 
     IEnumerator Start()
     {
         lastRockSpawnTime = Time.time;
         LoadedRockHandle = new();
 
-        yield return LoadAssetAsync(rockPrefabReference, (loadedHandle) => { LoadedRockHandle = loadedHandle; });
+        yield return LoadAssetAsync(settings.rockPrefabReference, (loadedHandle) => { LoadedRockHandle = loadedHandle; });
 
         InstantiateStartRocks();
     }
@@ -58,17 +57,9 @@ public class RockSpawner : Spawner
 
     void InstantiateRock()
     {
-        var rockClone = rockFactory.Create();
-        rockClone.transform.SetParent(settings.rocksParent);
-        SetRockStartingConditions(rockClone);
-        lastRockSpawnTime = Time.time;
-    }
-
-    void SetRockStartingConditions(Rock rockClone)
-    {
         GetRockStartPositionAndRotation(out Vector2 position, out Quaternion rotation);
-        rockClone.transform.position = position;
-        rockClone.transform.rotation = rotation;
+        Instantiate(LoadedRockHandle.Result, position, rotation, settings.rocksParent);
+        lastRockSpawnTime = Time.time;
     }
 
     void GetRockStartPositionAndRotation(out Vector2 position, out Quaternion rotation)

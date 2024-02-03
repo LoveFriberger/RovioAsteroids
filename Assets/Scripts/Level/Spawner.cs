@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using Zenject;
 
 public abstract class Spawner : MonoBehaviour
@@ -22,6 +23,7 @@ public abstract class Spawner : MonoBehaviour
 
     public IEnumerator LoadAssetAsync(AssetReferenceGameObject assetReferenceGameObject, System.Action<AsyncOperationHandle<GameObject>> onAssetLoaded)
     {
+        
         var asyncLoadHandle = assetReferenceGameObject.LoadAssetAsync();
         yield return asyncLoadHandle;
         if (asyncLoadHandle.Status == AsyncOperationStatus.Failed)

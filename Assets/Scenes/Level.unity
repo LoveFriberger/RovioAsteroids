@@ -1627,13 +1627,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStart: {fileID: 5334652648066067246}
-  playerPrefab: {fileID: 6382182082139526084, guid: c1b85eea7c0d80b41813ca226897930a, type: 3}
-  rockPrefab: {fileID: 1765633817962168975, guid: 784b3fbf0b6f91b4fb60e6c555a03d88, type: 3}
   levelCollider: {fileID: 1557863633}
-  startRocks: 3
-  startVelocity: 4
-  timeBetweenRockSpawns: 5
   rocksParent: {fileID: 2056386090}
+  startRocks: 3
+  timeBetweenRockSpawns: 5
   rockPrefabReference:
     m_AssetGUID: 784b3fbf0b6f91b4fb60e6c555a03d88
     m_SubObjectName: 

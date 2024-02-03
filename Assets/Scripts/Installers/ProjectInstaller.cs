@@ -12,8 +12,6 @@ public class ProjectInstaller : MonoInstaller
 
     [SerializeField]
     Player playerPrefab = null;
-    [SerializeField]
-    Rock rockPrefab = null;
 
     public override void InstallBindings()
     {
@@ -24,6 +22,5 @@ public class ProjectInstaller : MonoInstaller
         Container.BindInstance(new SceneLoadingController());
 
         Container.BindFactory<Player, Player.Factory>().FromComponentInNewPrefab(playerPrefab);
-        Container.BindFactory<Rock, Rock.Factory>().FromComponentInNewPrefab(rockPrefab);
     }
 }

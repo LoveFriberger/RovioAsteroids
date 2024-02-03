@@ -9,6 +9,8 @@ public class LevelInstaller : MonoInstaller
     [Header("Player Spawner")]
     [SerializeField]
     Transform playerStart = null;
+    [SerializeField]
+    AssetReferenceGameObject playerPrefabReference = null;
 
     [Space(), Header("Rock Spawner")]
     [SerializeField]
@@ -19,13 +21,15 @@ public class LevelInstaller : MonoInstaller
     int startRocks = 0;
     [SerializeField]
     float timeBetweenRockSpawns = 0;
-
+    [SerializeField]
+    AssetReferenceGameObject rockPrefabReference = null;
 
     public override void InstallBindings()
     {
         var playerSpawnerSettings = new PlayerSpawner.Settings()
         {
-            playerStart = playerStart
+            playerStart = playerStart,
+            playerPrefabReference = playerPrefabReference
         };
         Container.BindInstance(playerSpawnerSettings);
 
@@ -34,9 +38,14 @@ public class LevelInstaller : MonoInstaller
             startRocks = startRocks,
             timeBetweenRockSpawns = timeBetweenRockSpawns,
             rocksParent = rocksParent,
-            exitLevelCollider = levelCollider
+            exitLevelCollider = levelCollider,
+            rockPrefabReference = rockPrefabReference
         };
         Container.BindInstance(rockSpawnerSettings);
+
+        var rockSpawnerInterface
+
+        Container.Bind<>
 
         //Other
         Container.BindInstance(levelCollider).WhenInjectedInto<ExitLevelCollider>();

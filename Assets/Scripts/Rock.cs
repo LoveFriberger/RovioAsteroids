@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 public class Rock : MonoBehaviour, IHitable
@@ -57,6 +59,4 @@ public class Rock : MonoBehaviour, IHitable
         if (hitable != null)
             hitable.TakeDamage();
     }
-
-    public class Factory : PlaceholderFactory<Rock> { }
 }
