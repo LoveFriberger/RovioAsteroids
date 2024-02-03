@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e6589720da476459dc6dd71624b071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
+  _scriptableObjectInstallers:
+  - {fileID: 11400000, guid: e393e43150b7b9b4cbe6fd253ed7330d, type: 2}
   _monoInstallers:
   - {fileID: 4397256653485372594}
   _installerPrefabs: []
@@ -74,7 +75,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf5cbd224871e4b812211d228d493d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSceneKey: Assets/Scenes/MainMenu.unity
+  startSceneKey: Assets/Scenes/TestScene.unity
   highScorePlayerPrefsKey: HighScore
   playerPrefab: {fileID: 6382182082139526084, guid: c1b85eea7c0d80b41813ca226897930a, type: 3}
-  rockPrefab: {fileID: 1765633817962168975, guid: 784b3fbf0b6f91b4fb60e6c555a03d88, type: 3}

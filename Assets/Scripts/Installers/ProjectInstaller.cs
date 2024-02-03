@@ -11,7 +11,7 @@ public class ProjectInstaller : MonoInstaller
     string highScorePlayerPrefsKey = "";
 
     [SerializeField]
-    Player playerPrefab = null;
+    PlayerObject playerPrefab = null;
 
     public override void InstallBindings()
     {
@@ -21,6 +21,8 @@ public class ProjectInstaller : MonoInstaller
         Container.BindInstance(new GameController());
         Container.BindInstance(new SceneLoadingController());
 
-        Container.BindFactory<Player, Player.Factory>().FromComponentInNewPrefab(playerPrefab);
+        Container.Bind<InputModel>().AsSingle();
+        Container.Bind<InputView>().AsSingle();
+        Container.BindInterfacesTo<InputController>().AsSingle();
     }
 }
