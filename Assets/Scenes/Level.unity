@@ -1627,6 +1627,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStart: {fileID: 5334652648066067246}
+  playerPrefabReference:
+    m_AssetGUID: c1b85eea7c0d80b41813ca226897930a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   levelCollider: {fileID: 1557863633}
   rocksParent: {fileID: 2056386090}
   startRocks: 3
@@ -1714,11 +1719,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d1ffe1fe3a78643b86391a7a7a6f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefabReference:
-    m_AssetGUID: c1b85eea7c0d80b41813ca226897930a
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
 --- !u!114 &7772568289677079449
 MonoBehaviour:
   m_ObjectHideFlags: 0
