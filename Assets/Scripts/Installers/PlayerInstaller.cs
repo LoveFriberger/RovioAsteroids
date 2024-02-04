@@ -16,6 +16,7 @@ public class PlayerInstaller : MonoInstaller
 
         Container.BindInterfacesTo<PlayerMover>().AsSingle();
         Container.BindInterfacesTo<PlayerShooter>().AsSingle();
+        Container.Bind<AssetReferenceSpawner>().AsSingle();
 
         Container.BindInstances(playerObject);
     }
@@ -24,6 +25,6 @@ public class PlayerInstaller : MonoInstaller
     public class Settings
     {
         public Rigidbody2D rigidbody = null;
-        public AssetReferenceSpawner assetReferenceSpawner = null;
+        public AssetReferenceSpawnerObject assetReferenceSpawner = null;
     }
 }

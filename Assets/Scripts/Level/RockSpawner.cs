@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -8,11 +9,13 @@ using Zenject;
 public class RockSpawner : IInitializable, ITickable
 {
     readonly LevelModel levelModel = null;
+    readonly AssetReferenceSpawner spawner = null;
     readonly Settings settings = null;
 
-    public RockSpawner(LevelModel levelModel, Settings settings)
+    public RockSpawner(LevelModel levelModel, AssetReferenceSpawner spawner, Settings settings)
     {
         this.levelModel = levelModel;
+        this.spawner = spawner;
         this.settings = settings;
     }
 
@@ -22,22 +25,22 @@ public class RockSpawner : IInitializable, ITickable
         InstantiateStartRocks();
     }
 
-    public void Tick()
+    public async void Tick()
     {
         if (levelModel.LastRockSpawnTime + settings.timeBetweenRockSpawns < Time.time)
-            InstantiateRock();
+            await InstantiateRock();
     }
 
-    void InstantiateStartRocks()
+    async void InstantiateStartRocks()
     {
         for (int i = 0; i < settings.startRocks; i++)
-            InstantiateRock();
+            await InstantiateRock();
     }
 
-    void InstantiateRock()
+    async Task InstantiateRock()
     {
         GetRockStartPositionAndRotation(out Vector2 position, out Quaternion rotation);
-        levelModel.AssetReferenceSpawner.Spawn(settings.rockPrefabReference, position, rotation);
+        await spawner.Spawn(settings.rockPrefabReference, position, rotation);
         levelModel.LastRockSpawnTime = Time.time;
     }
 

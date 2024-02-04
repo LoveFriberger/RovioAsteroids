@@ -9,7 +9,7 @@ public class LevelInstaller : MonoInstaller
     [SerializeField]
     LevelObject levelObject = null;
     [SerializeField]
-    AssetReferenceSpawner assetReferenceSpawner = null;
+    AssetReferenceSpawnerObject assetReferenceSpawner = null;
     [SerializeField]
     BoxCollider2D levelCollider = null;
 
@@ -19,6 +19,7 @@ public class LevelInstaller : MonoInstaller
 
         Container.BindInterfacesTo<PlayerSpawner>().AsSingle();
         Container.BindInterfacesTo<RockSpawner>().AsSingle();
+        Container.Bind<AssetReferenceSpawner>().AsSingle();
 
         Container.BindInstances(levelObject);
     }
@@ -26,7 +27,7 @@ public class LevelInstaller : MonoInstaller
     [Serializable]
     public class Settings
     {
-        public AssetReferenceSpawner assetReferenceSpawner = null;
+        public AssetReferenceSpawnerObject assetReferenceSpawner = null;
         public BoxCollider2D levelCollider = null;
     }
 }

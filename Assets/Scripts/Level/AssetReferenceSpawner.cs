@@ -1,38 +1,61 @@
-using System.Collections;
 using System;
-using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine;
+using System.Threading.Tasks;
 
-public class AssetReferenceSpawner : MonoBehaviour
+public class AssetReferenceSpawner
 {
-    AsyncOperationHandle<GameObject> asyncLoadHandle;
-    
-    public void Spawn(AssetReferenceGameObject assetReferenceGameObject, Transform parent = null, Action<GameObject> onSpawnedObject = null)
+    readonly LevelModel levelModel = null;
+
+    public AssetReferenceSpawner(LevelModel levelModel)
     {
-        StartCoroutine(CoSpawn(assetReferenceGameObject, transform.position, transform.rotation, parent, onSpawnedObject));
+        this.levelModel = levelModel;
     }
 
-    public void Spawn(AssetReferenceGameObject assetReferenceGameObject, Vector2 startPosition, Quaternion startRotation, Transform parent = null, Action<GameObject> onSpawnedObject = null)
+    bool IsLoaded(AssetReferenceGameObject asset)
     {
-        StartCoroutine(CoSpawn(assetReferenceGameObject, startPosition, startRotation, parent, onSpawnedObject));
+        return levelModel.LoadedAssets.ContainsKey(asset.AssetGUID);
     }
 
-    IEnumerator CoSpawn(AssetReferenceGameObject assetReferenceGameObject, Vector2 startPosition, Quaternion startRotation, Transform parent = null, Action<GameObject> onSpawnedObject = null)
+    public async Task Spawn(AssetReferenceGameObject asset, Transform parent = null, Action<GameObject> onSpawnedObject = null)
     {
-        if(!asyncLoadHandle.IsValid())
-            asyncLoadHandle = assetReferenceGameObject.LoadAssetAsync();
-        while (!asyncLoadHandle.IsDone)
-            yield return null;
-        if (asyncLoadHandle.Status == AsyncOperationStatus.Failed)
+        if (!IsLoaded(asset))
+            await Load(asset);
+        
+        if(!asset.IsValid())
         {
-            Debug.LogError(assetReferenceGameObject.RuntimeKey + " failed to load!");
+            Debug.LogWarning(asset.AssetGUID + " is not valid, aborting spawning");
+            return;
         }
-        else if (asyncLoadHandle.Status == AsyncOperationStatus.Succeeded)
+
+        levelModel.AssetReferenceSpawner.Spawn(levelModel.LoadedAssets[asset.AssetGUID], parent, onSpawnedObject);
+    }
+
+    public async Task Spawn(AssetReferenceGameObject asset, Vector2 startPosition, Quaternion startRotation, Transform parent = null, Action<GameObject> onSpawnedObject = null)
+    {
+        if (!IsLoaded(asset))
+            await Load(asset);
+
+        if (!asset.IsValid())
         {
-            var spawnedObject = Instantiate(asyncLoadHandle.Result, startPosition, startRotation, parent);
-            onSpawnedObject?.Invoke(spawnedObject);
-            //Take care of the handle
+            Debug.LogWarning(asset.AssetGUID + " is not valid, aborting spawning");
+            return;
         }
+
+        levelModel.AssetReferenceSpawner.Spawn(levelModel.LoadedAssets[asset.AssetGUID], startPosition, startRotation, parent, onSpawnedObject);
+    }
+
+    async Task Load(AssetReferenceGameObject asset)
+    {
+        asset.LoadAssetAsync();
+
+        await asset.OperationHandle.Task;
+
+        if (asset.OperationHandle.Status == AsyncOperationStatus.Failed)
+            Debug.LogError(asset.RuntimeKey + " failed to load!");
+        else if (asset.OperationHandle.Status == AsyncOperationStatus.Succeeded)
+            levelModel.LoadedAssets.Add(asset.AssetGUID, (GameObject)asset.OperationHandle.Result);
     }
 }

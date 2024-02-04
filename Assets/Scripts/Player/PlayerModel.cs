@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerModel
 {
     readonly Rigidbody2D rigidbody = null;
-    readonly AssetReferenceSpawner assetReferenceSpawner = null;
+    readonly AssetReferenceSpawnerObject assetReferenceSpawner = null;
 
-    public PlayerModel(Rigidbody2D rigidbody, AssetReferenceSpawner assetReferenceSpawner)
+    public PlayerModel(Rigidbody2D rigidbody, AssetReferenceSpawnerObject assetReferenceSpawner)
     {
         this.rigidbody = rigidbody;
         this.assetReferenceSpawner = assetReferenceSpawner;
@@ -33,7 +33,7 @@ public class PlayerModel
 
     public float TimeLastShot { get; set; }
 
-    public AssetReferenceSpawner AssetReferenceSpawner { get { return assetReferenceSpawner; } }
+    public AssetReferenceSpawnerObject AssetReferenceSpawner { get { return assetReferenceSpawner; } }
 
     public Transform projectileParent { get { return assetReferenceSpawner.transform; } }
 }

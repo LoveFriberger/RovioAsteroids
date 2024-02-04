@@ -8,13 +8,15 @@ using Zenject;
 
 public class PlayerShooter : IFixedTickable
 {
-    readonly InputView inputView = null;
+    readonly InputView inputView = null; 
+    readonly AssetReferenceSpawner spawner;
     readonly PlayerModel playerModel = null;
     readonly Settings settings = null;
 
-    public PlayerShooter(PlayerModel playerModel, InputView inputView, Settings settings)
+    public PlayerShooter(PlayerModel playerModel, AssetReferenceSpawner spawner, InputView inputView, Settings settings)
     {
         this.playerModel = playerModel;
+        this.spawner = spawner;
         this.inputView = inputView;
         this.settings = settings;
     }
@@ -22,18 +24,21 @@ public class PlayerShooter : IFixedTickable
 
     public void FixedTick()
     {
-        if (inputView.ActionInput)
+        if (inputView.ActionInput && playerModel.TimeLastShot + settings.cooldown < Time.time)
             Shoot();
     }
 
-    void Shoot()
+    async void Shoot()
     {
-        if (playerModel.TimeLastShot + settings.cooldown > Time.time)
-            return;
-
-        playerModel.AssetReferenceSpawner.Spawn(settings.projectilePrefabReference, playerModel.projectileParent, (p) => AddVelocityToProjectile(p));
-
         playerModel.TimeLastShot = Time.time;
+
+        await spawner.Spawn(
+            settings.projectilePrefabReference, 
+            playerModel.projectileParent.position,
+            playerModel.projectileParent.rotation, 
+            playerModel.projectileParent, 
+            (p) => AddVelocityToProjectile(p));
+
     }
 
     void AddVelocityToProjectile(GameObject projectileClone)

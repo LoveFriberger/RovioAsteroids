@@ -8,18 +8,18 @@ using Zenject;
 
 public class PlayerSpawner : IInitializable
 {
-    readonly LevelModel levelModel = null;
+    readonly AssetReferenceSpawner spawner = null;
     readonly Settings settings = null;
 
-    public PlayerSpawner(LevelModel levelModel, Settings settings)
+    public PlayerSpawner(AssetReferenceSpawner spawner, Settings settings)
     {
-        this.levelModel = levelModel;
+        this.spawner = spawner;
         this.settings = settings;
     }
 
-    public void Initialize()
+    public async void Initialize()
     {
-        levelModel.AssetReferenceSpawner.Spawn(settings.playerPrefabReference);
+        await spawner.Spawn(settings.playerPrefabReference);
     }
 
     [Serializable]
