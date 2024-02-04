@@ -21,6 +21,7 @@ public class ProjectInstaller : MonoInstaller
         Container.BindInstance(new GameController());
         Container.BindInstance(new SceneLoadingController());
 
+
         Container.Bind<InputModel>().AsSingle();
         Container.Bind<InputView>().AsSingle();
         Container.BindInterfacesTo<InputController>().AsSingle();

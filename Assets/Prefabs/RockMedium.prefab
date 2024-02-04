@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: smallerRock
       value: 
       objectReference: {fileID: 638853691372980919, guid: fe744eb54f5cb1b45983e64673cc7d7c, type: 3}
+    - target: {fileID: 4190067863512572222, guid: 784b3fbf0b6f91b4fb60e6c555a03d88, type: 3}
+      propertyPath: settings.smallerRock.m_AssetGUID
+      value: fe744eb54f5cb1b45983e64673cc7d7c
+      objectReference: {fileID: 0}
     - target: {fileID: 4197447041797703428, guid: 784b3fbf0b6f91b4fb60e6c555a03d88, type: 3}
       propertyPath: m_Name
       value: RockMedium

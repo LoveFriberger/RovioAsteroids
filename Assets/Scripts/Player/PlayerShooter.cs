@@ -34,9 +34,9 @@ public class PlayerShooter : IFixedTickable
 
         await spawner.Spawn(
             settings.projectilePrefabReference, 
-            playerModel.projectileParent.position,
-            playerModel.projectileParent.rotation, 
-            playerModel.projectileParent, 
+            playerModel.projectileSpawnPosition.position,
+            playerModel.projectileSpawnPosition.rotation, 
+            null, 
             (p) => AddVelocityToProjectile(p));
 
     }

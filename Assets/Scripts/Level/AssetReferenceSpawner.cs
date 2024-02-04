@@ -24,12 +24,6 @@ public class AssetReferenceSpawner
         if (!IsLoaded(asset))
             await Load(asset);
         
-        if(!asset.IsValid())
-        {
-            Debug.LogWarning(asset.AssetGUID + " is not valid, aborting spawning");
-            return;
-        }
-
         levelModel.AssetReferenceSpawner.Spawn(levelModel.LoadedAssets[asset.AssetGUID], parent, onSpawnedObject);
     }
 
@@ -37,12 +31,6 @@ public class AssetReferenceSpawner
     {
         if (!IsLoaded(asset))
             await Load(asset);
-
-        if (!asset.IsValid())
-        {
-            Debug.LogWarning(asset.AssetGUID + " is not valid, aborting spawning");
-            return;
-        }
 
         levelModel.AssetReferenceSpawner.Spawn(levelModel.LoadedAssets[asset.AssetGUID], startPosition, startRotation, parent, onSpawnedObject);
     }

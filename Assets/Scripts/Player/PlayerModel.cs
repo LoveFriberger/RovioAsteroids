@@ -35,5 +35,5 @@ public class PlayerModel
 
     public AssetReferenceSpawnerObject AssetReferenceSpawner { get { return assetReferenceSpawner; } }
 
-    public Transform projectileParent { get { return assetReferenceSpawner.transform; } }
+    public Transform projectileSpawnPosition { get { return assetReferenceSpawner.transform; } }
 }
