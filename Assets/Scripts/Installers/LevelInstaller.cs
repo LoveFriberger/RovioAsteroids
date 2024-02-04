@@ -9,18 +9,16 @@ public class LevelInstaller : MonoInstaller
     [SerializeField]
     LevelObject levelObject = null;
     [SerializeField]
-    AssetReferenceSpawnerObject assetReferenceSpawner = null;
-    [SerializeField]
-    BoxCollider2D levelCollider = null;
+    Settings settings = null;
 
     public override void InstallBindings()
     {
-        Container.Bind<LevelModel>().AsSingle().WithArguments(assetReferenceSpawner, levelCollider);
+        Container.Bind<LevelModel>().AsSingle().WithArguments(settings.assetReferenceSpawner, settings.levelCollider);
 
-        Container.BindInterfacesTo<PlayerSpawner>().AsSingle();
-        Container.BindInterfacesTo<RockSpawner>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PlayerSpawner>().AsSingle();
+        Container.BindInterfacesAndSelfTo<RockSpawner>().AsSingle();
         Container.Bind<AssetReferenceSpawner>().AsSingle();
-
+        Container.BindInstance(settings.playerStart).WhenInjectedInto<PlayerSpawner>();
         Container.BindInstances(levelObject);
     }
 
@@ -29,5 +27,6 @@ public class LevelInstaller : MonoInstaller
     {
         public AssetReferenceSpawnerObject assetReferenceSpawner = null;
         public BoxCollider2D levelCollider = null;
+        public Transform playerStart = null;
     }
 }

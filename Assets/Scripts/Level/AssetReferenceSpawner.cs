@@ -19,20 +19,12 @@ public class AssetReferenceSpawner
         return levelModel.LoadedAssets.ContainsKey(asset.AssetGUID);
     }
 
-    public async Task Spawn(AssetReferenceGameObject asset, Transform parent = null, Action<GameObject> onSpawnedObject = null)
-    {
-        if (!IsLoaded(asset))
-            await Load(asset);
-        
-        levelModel.AssetReferenceSpawner.Spawn(levelModel.LoadedAssets[asset.AssetGUID], parent, onSpawnedObject);
-    }
-
-    public async Task Spawn(AssetReferenceGameObject asset, Vector2 startPosition, Quaternion startRotation, Transform parent = null, Action<GameObject> onSpawnedObject = null)
+    public async Task Spawn(AssetReferenceGameObject asset, Vector2 startPosition, Quaternion startRotation, Action<GameObject> onSpawnedObject = null)
     {
         if (!IsLoaded(asset))
             await Load(asset);
 
-        levelModel.AssetReferenceSpawner.Spawn(levelModel.LoadedAssets[asset.AssetGUID], startPosition, startRotation, parent, onSpawnedObject);
+        levelModel.AssetReferenceSpawner.Spawn(levelModel.LoadedAssets[asset.AssetGUID], startPosition, startRotation, onSpawnedObject);
     }
 
     async Task Load(AssetReferenceGameObject asset)

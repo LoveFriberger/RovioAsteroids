@@ -36,7 +36,6 @@ public class PlayerShooter : IFixedTickable
             settings.projectilePrefabReference, 
             playerModel.projectileSpawnPosition.position,
             playerModel.projectileSpawnPosition.rotation, 
-            null, 
             (p) => AddVelocityToProjectile(p));
 
     }

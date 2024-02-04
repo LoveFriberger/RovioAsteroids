@@ -34,8 +34,7 @@ public class RockDamageTaker
             await spawner.Spawn(
                 smallerRock, 
                 firstSpawnPosition, 
-                rotation, 
-                null,
+                rotation,
                 (r) => {
                     r.GetComponent<RockObject>().AddVelocity(bigRockRightDirection * settings.splitSpeed);
                 });
@@ -44,7 +43,6 @@ public class RockDamageTaker
                 smallerRock,
                 secondSpawnPosition,
                 rotation,
-                null,
                 (r) =>
                 {
                     r.GetComponent<RockObject>().AddVelocity(-bigRockRightDirection * settings.splitSpeed);

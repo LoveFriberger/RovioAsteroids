@@ -1,20 +1,39 @@
 using System.Collections;
 using System;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
+using Zenject;
 
 public class AssetReferenceSpawnerObject : MonoBehaviour
 {
-    
-    public void Spawn(GameObject gameObject, Transform parent = null, Action<GameObject> onSpawnedObject = null)
+    GameController gameController = null;
+
+    [Inject]
+    public void Construct(GameController gameController)
     {
-        Spawn(gameObject, transform.position, transform.rotation, parent, onSpawnedObject);
+        this.gameController = gameController;
     }
 
-    public void Spawn(GameObject gameObject, Vector2 startPosition, Quaternion startRotation, Transform parent = null, Action<GameObject> onSpawnedObject = null)
+    public void Spawn(GameObject gameObject, Vector2 startPosition, Quaternion startRotation, Action<GameObject> onSpawnedObject = null)
     {
-        var spawnedObject = Instantiate(gameObject, startPosition, startRotation, parent);
+        var spawnedObject = Instantiate(gameObject, startPosition, startRotation, transform);
         onSpawnedObject?.Invoke(spawnedObject);
+    }
+
+    void OnEnable()
+    {
+        gameController.AddResetGameAction(DestroyAllSpawnedObjects);
+    }
+
+    void OnDisable()
+    {
+        gameController.RemoveResetGameAction(DestroyAllSpawnedObjects);
+    }
+
+    void DestroyAllSpawnedObjects()
+    {
+        for (int i = transform.childCount -1 ; i >= 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 }

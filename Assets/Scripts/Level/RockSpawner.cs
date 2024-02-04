@@ -11,18 +11,26 @@ public class RockSpawner : IInitializable, ITickable
     readonly LevelModel levelModel = null;
     readonly AssetReferenceSpawner spawner = null;
     readonly Settings settings = null;
+    readonly GameController gameController = null;
 
-    public RockSpawner(LevelModel levelModel, AssetReferenceSpawner spawner, Settings settings)
+    public RockSpawner(LevelModel levelModel, AssetReferenceSpawner spawner, Settings settings, GameController gameController)
     {
         this.levelModel = levelModel;
         this.spawner = spawner;
         this.settings = settings;
+        this.gameController = gameController;
     }
 
     public void Initialize()
     {
         levelModel.LastRockSpawnTime = Time.time;
         InstantiateStartRocks();
+        gameController.AddResetGameAction(InstantiateStartRocks);
+    }
+
+    public void RemoveOnResetAction()
+    {
+        gameController.RemoveResetGameAction(InstantiateStartRocks);
     }
 
     public async void Tick()

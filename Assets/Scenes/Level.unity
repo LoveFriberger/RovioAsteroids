@@ -1140,6 +1140,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneKey: Assets/Scenes/MainMenu.unity
+--- !u!1 &1344567653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344567654}
+  m_Layer: 0
+  m_Name: Player Start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344567654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344567653}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1524341414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,7 +1334,7 @@ GameObject:
   - component: {fileID: 1557863633}
   - component: {fileID: 1557863634}
   m_Layer: 0
-  m_Name: LevelCollider
+  m_Name: Level Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1598,8 +1629,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelObject: {fileID: 2087255603}
-  assetReferenceSpawner: {fileID: 6855908490376689513}
-  levelCollider: {fileID: 1557863633}
+  settings:
+    assetReferenceSpawner: {fileID: 6855908490376689513}
+    levelCollider: {fileID: 1557863633}
+    playerStart: {fileID: 1344567654}
 --- !u!114 &2087255603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1665,3 +1698,4 @@ SceneRoots:
   - {fileID: 5334652648066067246}
   - {fileID: 1557863635}
   - {fileID: 2087255601}
+  - {fileID: 1344567654}

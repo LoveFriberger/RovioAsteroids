@@ -10,9 +10,6 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField]
     string highScorePlayerPrefsKey = "";
 
-    [SerializeField]
-    PlayerObject playerPrefab = null;
-
     public override void InstallBindings()
     {
         Container.BindInstance(startSceneKey).WhenInjectedInto<PreLoaderScene>();
