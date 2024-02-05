@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 1058123852}
   - component: {fileID: 1058123851}
   m_Layer: 5
-  m_Name: Main Menu UI
+  m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -597,71 +597,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1058123846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: 8529b81bf08825a48a9c758720d81686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: fe171fba1438ad9489f5ccb639d2fe10, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 06889ed1-e67b-4073-89ee-37e996710694
-    m_ActionName: 'Player/Movement[/Keyboard/upArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 04b27885-828e-4b18-bfcb-037304c49dbf
-    m_ActionName: 'Player/Action[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1058123852}
-        m_TargetAssemblyTypeName: GameMenuMover, Assembly-CSharp
-        m_MethodName: OnMovementInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: e71dc760-86dd-4759-af6e-48da2bdeda0a
-    m_ActionName: 'UI/Movement[/Keyboard/downArrow,/Keyboard/upArrow]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1058123852}
-        m_TargetAssemblyTypeName: GameMenuMover, Assembly-CSharp
-        m_MethodName: OnActionInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ed71c704-54d2-47cf-b403-bb4f6aec05fc
-    m_ActionName: 'UI/Action[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7662d2af-eea9-4ec9-b7c9-27632ef462c8
-    m_ActionName: 'UI/ToggleMenu[/Keyboard/escape]'
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: UI
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  settings:
+    menuButtons:
+    - {fileID: 8373962529561377851}
+    - {fileID: 1744145669}
 --- !u!114 &1058123852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,43 +613,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1058123846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afb2a4c6ce969f340b0ecac2aeff2ada, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 8373962529561377851}
-  - {fileID: 1744145669}
---- !u!1 &1171022667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1171022669}
-  - component: {fileID: 1171022668}
-  m_Layer: 0
-  m_Name: Scene Context
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1171022668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1171022667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 1058123851}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -725,21 +636,6 @@ MonoBehaviour:
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
---- !u!4 &1171022669
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1171022667}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1180685150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,11 +1217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c19020d6f7f314095d5b7bf84f485b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneKey: Assets/Scenes/Level.unity
+  sceneToChangeTo: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 769441103}
   - {fileID: 1058123850}
-  - {fileID: 1171022669}

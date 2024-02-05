@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -21,9 +21,13 @@ public class SceneLoadingViewer
 
 public class SceneLoadingController: SceneLoadingViewer
 {
-    public SceneLoadingController() { }
+    readonly Settings settings = null;
+    public SceneLoadingController(Settings settings) 
+    {
+        this.settings = settings;
+    }
 
-    public IEnumerator ChangeScene(string key)
+    IEnumerator ChangeScene(string key)
     {
         var oldLoadedSceneHandle = model.loadedSceneHandle;
         var loadMode = oldLoadedSceneHandle.IsValid() ? LoadSceneMode.Additive : LoadSceneMode.Single;
@@ -40,4 +44,20 @@ public class SceneLoadingController: SceneLoadingViewer
             SceneManager.SetActiveScene(model.loadedSceneHandle.Result.Scene);
     }
 
+    public IEnumerator ChangeSceneToLevel()
+    {
+        yield return ChangeScene(settings.levelKey);
+    }
+
+    public IEnumerator ChangeSceneToMainMenu()
+    {
+        yield return ChangeScene(settings.mainMenuKey);
+    }
+
+    [Serializable]
+    public class Settings
+    {
+        public string mainMenuKey;
+        public string levelKey;
+    }
 }

@@ -37,7 +37,9 @@ public class PointsViewer
 
 public class PointsController : PointsViewer
 {
-    public PointsController(string playerPrefsHighScoreKey) : base(playerPrefsHighScoreKey) { }
+    public PointsController(Settings settings) : base(settings.playerPrefsHighScoreKey) 
+    {
+    }
 
     public void SetNewHighScore(int newHighScore)
     {
@@ -70,5 +72,11 @@ public class PointsController : PointsViewer
     public void RemoveOnScoreUpdatedAction(Action action)
     {
         model.onScoreUpdated -= action;
+    }
+
+    [Serializable]
+    public class Settings
+    {
+        public string playerPrefsHighScoreKey = "";
     }
 }

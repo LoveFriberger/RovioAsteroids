@@ -24,7 +24,7 @@ public class PlayerShooter : IFixedTickable
 
     public void FixedTick()
     {
-        if (inputView.ActionInput && playerModel.TimeLastShot + settings.cooldown < Time.time)
+        if (inputView.ActionInputDown && playerModel.TimeLastShot + settings.cooldown < Time.time)
             Shoot();
     }
 

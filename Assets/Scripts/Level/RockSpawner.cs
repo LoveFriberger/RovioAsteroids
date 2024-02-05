@@ -25,12 +25,6 @@ public class RockSpawner : IInitializable, ITickable
     {
         levelModel.LastRockSpawnTime = Time.time;
         InstantiateStartRocks();
-        gameController.AddResetGameAction(InstantiateStartRocks);
-    }
-
-    public void RemoveOnResetAction()
-    {
-        gameController.RemoveResetGameAction(InstantiateStartRocks);
     }
 
     public async void Tick()
@@ -39,7 +33,7 @@ public class RockSpawner : IInitializable, ITickable
             await InstantiateRock();
     }
 
-    async void InstantiateStartRocks()
+    public async void InstantiateStartRocks()
     {
         for (int i = 0; i < settings.startRocks; i++)
             await InstantiateRock();

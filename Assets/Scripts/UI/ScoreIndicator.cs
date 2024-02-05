@@ -13,6 +13,8 @@ public class ScoreIndicator : MonoBehaviour
 
     [Inject]
     PointsController pointsController = null;
+
+
     int oldHighScore = 0;
 
     void Start()

@@ -5,12 +5,13 @@ using Zenject;
 
 public class InputModel
 {
-    public bool upInput = false;
-    public bool downInput = false; 
-    public bool leftInput = false;
-    public bool rightInput = false;
-    public bool actionInput = false;
-    public bool backInput = false;
+    public bool upInputHold = false;
+    public bool leftInputHold = false;
+    public bool rightInputHold = false;
+    public bool upInputDown = false;
+    public bool downInputDown = false;
+    public bool actionInputDown = false;
+    public bool toggleMenuInputDown = false;
 }
 
 public class InputView
@@ -22,16 +23,20 @@ public class InputView
         this.model = model;
     }
 
-    public bool UpInput { get { return model.upInput; } }
+    public bool InGameMenu { get; set; }
+    public bool UpInputHold { get { return model.upInputHold; } }
 
-    public bool DownInput { get { return model.downInput; } }
-    public bool LeftInput { get { return model.leftInput; } }
+    public bool LeftInputHold { get { return model.leftInputHold; } }
 
-    public bool RightInput { get { return model.rightInput; } }
+    public bool RightInputHold { get { return model.rightInputHold; } }
 
-    public bool ActionInput { get { return model.actionInput; } }
+    public bool UpInputDown { get { return model.upInputDown; } }
 
-    public bool BackInput { get { return model.backInput; } }
+    public bool DownInputDown { get { return model.downInputDown; } }
+
+    public bool ActionInputDown { get { return model.actionInputDown; } }
+
+    public bool ToggleMenuInputDown { get { return model.toggleMenuInputDown; } }
 }
 
 public class InputController : ITickable
@@ -45,12 +50,13 @@ public class InputController : ITickable
 
     public void Tick()
     {
-        model.upInput = Input.GetKey(KeyCode.UpArrow);
-        model.downInput = Input.GetKey(KeyCode.DownArrow);
-        model.leftInput = Input.GetKey(KeyCode.LeftArrow);
-        model.rightInput = Input.GetKey(KeyCode.RightArrow);
-        model.actionInput = Input.GetKey(KeyCode.Space);
-        model.backInput = Input.GetKey(KeyCode.Escape);
+        model.upInputHold = Input.GetKey(KeyCode.UpArrow);
+        model.leftInputHold = Input.GetKey(KeyCode.LeftArrow);
+        model.rightInputHold = Input.GetKey(KeyCode.RightArrow);
+        model.upInputDown = Input.GetKeyDown(KeyCode.UpArrow);
+        model.downInputDown = Input.GetKeyDown(KeyCode.DownArrow);
+        model.actionInputDown = Input.GetKeyDown(KeyCode.Space);
+        model.toggleMenuInputDown = Input.GetKeyDown(KeyCode.Escape);
     }
 
 }

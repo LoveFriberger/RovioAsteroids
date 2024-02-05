@@ -47,11 +47,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9145a217c4eea064c992bfcb7ae88355
-    m_Address: Assets/Scenes/TestScene.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 54c42a2196d7d9c49bf123d3d989ec2b
     m_Address: Assets/Prefabs/Player.prefab
     m_ReadOnly: 0

@@ -23,17 +23,12 @@ public class PlayerSpawner : IInitializable
 
     public void Initialize()
     {
-        gameController.AddResetGameAction(SpawnPlayer);
         SpawnPlayer();
     }
 
     public async void SpawnPlayer()
     {
         await spawner.Spawn(settings.playerPrefabReference, playerStart.position, playerStart.rotation);
-    }
-    public void RemoveOnResetAction()
-    {
-        gameController.RemoveResetGameAction(SpawnPlayer);
     }
 
     [Serializable]

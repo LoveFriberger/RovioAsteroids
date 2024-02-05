@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad6a10deab7f6c4e8362db359e1daa4, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
+  gameSettings:
+    sceneLoaderSettings:
+      mainMenuKey: Assets/Scenes/MainMenu.unity
+      levelKey: Assets/Scenes/Level.unity
+    pointsControllerSettings:
+      playerPrefsHighScoreKey: HighScore
   playerSettings:
     playerMoverSettings:
       accelerationForce: 10
@@ -40,3 +46,12 @@ MonoBehaviour:
         m_EditorAssetChanged: 0
       startRocks: 3
       timeBetweenRockSpawns: 5
+    levelUIMenuOpenerSettings:
+      newHighScoreString: New High Score!
+      scoreString: Better Luck Next Time!
+      pausedString: Paused
+  rockSettings:
+    rockMoverSettings:
+      initSpeed: 3
+    rockDamageTakerSettings:
+      splitSpeed: 0.5

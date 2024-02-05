@@ -47,4 +47,9 @@ public class GameController : GameViewer
     {
         model.onResetGame?.Invoke();
     }
+
+    public void SetPause(bool pause)
+    {
+        Time.timeScale = pause ? 0 : 1;
+    }
 }

@@ -19,11 +19,14 @@ public class PlayerMover : IFixedTickable
 
     public void FixedTick()
     {
-        if (inputView.UpInput)
+        if (inputView.InGameMenu)
+            return;
+
+        if (inputView.UpInputHold)
             Accelerate();
-        if (inputView.LeftInput)
+        if (inputView.LeftInputHold)
             Turn(true);
-        if (inputView.RightInput)
+        if (inputView.RightInputHold)
             Turn(false);
     }
 

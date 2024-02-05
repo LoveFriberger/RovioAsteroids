@@ -38,9 +38,4 @@ public class RockObject : MonoBehaviour, IHitable
     {
         rockMover.AddVelocity(velocity);
     }
-
-    private void OnDestroy()
-    {
-        rockSpawner.RemoveOnResetAction();
-    }
 }

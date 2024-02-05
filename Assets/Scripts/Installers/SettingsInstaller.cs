@@ -7,11 +7,20 @@ using UnityEngine.AddressableAssets;
 public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
 {
     [SerializeField]
+    GameSettings gameSettings = null;
+    [SerializeField]
     PlayerSettings playerSettings = null;
     [SerializeField]
     LevelSettings levelSettings = null;
     [SerializeField]
     RockSettings rockSettings = null;
+
+    [Serializable]
+    public class GameSettings
+    {
+        public SceneLoadingController.Settings sceneLoaderSettings = null;
+        public PointsController.Settings pointsControllerSettings = null;
+    }
 
     [Serializable]
     public class PlayerSettings
@@ -25,6 +34,7 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
     {
         public PlayerSpawner.Settings playerSpawnerSettings = null;
         public RockSpawner.Settings rockSpawnerSettings = null;
+        public LevelUIMenuOpener.Settings levelUIMenuOpenerSettings = null;
     }
 
     [Serializable]
@@ -36,10 +46,13 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
 
     public override void InstallBindings()
     {
+        Container.BindInstances(gameSettings.sceneLoaderSettings);
+        Container.BindInstances(gameSettings.pointsControllerSettings);
         Container.BindInstances(playerSettings.playerMoverSettings);
         Container.BindInstances(playerSettings.playerShooterSettings);
         Container.BindInstances(levelSettings.playerSpawnerSettings);
         Container.BindInstances(levelSettings.rockSpawnerSettings);
+        Container.BindInstances(levelSettings.levelUIMenuOpenerSettings);
         Container.BindInstances(rockSettings.rockMoverSettings);
         Container.BindInstances(rockSettings.rockDamageTakerSettings);
     }

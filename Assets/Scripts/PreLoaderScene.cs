@@ -6,12 +6,9 @@ using Zenject;
 public class PreLoaderScene : MonoBehaviour
 {
     [Inject]
-    string startSceneKey = "";
-
-    [Inject]
     SceneLoadingController sceneLoadingController;
     void Awake()
     {
-        StartCoroutine(sceneLoadingController.ChangeScene(startSceneKey));
+        StartCoroutine(sceneLoadingController.ChangeSceneToMainMenu());
     }
 }

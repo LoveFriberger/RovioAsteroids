@@ -30,6 +30,5 @@ public class MenuButton : MonoBehaviour
     public void Click()
     {
         onClick?.Invoke();
-
     }
 }
