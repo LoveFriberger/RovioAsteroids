@@ -21,13 +21,17 @@ public class LevelInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<LevelUIInputController>().AsSingle();
         Container.Bind<LevelUIMenuOpener>().AsSingle();
 
+        Container.BindInstance(settings.exitLevelTriggerObject.GetComponent<BoxCollider2D>()).WithId("exitLevelCollider").AsSingle();
+
         Container.BindInterfacesAndSelfTo<PlayerSpawner>().AsSingle();
         Container.BindInterfacesAndSelfTo<RockSpawner>().AsSingle();
         Container.Bind<AssetReferenceSpawner>().AsSingle();
         Container.BindInstance(settings.playerStart).WhenInjectedInto<PlayerSpawner>();
+        Container.BindInterfacesAndSelfTo<ExitLevelTrigger>().AsSingle();
 
         Container.BindInstances(levelObject);
         Container.BindInstances(levelUIObject);
+        Container.BindInstances(settings.exitLevelTriggerObject);
     }
 
     [Serializable]
@@ -40,5 +44,6 @@ public class LevelInstaller : MonoInstaller
         public GameObject menuObject = null;
         public TextMeshProUGUI menuTitle = null;
         public TextMeshProUGUI menuScore = null;
+        public ExitLevelTriggerObject exitLevelTriggerObject = null;
     }
 }
