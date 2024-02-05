@@ -20,6 +20,7 @@ public class LevelObject : MonoBehaviour
 
     void Start()
     {
+        gameController.SetPause(false);
         gameController.AddResetGameAction(playerSpawner.SpawnPlayer);
         gameController.AddResetGameAction(rockSpawner.InstantiateStartRocks);
     }

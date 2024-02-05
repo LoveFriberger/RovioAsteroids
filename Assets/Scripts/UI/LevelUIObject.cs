@@ -27,5 +27,6 @@ public class LevelUIObject : MonoBehaviour
     {
         gameController.RemovePlayerKilledAction(levelUIMenuOpener.OnPlayerKilled);
         gameController.RemoveResetGameAction(levelUIMenuOpener.CloseMenu);
+        gameController.SetPause(false);
     }
 }
