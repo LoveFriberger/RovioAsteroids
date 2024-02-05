@@ -7,8 +7,6 @@ using TMPro;
 
 public class LevelModel
 {
-    readonly AssetReferenceSpawnerObject assetReferenceSpawner = null;
-    readonly BoxCollider2D levelCollider = null;
     readonly List<MenuButton> menuButtons = null;
     readonly GameObject menuObject = null;
     readonly TextMeshProUGUI menuTitle = null;
@@ -16,19 +14,11 @@ public class LevelModel
 
     public LevelModel(LevelInstaller.Settings settings)
     {
-        this.assetReferenceSpawner = settings.assetReferenceSpawner;
-        this.levelCollider = settings.levelCollider;
         this.menuButtons = settings.menuButtons;
         this.menuObject = settings.menuObject;
         this.menuTitle = settings.menuTitle;
         this.menuScore = settings.menuScore;
     }
-
-    public AssetReferenceSpawnerObject AssetReferenceSpawner { get { return assetReferenceSpawner; } }
-
-    public float LastRockSpawnTime { get; set; }
-
-    public BoxCollider2D ExitLevelCollider { get { return levelCollider; }}
 
     public List<MenuButton> MenuButtons { get { return menuButtons; } }
 

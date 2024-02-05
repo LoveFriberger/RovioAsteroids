@@ -8,37 +8,31 @@ using Zenject;
 
 public class RockSpawner : IInitializable, ITickable
 {
-    readonly LevelModel levelModel = null;
     readonly AssetReferenceSpawner spawner = null;
     readonly Settings settings = null;
-    readonly GameController gameController = null;
+    readonly BoxCollider2D exitLevelBoxCollider = null;
 
-    public class temTest
+    float lastRockSpawnTime = 0;
+
+    public RockSpawner(
+        [Inject(Id = "exitLevelCollider")] BoxCollider2D exitLevelBoxCollider, 
+        AssetReferenceSpawner spawner, 
+        Settings settings)
     {
-        public Vector2 randomGoalPoint;
-        public Vector2 rotationVektor;
-        public Vector2 randomSpawnPoint;
-    }
-
-    public List<temTest> TemTests = new();
-
-    public RockSpawner(LevelModel levelModel, AssetReferenceSpawner spawner, Settings settings, GameController gameController)
-    {
-        this.levelModel = levelModel;
+        this.exitLevelBoxCollider = exitLevelBoxCollider;
         this.spawner = spawner;
         this.settings = settings;
-        this.gameController = gameController;
     }
 
     public void Initialize()
     {
-        levelModel.LastRockSpawnTime = Time.time;
+        lastRockSpawnTime = Time.time;
         InstantiateStartRocks();
     }
 
     public async void Tick()
     {
-        if (levelModel.LastRockSpawnTime + settings.timeBetweenRockSpawns < Time.time)
+        if (lastRockSpawnTime + settings.timeBetweenRockSpawns < Time.time)
             await InstantiateRock();
     }
 
@@ -52,7 +46,7 @@ public class RockSpawner : IInitializable, ITickable
     {
         GetRockStartPositionAndRotation(out Vector2 position, out Quaternion rotation);
         await spawner.Spawn(settings.rockPrefabReference, position, rotation);
-        levelModel.LastRockSpawnTime = Time.time;
+        lastRockSpawnTime = Time.time;
     }
 
     void GetRockStartPositionAndRotation(out Vector2 position, out Quaternion rotation)
@@ -78,9 +72,9 @@ public class RockSpawner : IInitializable, ITickable
         if (cosRotation == 0)
             return float.MaxValue;
         else if(cosRotation > 0 )
-            return (levelModel.ExitLevelCollider.bounds.max.y - position.y) /cosRotation;
+            return (exitLevelBoxCollider.bounds.max.y - position.y) /cosRotation;
         else
-            return (levelModel.ExitLevelCollider.bounds.min.y - position.y) /cosRotation;
+            return (exitLevelBoxCollider.bounds.min.y - position.y) /cosRotation;
     }
 
     float DistanceToClosestHorizontalEdge(float rotation, Vector2 position)
@@ -89,15 +83,15 @@ public class RockSpawner : IInitializable, ITickable
         if (sinRotation == 0)
             return float.MaxValue;
         else if (sinRotation > 0)
-            return (position.x - levelModel.ExitLevelCollider.bounds.min.x) /sinRotation;
+            return (position.x - exitLevelBoxCollider.bounds.min.x) /sinRotation;
         else
-            return (position.x - levelModel.ExitLevelCollider.bounds.max.x)/sinRotation;
+            return (position.x - exitLevelBoxCollider.bounds.max.x)/sinRotation;
 
     }
 
     Vector2 RandomPointInLevel()
     {
-        var levelBounds = levelModel.ExitLevelCollider.bounds;
+        var levelBounds = exitLevelBoxCollider.bounds;
         return new Vector2(Random.Range(levelBounds.min.x, levelBounds.max.x), Random.Range(levelBounds.min.y, levelBounds.max.y));
     }
 

@@ -23,11 +23,12 @@ public class LevelInstaller : MonoInstaller
 
         Container.BindInstance(settings.exitLevelTriggerObject.GetComponent<BoxCollider2D>()).WithId("exitLevelCollider").AsSingle();
 
+        Container.BindInterfacesAndSelfTo<ExitLevelTrigger>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerSpawner>().AsSingle();
         Container.BindInterfacesAndSelfTo<RockSpawner>().AsSingle();
         Container.Bind<AssetReferenceSpawner>().AsSingle();
         Container.BindInstance(settings.playerStart).WhenInjectedInto<PlayerSpawner>();
-        Container.BindInterfacesAndSelfTo<ExitLevelTrigger>().AsSingle();
+        Container.BindInstance(settings.assetReferenceSpawnerObject);
 
         Container.BindInstances(levelObject);
         Container.BindInstances(levelUIObject);
@@ -37,7 +38,7 @@ public class LevelInstaller : MonoInstaller
     [Serializable]
     public class Settings
     {
-        public AssetReferenceSpawnerObject assetReferenceSpawner = null;
+        public AssetReferenceSpawnerObject assetReferenceSpawnerObject = null;
         public BoxCollider2D levelCollider = null;
         public Transform playerStart = null;
         public List<MenuButton> menuButtons = new();

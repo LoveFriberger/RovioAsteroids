@@ -26,8 +26,6 @@ public class PlayerShooter : ITickable
     {
         if (levelModel.MenuObjectActivated)
             return;
-        if (inputView.ActionInputDown)
-            Debug.Log(playerModel.TimeLastShot + settings.cooldown < Time.time);
         if (inputView.ActionInputDown && playerModel.TimeLastShot + settings.cooldown < Time.time)
             Shoot();
     }

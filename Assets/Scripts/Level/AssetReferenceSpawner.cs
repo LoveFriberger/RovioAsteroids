@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 public class AssetReferenceSpawner
 {
-    readonly LevelModel levelModel = null;
+    readonly AssetReferenceSpawnerObject assetReferenceSpawnerObject;
 
-    public AssetReferenceSpawner(LevelModel levelModel)
+    public AssetReferenceSpawner(AssetReferenceSpawnerObject assetReferenceSpawnerObject)
     {
-        this.levelModel = levelModel;
+        this.assetReferenceSpawnerObject = assetReferenceSpawnerObject;
     }
 
     public async Task Spawn(AssetReferenceGameObject asset, Vector2 startPosition, Quaternion startRotation, Action<GameObject> onSpawnedObject = null)
@@ -19,7 +19,7 @@ public class AssetReferenceSpawner
         if (!asset.IsValid())
             await Load(asset);
 
-        levelModel.AssetReferenceSpawner.Spawn((GameObject)asset.OperationHandle.Result, startPosition, startRotation, onSpawnedObject);
+        assetReferenceSpawnerObject.Spawn((GameObject)asset.OperationHandle.Result, startPosition, startRotation, onSpawnedObject);
     }
 
     async Task Load(AssetReferenceGameObject asset)

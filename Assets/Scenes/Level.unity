@@ -1458,7 +1458,7 @@ MonoBehaviour:
   levelObject: {fileID: 2087255603}
   levelUIObject: {fileID: 450512185}
   settings:
-    assetReferenceSpawner: {fileID: 6855908490376689513}
+    assetReferenceSpawnerObject: {fileID: 6855908490376689513}
     levelCollider: {fileID: 1557863633}
     playerStart: {fileID: 1344567654}
     menuButtons:
@@ -1467,7 +1467,7 @@ MonoBehaviour:
     menuObject: {fileID: 1088795075}
     menuTitle: {fileID: 653707394}
     menuScore: {fileID: 2081224186}
-    exitLevelTriggerObject: {fileID: 0}
+    exitLevelTriggerObject: {fileID: 1557863636}
 --- !u!114 &2087255603
 MonoBehaviour:
   m_ObjectHideFlags: 0
