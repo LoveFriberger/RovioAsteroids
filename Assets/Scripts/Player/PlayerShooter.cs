@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
-public class PlayerShooter : IFixedTickable
+public class PlayerShooter : ITickable
 {
     readonly InputView inputView = null;
     readonly LevelModel levelModel = null;
@@ -24,10 +24,12 @@ public class PlayerShooter : IFixedTickable
     }
 
 
-    public void FixedTick()
+    public void Tick()
     {
         if (levelModel.MenuObjectActivated)
             return;
+        if (inputView.ActionInputDown)
+            Debug.Log(playerModel.TimeLastShot + settings.cooldown < Time.time);
         if (inputView.ActionInputDown && playerModel.TimeLastShot + settings.cooldown < Time.time)
             Shoot();
     }
