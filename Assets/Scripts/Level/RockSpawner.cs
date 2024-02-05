@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -12,6 +12,15 @@ public class RockSpawner : IInitializable, ITickable
     readonly AssetReferenceSpawner spawner = null;
     readonly Settings settings = null;
     readonly GameController gameController = null;
+
+    public class temTest
+    {
+        public Vector2 randomGoalPoint;
+        public Vector2 rotationVektor;
+        public Vector2 randomSpawnPoint;
+    }
+
+    public List<temTest> TemTests = new();
 
     public RockSpawner(LevelModel levelModel, AssetReferenceSpawner spawner, Settings settings, GameController gameController)
     {
@@ -49,12 +58,41 @@ public class RockSpawner : IInitializable, ITickable
     void GetRockStartPositionAndRotation(out Vector2 position, out Quaternion rotation)
     {
         var randomPointInLevel = RandomPointInLevel();
-        var randomRotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-        var randomRotationVector = (Vector2)(randomRotation * Vector2.up);
-        var startDistance = levelModel.ExitLevelCollider.bounds.size.magnitude * 1.2f;
+
+        float randomRotation = Random.Range(0, 360);
+        
+        var rotationQuaternion = Quaternion.Euler(0, 0, randomRotation);
+        var randomRotationVector = (Vector2)(rotationQuaternion * Vector2.up);
+        var startX = DistanceToClosestHorizontalEdge(randomRotation, randomPointInLevel);
+        var startY = DistanceToClosestVerticalEdge(randomRotation, randomPointInLevel);
+
+        var startDistance = Mathf.Min(startX, startY) + settings.startDistanceFromEdge ;
 
         position = randomPointInLevel + randomRotationVector * startDistance;
-        rotation = randomRotation * Quaternion.Euler(0, 0, 180);
+        rotation = Quaternion.Euler(0, 0, randomRotation) * Quaternion.Euler(0, 0, 180);
+    }
+
+    float DistanceToClosestVerticalEdge(float rotation, Vector2 position)
+    {
+        var cosRotation = Mathf.Cos(rotation * Mathf.Deg2Rad);
+        if (cosRotation == 0)
+            return float.MaxValue;
+        else if(cosRotation > 0 )
+            return (levelModel.ExitLevelCollider.bounds.max.y - position.y) /cosRotation;
+        else
+            return (levelModel.ExitLevelCollider.bounds.min.y - position.y) /cosRotation;
+    }
+
+    float DistanceToClosestHorizontalEdge(float rotation, Vector2 position)
+    {
+        var sinRotation = Mathf.Sin(rotation * Mathf.Deg2Rad);
+        if (sinRotation == 0)
+            return float.MaxValue;
+        else if (sinRotation > 0)
+            return (position.x - levelModel.ExitLevelCollider.bounds.min.x) /sinRotation;
+        else
+            return (position.x - levelModel.ExitLevelCollider.bounds.max.x)/sinRotation;
+
     }
 
     Vector2 RandomPointInLevel()
@@ -69,5 +107,6 @@ public class RockSpawner : IInitializable, ITickable
         public AssetReferenceGameObject rockPrefabReference = null;
         public int startRocks = 0;
         public float timeBetweenRockSpawns = 0;
+        public float startDistanceFromEdge = 2;
     }
 }

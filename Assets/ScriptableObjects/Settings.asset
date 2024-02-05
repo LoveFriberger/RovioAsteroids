@@ -46,6 +46,7 @@ MonoBehaviour:
         m_EditorAssetChanged: 0
       startRocks: 3
       timeBetweenRockSpawns: 5
+      startDistanceFromEdge: 2
     levelUIMenuOpenerSettings:
       newHighScoreString: New High Score!
       scoreString: Better Luck Next Time!
