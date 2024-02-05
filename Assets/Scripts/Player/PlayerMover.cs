@@ -1,7 +1,6 @@
 using System.Collections;
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Zenject;
 
 public class PlayerMover : IFixedTickable

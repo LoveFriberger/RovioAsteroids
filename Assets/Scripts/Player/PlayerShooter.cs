@@ -2,8 +2,6 @@ using System.Collections;
 using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.InputSystem;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 public class PlayerShooter : ITickable
