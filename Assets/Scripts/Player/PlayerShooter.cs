@@ -8,14 +8,16 @@ using Zenject;
 
 public class PlayerShooter : IFixedTickable
 {
-    readonly InputView inputView = null; 
+    readonly InputView inputView = null;
+    readonly LevelModel levelModel = null;
     readonly AssetReferenceSpawner spawner;
     readonly PlayerModel playerModel = null;
     readonly Settings settings = null;
 
-    public PlayerShooter(PlayerModel playerModel, AssetReferenceSpawner spawner, InputView inputView, Settings settings)
+    public PlayerShooter(PlayerModel playerModel, LevelModel levelModel, AssetReferenceSpawner spawner, InputView inputView, Settings settings)
     {
         this.playerModel = playerModel;
+        this.levelModel = levelModel;
         this.spawner = spawner;
         this.inputView = inputView;
         this.settings = settings;
@@ -24,6 +26,8 @@ public class PlayerShooter : IFixedTickable
 
     public void FixedTick()
     {
+        if (levelModel.MenuObjectActivated)
+            return;
         if (inputView.ActionInputDown && playerModel.TimeLastShot + settings.cooldown < Time.time)
             Shoot();
     }

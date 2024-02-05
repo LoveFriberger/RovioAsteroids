@@ -23,7 +23,6 @@ public class InputView
         this.model = model;
     }
 
-    public bool InGameMenu { get; set; }
     public bool UpInputHold { get { return model.upInputHold; } }
 
     public bool LeftInputHold { get { return model.leftInputHold; } }

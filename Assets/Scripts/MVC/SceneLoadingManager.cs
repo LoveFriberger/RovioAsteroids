@@ -22,7 +22,8 @@ public class SceneLoadingViewer
 public class SceneLoadingController: SceneLoadingViewer
 {
     readonly Settings settings = null;
-    public SceneLoadingController(Settings settings) 
+    
+    public SceneLoadingController(Settings settings, InputView inputView) 
     {
         this.settings = settings;
     }

@@ -7,19 +7,21 @@ using Zenject;
 public class PlayerMover : IFixedTickable
 {
     readonly PlayerModel playerModel = null;
+    readonly LevelModel levelModel = null;
     readonly InputView inputView = null;
     readonly Settings settings = null;
 
-    public PlayerMover(PlayerModel playerModel, InputView inputView, Settings settings)
+    public PlayerMover(PlayerModel playerModel, LevelModel levelModel, InputView inputView, Settings settings)
     {
         this.playerModel = playerModel;
+        this.levelModel = levelModel;
         this.inputView = inputView;
         this.settings = settings;
     }
 
     public void FixedTick()
     {
-        if (inputView.InGameMenu)
+        if (levelModel.MenuObjectActivated)
             return;
 
         if (inputView.UpInputHold)

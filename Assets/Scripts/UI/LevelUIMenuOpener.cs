@@ -9,15 +9,13 @@ public class LevelUIMenuOpener
     readonly LevelModel levelModel = null;
     readonly GameController gameController = null;
     readonly PointsController pointsController = null;
-    readonly InputView inputView = null;
     readonly Settings settings = null;
 
-    public LevelUIMenuOpener(LevelModel levelModel, GameController gameController, PointsController pointsController, InputView inputView, Settings settings)
+    public LevelUIMenuOpener(LevelModel levelModel, GameController gameController, PointsController pointsController, Settings settings)
     {
         this.levelModel = levelModel;
         this.gameController = gameController;
         this.pointsController = pointsController;
-        this.inputView = inputView;
         this.settings = settings;
     }
 
@@ -28,8 +26,6 @@ public class LevelUIMenuOpener
 
     public void OpenMenu(bool died)
     {
-        inputView.InGameMenu = true;
-
         gameController.SetPause(true);
         levelModel.PlayerDied = died;
         levelModel.MenuObjectActivated = true;
@@ -45,7 +41,6 @@ public class LevelUIMenuOpener
 
     public void CloseMenu()
     {
-        inputView.InGameMenu = false;
         gameController.SetPause(false);
         levelModel.MenuObjectActivated = false;
     }

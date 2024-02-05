@@ -21,7 +21,7 @@ public class LevelUIInputController : ITickable
         if (inputView.ToggleMenuInputDown)
             ToggleMenu();
 
-        if (!inputView.InGameMenu)
+        if (!levelModel.MenuObjectActivated)
             return;
 
         if (inputView.UpInputDown)
