@@ -14,11 +14,6 @@ public class AssetReferenceSpawner
         this.levelModel = levelModel;
     }
 
-    bool IsLoaded(AssetReferenceGameObject asset)
-    {
-        return levelModel.LoadedAssets.ContainsKey(asset.AssetGUID);
-    }
-
     public async Task Spawn(AssetReferenceGameObject asset, Vector2 startPosition, Quaternion startRotation, Action<GameObject> onSpawnedObject = null)
     {
         if (!asset.IsValid())
