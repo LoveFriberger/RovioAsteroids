@@ -13,7 +13,7 @@ public class RockInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<RockModel>().AsSingle().WithArguments(settings.smallerRock, settings.rockCollider, settings.rigidbody);
+        Container.Bind<RockModel>().AsSingle().WithArguments(settings);
 
         Container.Bind<RockDamageTaker>().AsSingle();
         Container.BindInterfacesAndSelfTo<RockMover>().AsSingle(); 

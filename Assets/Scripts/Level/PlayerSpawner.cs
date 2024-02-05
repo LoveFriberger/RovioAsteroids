@@ -28,7 +28,9 @@ public class PlayerSpawner : IInitializable
 
     public async void SpawnPlayer()
     {
-        await spawner.Spawn(settings.playerPrefabReference, playerStart.position, playerStart.rotation);
+        var position = playerStart.position;
+        var rotation = playerStart.rotation;
+        await spawner.Spawn(settings.playerPrefabReference, position, rotation);
     }
 
     [Serializable]

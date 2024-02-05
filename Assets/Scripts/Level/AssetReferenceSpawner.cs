@@ -21,10 +21,10 @@ public class AssetReferenceSpawner
 
     public async Task Spawn(AssetReferenceGameObject asset, Vector2 startPosition, Quaternion startRotation, Action<GameObject> onSpawnedObject = null)
     {
-        if (!IsLoaded(asset))
+        if (!asset.IsValid())
             await Load(asset);
 
-        levelModel.AssetReferenceSpawner.Spawn(levelModel.LoadedAssets[asset.AssetGUID], startPosition, startRotation, onSpawnedObject);
+        levelModel.AssetReferenceSpawner.Spawn((GameObject)asset.OperationHandle.Result, startPosition, startRotation, onSpawnedObject);
     }
 
     async Task Load(AssetReferenceGameObject asset)
@@ -35,7 +35,5 @@ public class AssetReferenceSpawner
 
         if (asset.OperationHandle.Status == AsyncOperationStatus.Failed)
             Debug.LogError(asset.RuntimeKey + " failed to load!");
-        else if (asset.OperationHandle.Status == AsyncOperationStatus.Succeeded)
-            levelModel.LoadedAssets.Add(asset.AssetGUID, (GameObject)asset.OperationHandle.Result);
     }
 }

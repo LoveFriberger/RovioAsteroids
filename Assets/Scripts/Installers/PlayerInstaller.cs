@@ -12,7 +12,7 @@ public class PlayerInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<PlayerModel>().AsSingle().WithArguments(settings.rigidbody, settings.assetReferenceSpawner);
+        Container.Bind<PlayerModel>().AsSingle().WithArguments(settings);
 
         Container.BindInterfacesTo<PlayerMover>().AsSingle();
         Container.BindInterfacesTo<PlayerShooter>().AsSingle();

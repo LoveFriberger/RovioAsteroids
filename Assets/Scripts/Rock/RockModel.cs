@@ -9,11 +9,11 @@ public class RockModel
     CircleCollider2D circleCollider = null;
     Rigidbody2D rigidbody = null;
 
-    public RockModel(AssetReferenceGameObject smallerRock, CircleCollider2D circleCollider, Rigidbody2D rigidbody)
+    public RockModel(RockInstaller.Settings settings)
     {
-        this.smallerRock = smallerRock;
-        this.circleCollider = circleCollider;
-        this.rigidbody = rigidbody;
+        this.smallerRock = settings.smallerRock;
+        this.circleCollider = settings.rockCollider;
+        this.rigidbody = settings.rigidbody;
     }
 
     public AssetReferenceGameObject SmallerRock { get { return smallerRock; } }

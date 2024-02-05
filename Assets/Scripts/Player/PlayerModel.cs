@@ -7,10 +7,10 @@ public class PlayerModel
     readonly Rigidbody2D rigidbody = null;
     readonly AssetReferenceSpawnerObject assetReferenceSpawner = null;
 
-    public PlayerModel(Rigidbody2D rigidbody, AssetReferenceSpawnerObject assetReferenceSpawner)
+    public PlayerModel(PlayerInstaller.Settings settings)
     {
-        this.rigidbody = rigidbody;
-        this.assetReferenceSpawner = assetReferenceSpawner;
+        this.rigidbody = settings.rigidbody;
+        this.assetReferenceSpawner = settings.assetReferenceSpawner;
     }
 
     public Rigidbody2D Rigidbody { get { return rigidbody; } }

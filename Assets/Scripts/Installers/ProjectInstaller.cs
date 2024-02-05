@@ -17,6 +17,4 @@ public class ProjectInstaller : MonoInstaller
         Container.Bind<InputView>().AsSingle();
         Container.BindInterfacesTo<InputController>().AsSingle();
     }
-
-
 }
