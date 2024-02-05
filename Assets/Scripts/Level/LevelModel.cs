@@ -30,12 +30,6 @@ public class LevelModel
 
     public BoxCollider2D ExitLevelCollider { get { return levelCollider; }}
 
-    public Vector2 ExitLevelColliderSize { get { return levelCollider.size; } set { levelCollider.size = value; } }
-
-    public Bounds ExitLevelColliderBounds { get { return levelCollider.bounds; } }
-
-    public Dictionary<string, GameObject> LoadedAssets { get; set; } = new();
-
     public List<MenuButton> MenuButtons { get { return menuButtons; } }
 
     public int SelectedButtonIndex { get { return menuButtons.IndexOf(MenuButton.Selected); } }
