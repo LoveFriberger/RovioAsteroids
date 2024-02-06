@@ -50,7 +50,6 @@ public class PlayerMover : IFixedTickable
     [Serializable]
     public class Settings
     {
-
         public float accelerationForce = 10;
         public float maxVelocity = 5;
         public float turnSpeed = 50;

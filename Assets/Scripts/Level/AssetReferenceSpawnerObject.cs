@@ -5,10 +5,10 @@ using Zenject;
 
 public class AssetReferenceSpawnerObject : MonoBehaviour
 {
-    GameController gameController = null;
+    GameManagerController gameController = null;
 
     [Inject]
-    public void Construct(GameController gameController)
+    public void Construct(GameManagerController gameController)
     {
         this.gameController = gameController;
     }

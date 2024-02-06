@@ -10,10 +10,10 @@ public class PlayerSpawner : IInitializable
 {
     readonly AssetReferenceSpawner spawner = null;
     readonly Settings settings = null;
-    readonly GameController gameController = null;
+    readonly GameManagerController gameController = null;
     readonly Transform playerStart = null;
 
-    public PlayerSpawner(AssetReferenceSpawner spawner, Settings settings, GameController gameController, Transform playerStart)
+    public PlayerSpawner(AssetReferenceSpawner spawner, Settings settings, GameManagerController gameController, Transform playerStart)
     {
         this.spawner = spawner;
         this.settings = settings;

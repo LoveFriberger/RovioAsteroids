@@ -7,10 +7,10 @@ public class LevelObject : MonoBehaviour
     LevelModel level = null;
     RockSpawner rockSpawner = null;
     PlayerSpawner playerSpawner = null;
-    GameController gameController = null;
+    GameManagerController gameController = null;
 
     [Inject]
-    public void Construct(LevelModel level, RockSpawner rockSpawner, PlayerSpawner playerSpawner, GameController gameController)
+    public void Construct(LevelModel level, RockSpawner rockSpawner, PlayerSpawner playerSpawner, GameManagerController gameController)
     {
         this.level = level;
         this.rockSpawner = rockSpawner;

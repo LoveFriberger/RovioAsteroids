@@ -13,10 +13,10 @@ public class HighScoreIndicator : MonoBehaviour
     string highScoreString = "High Score: {0}";
 
     [Inject]
-    PointsController pointsController = null;
+    PointsView pointsView = null;
 
     void Start()
     {
-        highScoreText.text = pointsController.HighScore() > 0 ? string.Format(highScoreString, pointsController.HighScore()) : "";
+        highScoreText.text = pointsView.HighScore() > 0 ? string.Format(highScoreString, pointsView.HighScore()) : "";
     }
 }

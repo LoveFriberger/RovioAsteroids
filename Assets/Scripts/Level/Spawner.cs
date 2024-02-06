@@ -9,7 +9,7 @@ using Zenject;
 public abstract class Spawner : MonoBehaviour
 {
     [Inject]
-    protected GameController gameController = null;
+    protected GameManagerController gameController = null;
 
     void OnEnable()
     {

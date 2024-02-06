@@ -1,23 +1,14 @@
-using System.Collections;
 using System;
 using UnityEngine;
 
-public class GameModel
+public class GameManagerController
 {
-    public Action onPlayerKilled = null;
-    public Action onResetGame = null;
-}
+    readonly GameManagerModel model = null;
 
-public class GameViewer
-{
-    protected GameModel model = new();
-
-    public GameViewer(){}
-}
-
-public class GameController : GameViewer
-{
-    public GameController() { }
+    public GameManagerController(GameManagerModel model) 
+    {
+        this.model = model;
+    }
 
     public void AddOnPlayerKilledAction(Action action)
     {

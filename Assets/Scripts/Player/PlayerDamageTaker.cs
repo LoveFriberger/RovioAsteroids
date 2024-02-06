@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerDamageTaker : IHitable
 {
-    readonly GameController gameController = null;
+    readonly GameManagerController gameController = null;
 
-    public PlayerDamageTaker(GameController gameController)
+    public PlayerDamageTaker(GameManagerController gameController)
     {
         this.gameController = gameController;
     }

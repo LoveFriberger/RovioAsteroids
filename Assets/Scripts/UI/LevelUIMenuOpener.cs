@@ -6,15 +6,15 @@ using Zenject;
 public class LevelUIMenuOpener
 {
     readonly LevelModel levelModel = null;
-    readonly GameController gameController = null;
-    readonly PointsController pointsController = null;
+    readonly GameManagerController gameController = null;
+    readonly PointsView pointsView = null;
     readonly Settings settings = null;
 
-    public LevelUIMenuOpener(LevelModel levelModel, GameController gameController, PointsController pointsController, Settings settings)
+    public LevelUIMenuOpener(LevelModel levelModel, GameManagerController gameController, PointsView pointsView, Settings settings)
     {
         this.levelModel = levelModel;
         this.gameController = gameController;
-        this.pointsController = pointsController;
+        this.pointsView = pointsView;
         this.settings = settings;
     }
 
@@ -31,9 +31,9 @@ public class LevelUIMenuOpener
 
         levelModel.MenuDisplayedTitle = settings.pausedString;
         if (died)
-            levelModel.MenuDisplayedTitle = pointsController.NewHighScore() ? settings.newHighScoreString : settings.scoreString;
+            levelModel.MenuDisplayedTitle = pointsView.NewHighScore() ? settings.newHighScoreString : settings.scoreString;
 
-        levelModel.MenuDisplayedScore = pointsController.CurrentPoints().ToString();
+        levelModel.MenuDisplayedScore = pointsView.CurrentPoints().ToString();
 
         levelModel.MenuButtons[0].Select();
     }

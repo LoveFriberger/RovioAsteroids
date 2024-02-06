@@ -10,10 +10,10 @@ public class RockObject : MonoBehaviour, IHitable
     RockDamageTaker rockDamageTaker = null;
     RockMover rockMover = null;
     RockSpawner rockSpawner = null;
-    GameController gameController = null;
+    GameManagerController gameController = null;
 
     [Inject]
-    public void Construct(RockDamageTaker rockDamageTaker, RockMover rockMover, RockSpawner rockSpawner, GameController gameController)
+    public void Construct(RockDamageTaker rockDamageTaker, RockMover rockMover, RockSpawner rockSpawner, GameManagerController gameController)
     {
         this.rockDamageTaker = rockDamageTaker;
         this.rockMover = rockMover;

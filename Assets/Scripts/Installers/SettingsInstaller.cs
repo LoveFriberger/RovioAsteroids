@@ -19,7 +19,6 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
     public class GameSettings
     {
         public SceneLoadingController.Settings sceneLoaderSettings = null;
-        public PointsController.Settings pointsControllerSettings = null;
     }
 
     [Serializable]
@@ -47,7 +46,6 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
     public override void InstallBindings()
     {
         Container.BindInstances(gameSettings.sceneLoaderSettings);
-        Container.BindInstances(gameSettings.pointsControllerSettings);
         Container.BindInstances(playerSettings.playerMoverSettings);
         Container.BindInstances(playerSettings.playerShooterSettings);
         Container.BindInstances(levelSettings.playerSpawnerSettings);

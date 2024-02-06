@@ -1,30 +1,19 @@
 using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-public class SceneLoadingModel
-{
-    public AsyncOperationHandle<SceneInstance> loadedSceneHandle;
-}
 
-public class SceneLoadingViewer
+public class SceneLoadingController
 {
-    protected SceneLoadingModel model = new();
-
-    public SceneLoadingViewer() { }
-}
-
-public class SceneLoadingController: SceneLoadingViewer
-{
+    readonly SceneLoadingModel model = null;
     readonly Settings settings = null;
     
-    public SceneLoadingController(Settings settings, InputView inputView) 
+    public SceneLoadingController(SceneLoadingModel model, Settings settings) 
     {
+        this.model = model;
         this.settings = settings;
     }
 

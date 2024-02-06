@@ -8,7 +8,7 @@ public class ResetGameButton : MonoBehaviour
     [Inject]
     PointsController pointsController = null;
     [Inject]
-    GameController gameController = null;
+    GameManagerController gameController = null;
 
     public void ResetGame()
     {
