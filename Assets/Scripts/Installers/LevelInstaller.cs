@@ -16,7 +16,7 @@ public class LevelInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<LevelModel>().AsSingle().WithArguments(settings);
+        Container.Bind<LevelModel>().AsSingle().WithArguments(settings.menuButtons, settings.menuObject, settings.menuTitle, settings.menuScore);
 
         Container.BindInterfacesAndSelfTo<LevelUIInputController>().AsSingle();
         Container.Bind<LevelUIMenuOpener>().AsSingle();

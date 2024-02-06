@@ -12,12 +12,12 @@ public class LevelModel
     readonly TextMeshProUGUI menuTitle = null;
     readonly TextMeshProUGUI menuScore = null;
 
-    public LevelModel(LevelInstaller.Settings settings)
+    public LevelModel(List<MenuButton> menuButtons, GameObject menuObject, TextMeshProUGUI menuTitle, TextMeshProUGUI menuScore)
     {
-        this.menuButtons = settings.menuButtons;
-        this.menuObject = settings.menuObject;
-        this.menuTitle = settings.menuTitle;
-        this.menuScore = settings.menuScore;
+        this.menuButtons = menuButtons;
+        this.menuObject = menuObject;
+        this.menuTitle = menuTitle;
+        this.menuScore = menuScore;
     }
 
     public List<MenuButton> MenuButtons { get { return menuButtons; } }
