@@ -6,14 +6,14 @@ using Zenject;
 public class LevelUIMenuOpener
 {
     readonly LevelModel levelModel = null;
-    readonly GameManagerController gameController = null;
+    readonly GameManagerController gameManagerController = null;
     readonly PointsView pointsView = null;
     readonly Settings settings = null;
 
-    public LevelUIMenuOpener(LevelModel levelModel, GameManagerController gameController, PointsView pointsView, Settings settings)
+    public LevelUIMenuOpener(LevelModel levelModel, GameManagerController gameManagerController, PointsView pointsView, Settings settings)
     {
         this.levelModel = levelModel;
-        this.gameController = gameController;
+        this.gameManagerController = gameManagerController;
         this.pointsView = pointsView;
         this.settings = settings;
     }
@@ -25,7 +25,7 @@ public class LevelUIMenuOpener
 
     public void OpenMenu(bool died)
     {
-        gameController.SetPause(true);
+        gameManagerController.SetPause(true);
         levelModel.PlayerDied = died;
         levelModel.MenuObjectActivated = true;
 
@@ -38,7 +38,7 @@ public class LevelUIMenuOpener
 
     public void CloseMenu()
     {
-        gameController.SetPause(false);
+        gameManagerController.SetPause(false);
         levelModel.MenuObjectActivated = false;
     }
 
