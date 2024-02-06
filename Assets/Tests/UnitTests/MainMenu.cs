@@ -35,14 +35,14 @@ public class MainMenu : ZenjectUnitTestFixture
     MainMenuController mainMenuController = null;
 
     [Test]
-    public void MenuStartOnFirstButton()
+    public void StartOnFirstButton()
     {
         mainMenuController.Tick();
         Assert.IsTrue(mainMenuModel.SelectedButtonIndex == 0);
     }
 
     [Test]
-    public void MenuMoveButton()
+    public void MoveButton()
     {
         mainMenuController.Tick();
         Assert.IsTrue(mainMenuModel.SelectedButtonIndex == 0);
@@ -60,6 +60,5 @@ public class MainMenu : ZenjectUnitTestFixture
         inputModel.upInputDown = true;
         mainMenuController.Tick();
         Assert.IsTrue(mainMenuModel.SelectedButtonIndex == 0);
-        inputModel.upInputDown = false;
     }
 }
