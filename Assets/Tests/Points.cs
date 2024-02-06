@@ -7,7 +7,7 @@ using UnityEngine.TestTools;
 
 
 [TestFixture]
-public class PointsTest : ZenjectUnitTestFixture
+public class Points : ZenjectUnitTestFixture
 {
     [SetUp]
     public void Install()
