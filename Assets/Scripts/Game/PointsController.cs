@@ -12,7 +12,7 @@ public class PointsController
         this.view = view;
     }
 
-    public void SetNewHighScore(int newHighScore)
+    public void NewHighScore(int newHighScore)
     {
         model.newHighScore = true;
         PlayerPrefs.SetInt(model.playerPrefsHighScoreKey, newHighScore);
@@ -21,16 +21,17 @@ public class PointsController
     public void AddPoints(int pointsToAdd)
     {
         model.currentPoints = model.currentPoints + pointsToAdd;
-        if (model.currentPoints > view.HighScore())
-            SetNewHighScore(model.currentPoints);
+        if (model.currentPoints > view.HighScore)
+            NewHighScore(model.currentPoints);
 
-        model.onScoreUpdated.Invoke();
+        model.onScoreUpdated?.Invoke();
     }
 
     public void Reset()
     {
         model.currentPoints = 0;
         model.newHighScore = false;
+        PlayerPrefs.SetInt(model.playerPrefsHighScoreKey, 0);
 
         model.onScoreUpdated?.Invoke();
     }

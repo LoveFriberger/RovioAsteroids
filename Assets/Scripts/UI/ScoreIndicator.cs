@@ -20,7 +20,7 @@ public class ScoreIndicator : MonoBehaviour
 
     void Start()
     {
-        oldHighScore = pointsView.HighScore();
+        oldHighScore = pointsView.HighScore;
         pointsController.AddOnScoreUpdatedAction(UpdateScoreIndicator);
         UpdateScoreIndicator();
     }
@@ -32,6 +32,6 @@ public class ScoreIndicator : MonoBehaviour
 
     void UpdateScoreIndicator()
     {
-        scoreText.text = string.Format(scoreString, pointsView.CurrentPoints(), oldHighScore);
+        scoreText.text = string.Format(scoreString, pointsView.CurrentPoints, oldHighScore);
     }
 }

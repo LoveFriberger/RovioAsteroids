@@ -17,6 +17,6 @@ public class HighScoreIndicator : MonoBehaviour
 
     void Start()
     {
-        highScoreText.text = pointsView.HighScore() > 0 ? string.Format(highScoreString, pointsView.HighScore()) : "";
+        highScoreText.text = pointsView.HighScore > 0 ? string.Format(highScoreString, pointsView.HighScore) : "";
     }
 }
