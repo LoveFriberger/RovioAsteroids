@@ -6,9 +6,9 @@ public class MainMenuModel
 {
     readonly List<MenuButton> menuButtons = null;
 
-    public MainMenuModel(MainMenuInstaller.Settings settings)
+    public MainMenuModel(List<MenuButton> menuButtons)
     {
-        this.menuButtons = settings.menuButtons;
+        this.menuButtons = menuButtons;
     }
 
     public List<MenuButton> MenuButtons { get { return menuButtons; } }

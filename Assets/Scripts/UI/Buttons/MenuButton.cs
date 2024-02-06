@@ -18,13 +18,14 @@ public class MenuButton : MonoBehaviour
             Selected.Deselect();
 
         Selected = this;
-        selectionIndicator.SetActive(true);
-
+        if(selectionIndicator != null)
+            selectionIndicator.SetActive(true);
     }
 
     public void Deselect()
     {
-        selectionIndicator.SetActive(false);
+        if (selectionIndicator != null)
+            selectionIndicator.SetActive(false);
     }
 
     public void Click()
