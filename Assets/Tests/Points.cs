@@ -1,10 +1,6 @@
 using Zenject;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.TestTools;
-
 
 [TestFixture]
 public class Points : ZenjectUnitTestFixture
@@ -28,7 +24,7 @@ public class Points : ZenjectUnitTestFixture
 
 
     [Test]
-    public void TestAddValues()
+    public void AddValues()
     {
         var oldPoints = pointsView.CurrentPoints;
         pointsController.AddPoints(1);
@@ -36,7 +32,7 @@ public class Points : ZenjectUnitTestFixture
     }
 
     [Test]
-    public void TestResetHighScore()
+    public void ResetHighScore()
     {
         pointsController.AddPoints(1);
         Assert.That(pointsView.HighScore > 0);
@@ -46,7 +42,7 @@ public class Points : ZenjectUnitTestFixture
     }
 
     [Test]
-    public void TestNewHighScore()
+    public void NewHighScore()
     {
         pointsController.Reset();
         Assert.That(!pointsView.NewHighScore);
@@ -56,23 +52,23 @@ public class Points : ZenjectUnitTestFixture
     }
 
     [Test]
-    public void TestAddOnScoreUpdatedAction()
+    public void AddScoreUpdatedAction()
     {
         var testValue = false;
         Action action = () => testValue = true;
-        pointsController.AddOnScoreUpdatedAction(action);
+        pointsController.AddScoreUpdatedAction(action);
         Assert.That(!testValue);
         pointsModel.onScoreUpdated.Invoke();
         Assert.That(testValue);
     }
 
     [Test]
-    public void TestRemoveOnScoreUpdatedAction()
+    public void RemoveScoreUpdatedAction()
     {
         var testValue = false;
         Action action = () => testValue = true;
-        pointsController.AddOnScoreUpdatedAction(action);
-        pointsController.RemoveOnScoreUpdatedAction(action);
+        pointsController.AddScoreUpdatedAction(action);
+        pointsController.RemoveScoreUpdatedAction(action);
 
         Assert.That(testValue == false);
         Assert.That(pointsModel.onScoreUpdated == null);

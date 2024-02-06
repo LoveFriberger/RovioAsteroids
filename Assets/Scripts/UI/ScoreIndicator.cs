@@ -21,13 +21,13 @@ public class ScoreIndicator : MonoBehaviour
     void Start()
     {
         oldHighScore = pointsView.HighScore;
-        pointsController.AddOnScoreUpdatedAction(UpdateScoreIndicator);
+        pointsController.AddScoreUpdatedAction(UpdateScoreIndicator);
         UpdateScoreIndicator();
     }
 
     private void OnDisable()
     {
-        pointsController.RemoveOnScoreUpdatedAction(UpdateScoreIndicator);
+        pointsController.RemoveScoreUpdatedAction(UpdateScoreIndicator);
     }
 
     void UpdateScoreIndicator()
