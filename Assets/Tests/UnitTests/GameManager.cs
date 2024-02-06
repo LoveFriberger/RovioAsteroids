@@ -86,4 +86,6 @@ public class GameManager : ZenjectUnitTestFixture
         gameManagerController.SetPause(false);
         Assert.That(Time.timeScale == 1);
     }
+
+    
 }
