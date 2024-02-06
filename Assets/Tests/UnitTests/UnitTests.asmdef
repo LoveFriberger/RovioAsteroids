@@ -6,7 +6,8 @@
         "UnityEditor.TestRunner",
         "Zenject-TestFramework",
         "Zenject",
-        "ScriptAssembly"
+        "ScriptAssembly",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [
         "Editor"

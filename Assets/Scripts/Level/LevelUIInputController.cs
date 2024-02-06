@@ -18,6 +18,9 @@ public class LevelUIInputController : ITickable
 
     public void Tick()
     {
+        if (levelModel.SelectedButtonIndex == -1)
+            levelModel.MenuButtons[0].Select();
+
         if (inputView.ToggleMenuInputDown)
             ToggleMenu();
 

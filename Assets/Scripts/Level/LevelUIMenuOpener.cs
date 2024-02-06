@@ -34,8 +34,6 @@ public class LevelUIMenuOpener
             levelModel.MenuDisplayedTitle = pointsView.NewHighScore ? settings.newHighScoreString : settings.scoreString;
 
         levelModel.MenuDisplayedScore = pointsView.CurrentPoints.ToString();
-
-        levelModel.MenuButtons[0].Select();
     }
 
     public void CloseMenu()
