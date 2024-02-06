@@ -36,12 +36,12 @@ public class PointsController
         model.onScoreUpdated?.Invoke();
     }
 
-    public void AddOnScoreUpdatedAction(Action action)
+    public void AddScoreUpdatedAction(Action action)
     {
         model.onScoreUpdated += action;
     }
 
-    public void RemoveOnScoreUpdatedAction(Action action)
+    public void RemoveScoreUpdatedAction(Action action)
     {
         model.onScoreUpdated -= action;
     }

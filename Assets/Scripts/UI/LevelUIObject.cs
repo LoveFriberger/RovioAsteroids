@@ -19,7 +19,7 @@ public class LevelUIObject : MonoBehaviour
 
     void OnEnable()
     {
-        gameController.AddOnPlayerKilledAction(levelUIMenuOpener.OnPlayerKilled);
+        gameController.AddPlayerKilledAction(levelUIMenuOpener.OnPlayerKilled);
         gameController.AddResetGameAction(levelUIMenuOpener.CloseMenu);
     }
 

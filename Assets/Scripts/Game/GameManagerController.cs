@@ -10,7 +10,7 @@ public class GameManagerController
         this.model = model;
     }
 
-    public void AddOnPlayerKilledAction(Action action)
+    public void AddPlayerKilledAction(Action action)
     {
         model.onPlayerKilled += action;
     }
