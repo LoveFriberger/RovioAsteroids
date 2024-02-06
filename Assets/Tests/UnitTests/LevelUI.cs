@@ -17,11 +17,14 @@ public class LevelUI : ZenjectUnitTestFixture
         menuButtons.Add(CreateMenuButton());
 
         var menuObject = new GameObject();
-        menuObject.SetActive(false);
 
-        var tmpObject = new GameObject().AddComponent<TextMeshProUGUI>();
+        var tmpObjectTitle = new GameObject().AddComponent<TextMeshProUGUI>();
+        Container.BindInstance(tmpObjectTitle).WithId("Title");
 
-        Container.Bind<LevelModel>().AsSingle().WithArguments(menuButtons, menuObject, tmpObject, tmpObject);
+        var tmpObjectScore = new GameObject().AddComponent<TextMeshProUGUI>();
+        Container.BindInstance(tmpObjectScore).WithId("Score");
+
+        Container.Bind<LevelModel>().AsSingle().WithArguments(menuButtons, menuObject, tmpObjectTitle, tmpObjectScore);
         Container.Bind<InputModel>().AsSingle();
         Container.Bind<InputView>().AsSingle();
 
@@ -51,6 +54,14 @@ public class LevelUI : ZenjectUnitTestFixture
     LevelUIInputController levelUIInputController;
     [Inject]
     InputModel inputModel;
+    [Inject]
+    LevelUIMenuOpener levelUIMenuOpener;
+    [Inject]
+    LevelUIMenuOpener.Settings levelUIMenuOpenerSettings;
+    [Inject(Id = "Title")]
+    TextMeshProUGUI tmpObjectTitle;
+    [Inject(Id = "Score")]
+    TextMeshProUGUI tmpObjectScore;
 
     [Test]
     public void StartOnFirstButton()
@@ -62,6 +73,8 @@ public class LevelUI : ZenjectUnitTestFixture
     [Test]
     public void MoveButton()
     {
+        levelUIMenuOpener.OpenMenu(false);
+
         levelUIInputController.Tick();
         Assert.IsTrue(levelModel.SelectedButtonIndex == 0);
 
@@ -83,6 +96,8 @@ public class LevelUI : ZenjectUnitTestFixture
     [Test]
     public void ToggleMenu()
     {
+        levelUIMenuOpener.CloseMenu();
+
         inputModel.toggleMenuInputDown = true;
         levelUIInputController.Tick();
         Assert.IsTrue(levelModel.MenuObjectActivated);
@@ -90,5 +105,24 @@ public class LevelUI : ZenjectUnitTestFixture
         levelUIInputController.Tick();
         inputModel.toggleMenuInputDown = true;
         Assert.IsFalse(levelModel.MenuObjectActivated);
+    }
+
+    [Test]
+    public void MenuOpener()
+    {
+        levelUIMenuOpener.OpenMenu(false);
+        Assert.IsTrue(Time.timeScale == 0);
+        Assert.IsFalse(levelModel.PlayerDied);
+        Assert.IsTrue(levelModel.MenuObjectActivated);
+        Assert.IsTrue(tmpObjectTitle.text == levelUIMenuOpenerSettings.pausedString);
+        Assert.IsTrue(tmpObjectScore.text == "0");
+
+        levelUIMenuOpener.CloseMenu();
+        Assert.IsTrue(Time.timeScale == 1);
+        Assert.IsFalse(levelModel.MenuObjectActivated);
+
+        levelUIMenuOpener.OpenMenu(true);
+        Assert.IsTrue(levelModel.PlayerDied);
+        Assert.IsFalse(tmpObjectTitle.text == levelUIMenuOpenerSettings.pausedString);
     }
 }
