@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 653707396}
   - component: {fileID: 653707395}
   - component: {fileID: 653707394}
+  - component: {fileID: 653707397}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -454,6 +455,19 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: -117.5}
   m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &653707397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653707393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b995a9ed5bb1a644b1bbda9d1469523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: {fileID: 653707394}
 --- !u!1 &696120570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,6 +1265,7 @@ GameObject:
   - component: {fileID: 2081224184}
   - component: {fileID: 2081224185}
   - component: {fileID: 2081224186}
+  - component: {fileID: 2081224187}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -1376,6 +1391,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2081224187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081224183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d0a8113986db14eb4bb780bfa8088d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreString: '{0} ({1})'
+  scoreText: {fileID: 2081224186}
 --- !u!1 &2087255599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,8 +1494,6 @@ MonoBehaviour:
     - {fileID: 1186556252}
     - {fileID: 1327070008}
     menuObject: {fileID: 1088795075}
-    menuTitle: {fileID: 653707394}
-    menuScore: {fileID: 2081224186}
     exitLevelTriggerObject: {fileID: 1557863636}
 --- !u!114 &2087255603
 MonoBehaviour:

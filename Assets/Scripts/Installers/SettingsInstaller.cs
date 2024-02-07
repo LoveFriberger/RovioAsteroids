@@ -14,6 +14,8 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
     LevelSettings levelSettings = null;
     [SerializeField]
     RockSettings rockSettings = null;
+    [SerializeField]
+    UISettings uiSettings = null;
 
     [Serializable]
     public class GameSettings
@@ -33,7 +35,12 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
     {
         public PlayerSpawner.Settings playerSpawnerSettings = null;
         public RockSpawner.Settings rockSpawnerSettings = null;
-        public LevelUIMenuOpener.Settings levelUIMenuOpenerSettings = null;
+    }
+
+    [Serializable]
+    public class UISettings
+    {
+        public GameMenuTitleText.Settings gameMenuTitleTextSettings = null;
     }
 
     [Serializable]
@@ -50,7 +57,7 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
         Container.BindInstances(playerSettings.playerShooterSettings);
         Container.BindInstances(levelSettings.playerSpawnerSettings);
         Container.BindInstances(levelSettings.rockSpawnerSettings);
-        Container.BindInstances(levelSettings.levelUIMenuOpenerSettings);
+        Container.BindInstances(uiSettings.gameMenuTitleTextSettings);
         Container.BindInstances(rockSettings.rockMoverSettings);
         Container.BindInstances(rockSettings.rockDamageTakerSettings);
     }

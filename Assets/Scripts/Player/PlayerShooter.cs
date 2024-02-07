@@ -24,8 +24,9 @@ public class PlayerShooter : ITickable
 
     public void Tick()
     {
-        if (levelModel.MenuObjectActivated)
+        if (inputView.InputType != InputModel.Type.Player)
             return;
+
         if (inputView.ActionInputDown && playerModel.TimeLastShot + settings.cooldown < Time.time)
             Shoot();
     }

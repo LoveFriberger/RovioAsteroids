@@ -20,7 +20,7 @@ public class PlayerMover : IFixedTickable
 
     public void FixedTick()
     {
-        if (levelModel.MenuObjectActivated)
+        if (inputView.InputType != InputModel.Type.Player)
             return;
 
         if (inputView.UpInputHold)

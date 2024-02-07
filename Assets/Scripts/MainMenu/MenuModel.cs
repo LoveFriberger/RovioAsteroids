@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuModel
+public class MenuModel
 {
     readonly List<MenuButton> menuButtons = null;
 
-    public MainMenuModel(List<MenuButton> menuButtons)
+    public MenuModel(List<MenuButton> menuButtons)
     {
         this.menuButtons = menuButtons;
     }

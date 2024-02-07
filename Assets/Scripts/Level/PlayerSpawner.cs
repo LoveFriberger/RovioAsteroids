@@ -8,16 +8,17 @@ using Zenject;
 
 public class PlayerSpawner : IInitializable
 {
-    readonly AssetReferenceSpawner spawner = null;
-    readonly Settings settings = null;
-    readonly GameManagerController gameController = null;
-    readonly Transform playerStart = null;
+    readonly AssetReferenceSpawner spawner;
+    readonly Settings settings;
+    readonly Transform playerStart;
 
-    public PlayerSpawner(AssetReferenceSpawner spawner, Settings settings, GameManagerController gameController, Transform playerStart)
+    public PlayerSpawner(
+        AssetReferenceSpawner spawner, 
+        Settings settings,
+        Transform playerStart)
     {
         this.spawner = spawner;
         this.settings = settings;
-        this.gameController = gameController;
         this.playerStart = playerStart;
     }
 

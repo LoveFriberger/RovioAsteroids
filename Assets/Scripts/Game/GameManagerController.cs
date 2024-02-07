@@ -24,6 +24,7 @@ public class GameManagerController
     {
         model.onPlayerKilled?.Invoke();
     }
+
     public void AddResetGameAction(Action action)
     {
         model.onResetGame += action;

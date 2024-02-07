@@ -7,6 +7,9 @@ public class InputView
         this.model = model;
     }
 
+
+    public InputModel.Type InputType { get { return model.inputType; } }
+
     public bool UpInputHold { get { return model.upInputHold; } }
 
     public bool LeftInputHold { get { return model.leftInputHold; } }

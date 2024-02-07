@@ -5,14 +5,12 @@ using Zenject;
 
 public class LevelUIObject : MonoBehaviour
 {
-    LevelModel levelModel = null;
-    GameManagerController gameController = null;
-    LevelUIMenuOpener levelUIMenuOpener = null;
+    GameManagerController gameController;
+    LevelUIMenuOpener levelUIMenuOpener;
 
     [Inject]
-    public void Construct(LevelModel levelModel, GameManagerController gameController, LevelUIMenuOpener levelUIMenuOpener)
+    public void Construct(GameManagerController gameController, LevelUIMenuOpener levelUIMenuOpener)
     {
-        this.levelModel = levelModel;
         this.gameController = gameController;
         this.levelUIMenuOpener = levelUIMenuOpener;
     }

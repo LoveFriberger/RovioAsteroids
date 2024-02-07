@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class LevelUIMenuOpener
+public class LevelUIMenuOpener : ITickable
 {
-    readonly LevelModel levelModel = null;
-    readonly GameManagerController gameManagerController = null;
-    readonly PointsView pointsView = null;
-    readonly Settings settings = null;
+    readonly LevelModel levelModel;
+    readonly GameManagerController gameManagerController;
+    readonly InputView inputView;
+    readonly InputController inputController;
 
-    public LevelUIMenuOpener(LevelModel levelModel, GameManagerController gameManagerController, PointsView pointsView, Settings settings)
+    public LevelUIMenuOpener(LevelModel levelModel, GameManagerController gameManagerController, InputView inputView, InputController inputController)
     {
         this.levelModel = levelModel;
         this.gameManagerController = gameManagerController;
-        this.pointsView = pointsView;
-        this.settings = settings;
+        this.inputView = inputView;
+        this.inputController = inputController;
     }
 
     public void OnPlayerKilled()
@@ -23,30 +23,33 @@ public class LevelUIMenuOpener
         OpenMenu(true);
     }
 
+    public void Tick()
+    {
+        if (inputView.ToggleMenuInputDown)
+            ToggleMenu();
+    }
+
     public void OpenMenu(bool died)
     {
+        inputController.SetInputType(InputModel.Type.Menu);
+
         gameManagerController.SetPause(true);
         levelModel.PlayerDied = died;
         levelModel.MenuObjectActivated = true;
-
-        levelModel.MenuDisplayedTitle = settings.pausedString;
-        if (died)
-            levelModel.MenuDisplayedTitle = pointsView.NewHighScore ? settings.newHighScoreString : settings.scoreString;
-
-        levelModel.MenuDisplayedScore = pointsView.CurrentPoints.ToString();
     }
 
     public void CloseMenu()
     {
+        inputController.SetInputType(InputModel.Type.Player);
         gameManagerController.SetPause(false);
         levelModel.MenuObjectActivated = false;
     }
 
-    [Serializable]
-    public class Settings
+    public void ToggleMenu()
     {
-        public string newHighScoreString = "New High Score!";
-        public string scoreString = "Better Luck Next Time!";
-        public string pausedString = "Paused";
+        if (!levelModel.MenuObjectActivated)
+            OpenMenu(false);
+        else if (levelModel.CanCloseMenuWithKey)
+            CloseMenu();
     }
 }

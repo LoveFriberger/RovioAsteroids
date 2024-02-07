@@ -15,7 +15,7 @@ public class RockSpawner : IInitializable, ITickable
     float lastRockSpawnTime = 0;
 
     public RockSpawner(
-        [Inject(Id = "exitLevelCollider")] BoxCollider2D exitLevelBoxCollider, 
+        [Inject(Id = "exitLevelCollider")] BoxCollider2D exitLevelBoxCollider,
         AssetReferenceSpawner spawner, 
         Settings settings)
     {

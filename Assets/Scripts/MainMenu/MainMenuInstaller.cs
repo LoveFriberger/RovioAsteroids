@@ -10,9 +10,9 @@ public class MainMenuInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<MainMenuModel>().AsSingle().WithArguments(settings.menuButtons);
+        Container.Bind<MenuModel>().AsTransient().WithArguments(settings.menuButtons);
 
-        Container.BindInterfacesTo<MainMenuController>().AsSingle();
+        Container.BindInterfacesTo<MenuController>().AsSingle();
     }
 
     [Serializable]

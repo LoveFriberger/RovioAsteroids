@@ -21,4 +21,8 @@ public class InputController : ITickable
         model.toggleMenuInputDown = Input.GetKeyDown(KeyCode.Escape);
     }
 
+    public void SetInputType(InputModel.Type type)
+    {
+        model.inputType = type;
+    }
 }

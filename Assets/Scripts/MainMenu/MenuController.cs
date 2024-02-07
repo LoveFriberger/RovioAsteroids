@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class MainMenuController : ITickable
+public class MenuController : ITickable
 {
-    readonly MainMenuModel mainMenuModel = null;
+    readonly MenuModel mainMenuModel = null;
     readonly InputView inputView = null;
 
-    public MainMenuController(MainMenuModel mainMenuModel, InputView inputView)
+    public MenuController(MenuModel mainMenuModel, InputView inputView)
     {
         this.mainMenuModel = mainMenuModel;
         this.inputView = inputView;
@@ -16,6 +16,9 @@ public class MainMenuController : ITickable
 
     public void Tick()
     {
+        if (inputView.InputType != InputModel.Type.Menu)
+            return; 
+
         if (mainMenuModel.SelectedButtonIndex == -1)
             mainMenuModel.MenuButtons[0].Select();
 

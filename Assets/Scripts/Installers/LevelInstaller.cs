@@ -16,9 +16,9 @@ public class LevelInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<LevelModel>().AsSingle().WithArguments(settings.menuButtons, settings.menuObject, settings.menuTitle, settings.menuScore);
-
-        Container.BindInterfacesAndSelfTo<LevelUIInputController>().AsSingle();
+        Container.Bind<LevelModel>().AsSingle().WithArguments(settings.menuObject);
+        Container.Bind<MenuModel>().AsTransient().WithArguments(settings.menuButtons);
+         Container.BindInterfacesAndSelfTo<MenuController>().AsSingle();
         Container.Bind<LevelUIMenuOpener>().AsSingle();
 
         Container.BindInstance(settings.exitLevelTriggerObject.GetComponent<BoxCollider2D>()).WithId("exitLevelCollider").AsSingle();
@@ -28,7 +28,7 @@ public class LevelInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<RockSpawner>().AsSingle();
         Container.Bind<AssetReferenceSpawner>().AsSingle();
         Container.BindInstance(settings.playerStart).WhenInjectedInto<PlayerSpawner>();
-        Container.BindInstance(settings.assetReferenceSpawnerObject);
+        Container.BindInstance(settings.assetReferenceSpawnerObject).AsSingle();
 
         Container.BindInstances(levelObject);
         Container.BindInstances(levelUIObject);
@@ -43,8 +43,6 @@ public class LevelInstaller : MonoInstaller
         public Transform playerStart = null;
         public List<MenuButton> menuButtons = new();
         public GameObject menuObject = null;
-        public TextMeshProUGUI menuTitle = null;
-        public TextMeshProUGUI menuScore = null;
         public ExitLevelTriggerObject exitLevelTriggerObject = null;
     }
 }

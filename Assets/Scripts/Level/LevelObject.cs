@@ -4,15 +4,15 @@ using UnityEngine;
 using Zenject; 
 public class LevelObject : MonoBehaviour
 {
-    LevelModel level = null;
-    RockSpawner rockSpawner = null;
-    PlayerSpawner playerSpawner = null;
-    GameManagerController gameController = null;
+    InputController inputController;
+    RockSpawner rockSpawner;
+    PlayerSpawner playerSpawner;
+    GameManagerController gameController;
 
     [Inject]
-    public void Construct(LevelModel level, RockSpawner rockSpawner, PlayerSpawner playerSpawner, GameManagerController gameController)
+    public void Construct(InputController inputController, RockSpawner rockSpawner, PlayerSpawner playerSpawner, GameManagerController gameController)
     {
-        this.level = level;
+        this.inputController = inputController;
         this.rockSpawner = rockSpawner;
         this.playerSpawner = playerSpawner;
         this.gameController = gameController;
@@ -20,6 +20,7 @@ public class LevelObject : MonoBehaviour
 
     void Start()
     {
+        inputController.SetInputType(InputModel.Type.Player);
         gameController.SetPause(false);
         gameController.AddResetGameAction(playerSpawner.SpawnPlayer);
         gameController.AddResetGameAction(rockSpawner.InstantiateStartRocks);
@@ -27,7 +28,7 @@ public class LevelObject : MonoBehaviour
 
     void OnDisable()
     {
-        gameController.AddResetGameAction(playerSpawner.SpawnPlayer);
-        gameController.AddResetGameAction(rockSpawner.InstantiateStartRocks);
+        gameController.RemoveResetGameAction(playerSpawner.SpawnPlayer);
+        gameController.RemoveResetGameAction(rockSpawner.InstantiateStartRocks);
     }
 }

@@ -5,7 +5,7 @@ using Zenject;
 
 public class AssetReferenceSpawnerObject : MonoBehaviour
 {
-    GameManagerController gameController = null;
+    GameManagerController gameController;
 
     [Inject]
     public void Construct(GameManagerController gameController)
