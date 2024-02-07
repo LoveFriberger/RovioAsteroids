@@ -5,13 +5,11 @@ using Zenject;
 
 public class PlayerObject : MonoBehaviour, IHitable
 {
-    PlayerModel player = null;
-    PlayerDamageTaker playerDamageTaker = null;
+    PlayerDamageTaker playerDamageTaker;
 
     [Inject]
-    public void Construct(PlayerModel player, PlayerDamageTaker playerDamageTaker)
+    public void Construct(PlayerDamageTaker playerDamageTaker)
     {
-        this.player = player;
         this.playerDamageTaker = playerDamageTaker;
     }
 

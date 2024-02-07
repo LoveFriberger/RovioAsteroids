@@ -1,4 +1,3 @@
-using System.Collections;
 using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -6,10 +5,10 @@ using Zenject;
 
 public class PlayerShooter : ITickable
 {
-    readonly InputView inputView = null;
+    readonly InputView inputView;
     readonly AssetReferenceSpawner spawner;
-    readonly PlayerModel playerModel = null;
-    readonly Settings settings = null;
+    readonly PlayerModel playerModel;
+    readonly Settings settings;
 
     public PlayerShooter(PlayerModel playerModel, AssetReferenceSpawner spawner, InputView inputView, Settings settings)
     {

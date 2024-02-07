@@ -37,6 +37,6 @@ public class PlayerSpawner : IInitializable
     [Serializable]
     public class Settings
     {
-        public AssetReferenceGameObject playerPrefabReference = null;
+        public AssetReferenceGameObject playerPrefabReference;
     }
 }

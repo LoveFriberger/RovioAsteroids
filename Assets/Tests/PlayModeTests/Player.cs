@@ -12,19 +12,11 @@ public class Player : ZenjectIntegrationTestFixture
 
         var rigidbody = new GameObject().AddComponent<Rigidbody2D>();
         Container.Bind<PlayerModel>().AsSingle().WithArguments(rigidbody, rigidbody.transform);
-        //Container.Bind<GameManagerController>().AsSingle();
         Container.Bind<PlayerMover.Settings>().AsSingle();
 
         Container.Bind<InputModel>().AsSingle();
         Container.Bind<InputView>().AsSingle();
-
-        //var spawnerGameObject = new GameObject().AddComponent<AssetReferenceSpawnerObject>();
-        //Container.Inject(spawnerGameObject);
-        //Container.BindInstance(spawnerGameObject).AsSingle();
-        //Container.Bind<AssetReferenceSpawner>();
-        
         Container.BindInterfacesAndSelfTo<PlayerMover>().AsSingle();
-        //Container.BindInterfacesAndSelfTo<PlayerShooter>().AsSingle();
 
         Container.Inject(this);
 

@@ -5,9 +5,9 @@ using UnityEngine.AddressableAssets;
 
 public class RockModel
 {
-    AssetReferenceGameObject smallerRock = null;
-    CircleCollider2D circleCollider = null;
-    Rigidbody2D rigidbody = null;
+    AssetReferenceGameObject smallerRock;
+    CircleCollider2D circleCollider;
+    Rigidbody2D rigidbody;
 
     public RockModel(RockInstaller.Settings settings)
     {
@@ -17,8 +17,6 @@ public class RockModel
     }
 
     public AssetReferenceGameObject SmallerRock { get { return smallerRock; } }
-
-    public Rigidbody2D Rigidbody { get { return rigidbody; } }
 
     public float SplitRocksDistanceFromCenter { get { return circleCollider.radius; } }
 

@@ -5,8 +5,8 @@ using Zenject;
 
 public class RockMover : IInitializable
 {
-    readonly RockModel rockModel = null;
-    readonly Settings settings = null;
+    readonly RockModel rockModel;
+    readonly Settings settings;
 
     public RockMover(RockModel rockModel, Settings settings)
     {

@@ -6,9 +6,9 @@ using Zenject;
 public class PlayerInstaller : MonoInstaller
 {
     [SerializeField]
-    PlayerObject playerObject = null;
+    PlayerObject playerObject;
     [SerializeField]
-    Settings settings = null;
+    Settings settings;
 
     public override void InstallBindings()
     {

@@ -17,6 +17,7 @@ public class Player : ZenjectUnitTestFixture
         Container.Bind<InputView>().AsSingle();
 
         Container.BindInterfacesAndSelfTo<PlayerMover>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PlayerShooter>().AsSingle();
         Container.Bind<PlayerSpawner>().AsSingle();
 
         Container.Inject(this);
