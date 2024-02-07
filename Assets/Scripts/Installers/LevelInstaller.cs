@@ -18,8 +18,8 @@ public class LevelInstaller : MonoInstaller
     {
         Container.Bind<LevelModel>().AsSingle().WithArguments(settings.menuObject);
         Container.Bind<MenuModel>().AsTransient().WithArguments(settings.menuButtons);
-         Container.BindInterfacesAndSelfTo<MenuController>().AsSingle();
-        Container.Bind<LevelUIMenuOpener>().AsSingle();
+        Container.BindInterfacesAndSelfTo<MenuController>().AsSingle();
+        Container.BindInterfacesAndSelfTo<LevelUIMenuOpener>().AsSingle();
 
         Container.BindInstance(settings.exitLevelTriggerObject.GetComponent<BoxCollider2D>()).WithId("exitLevelCollider").AsSingle();
 
