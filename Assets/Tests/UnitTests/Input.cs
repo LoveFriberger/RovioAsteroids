@@ -9,6 +9,7 @@ public class Input : ZenjectUnitTestFixture
     {
         Container.Bind<InputModel>().AsSingle();
         Container.Bind<InputView>().AsSingle();
+        Container.Bind<InputController>().AsSingle();
 
         Container.Inject(this);
     }
@@ -17,6 +18,8 @@ public class Input : ZenjectUnitTestFixture
     InputModel inputModel;
     [Inject]
     InputView inputView;
+    [Inject]
+    InputController inputController;
 
     [Test]
     public void PlayerMovement()
@@ -52,5 +55,23 @@ public class Input : ZenjectUnitTestFixture
         Assert.IsFalse(inputView.ActionInputDown);
         inputModel.actionInputDown = true;
         Assert.IsTrue(inputView.ActionInputDown);
+    }
+
+    [Test]
+    public void InputType()
+    {
+        inputController.SetInputType(InputModel.Type.Menu);
+        Assert.IsTrue(inputView.InputType == InputModel.Type.Menu);
+
+        inputController.SetInputType(InputModel.Type.Player);
+        Assert.IsTrue(inputView.InputType == InputModel.Type.Player);
+    }
+
+    [Test]
+    public void ToggleMenuButton()
+    {
+        Assert.IsFalse(inputView.ToggleMenuInputDown);
+        inputModel.toggleMenuInputDown = true;
+        Assert.IsTrue(inputView.ToggleMenuInputDown);
     }
 }

@@ -26,7 +26,6 @@ public class Level : ZenjectUnitTestFixture
         Container.Bind<InputController>().AsSingle();
         Container.Bind<GameManagerModel>().AsSingle();
         Container.Bind<GameManagerController>().AsSingle();
-
         Container.Bind<LevelUIMenuOpener>().AsSingle();
         Container.Bind<ExitLevelTrigger>().AsSingle();
 
