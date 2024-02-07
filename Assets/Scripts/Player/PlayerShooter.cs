@@ -7,15 +7,13 @@ using Zenject;
 public class PlayerShooter : ITickable
 {
     readonly InputView inputView = null;
-    readonly LevelModel levelModel = null;
     readonly AssetReferenceSpawner spawner;
     readonly PlayerModel playerModel = null;
     readonly Settings settings = null;
 
-    public PlayerShooter(PlayerModel playerModel, LevelModel levelModel, AssetReferenceSpawner spawner, InputView inputView, Settings settings)
+    public PlayerShooter(PlayerModel playerModel, AssetReferenceSpawner spawner, InputView inputView, Settings settings)
     {
         this.playerModel = playerModel;
-        this.levelModel = levelModel;
         this.spawner = spawner;
         this.inputView = inputView;
         this.settings = settings;

@@ -12,7 +12,7 @@ public class PlayerInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<PlayerModel>().AsSingle().WithArguments(settings);
+        Container.Bind<PlayerModel>().AsSingle().WithArguments(settings.rigidbody, settings.projectileSpawnTransform);
 
         Container.BindInterfacesTo<PlayerMover>().AsSingle();
         Container.BindInterfacesTo<PlayerShooter>().AsSingle();
@@ -24,7 +24,7 @@ public class PlayerInstaller : MonoInstaller
     [Serializable]
     public class Settings
     {
-        public Rigidbody2D rigidbody = null;
-        public AssetReferenceSpawnerObject assetReferenceSpawner = null;
+        public Rigidbody2D rigidbody;
+        public Transform projectileSpawnTransform;
     }
 }

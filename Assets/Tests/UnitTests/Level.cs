@@ -1,10 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using NUnit.Framework;
-using System;
-using TMPro;
 
 [TestFixture]
 public class Level : ZenjectUnitTestFixture

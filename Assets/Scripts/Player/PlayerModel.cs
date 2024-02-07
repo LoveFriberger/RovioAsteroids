@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerModel
 {
-    readonly Rigidbody2D rigidbody = null;
-    readonly AssetReferenceSpawnerObject assetReferenceSpawner = null;
+    readonly Rigidbody2D rigidbody;
+    readonly Transform projectileSpawnTransform;
 
-    public PlayerModel(PlayerInstaller.Settings settings)
+    public PlayerModel(Rigidbody2D rigidbody, Transform projectileSpawnTransform)
     {
-        this.rigidbody = settings.rigidbody;
-        this.assetReferenceSpawner = settings.assetReferenceSpawner;
+        this.rigidbody = rigidbody;
+        this.projectileSpawnTransform = projectileSpawnTransform;
     }
 
     public Rigidbody2D Rigidbody { get { return rigidbody; } }
@@ -18,22 +18,19 @@ public class PlayerModel
     public Vector2 MovementDirecetion { get { return rigidbody.transform.up; } }
 
     public Vector2 Velocity { get { return rigidbody.velocity; } }
-    public Quaternion Rotation { get { return rigidbody.transform.rotation; } }
-    public Quaternion LocalRotation
+    public Quaternion Rotation
     {
         get
         {
-            return rigidbody.transform.localRotation;
+            return rigidbody.transform.rotation;
         }
         set
         {
-            rigidbody.transform.localRotation = value;
+            rigidbody.transform.rotation = value;
         }
     }
 
     public float TimeLastShot { get; set; }
 
-    public AssetReferenceSpawnerObject AssetReferenceSpawner { get { return assetReferenceSpawner; } }
-
-    public Transform projectileSpawnPosition { get { return assetReferenceSpawner.transform; } }
+    public Transform projectileSpawnPosition { get { return projectileSpawnTransform; } }
 }

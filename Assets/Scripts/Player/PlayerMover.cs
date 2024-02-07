@@ -5,15 +5,13 @@ using Zenject;
 
 public class PlayerMover : IFixedTickable
 {
-    readonly PlayerModel playerModel = null;
-    readonly LevelModel levelModel = null;
-    readonly InputView inputView = null;
-    readonly Settings settings = null;
+    readonly PlayerModel playerModel;
+    readonly InputView inputView;
+    readonly Settings settings;
 
-    public PlayerMover(PlayerModel playerModel, LevelModel levelModel, InputView inputView, Settings settings)
+    public PlayerMover(PlayerModel playerModel, InputView inputView, Settings settings)
     {
         this.playerModel = playerModel;
-        this.levelModel = levelModel;
         this.inputView = inputView;
         this.settings = settings;
     }
@@ -35,7 +33,7 @@ public class PlayerMover : IFixedTickable
     {
         var signedAngle = Vector2.SignedAngle(playerModel.MovementDirecetion, playerModel.Velocity);
         var angleModifier = Mathf.Abs(signedAngle) < 90 ? Mathf.Cos(signedAngle * Mathf.Deg2Rad) : 0;
-
+        
         var forceModifier = 1 - (angleModifier * playerModel.Velocity.sqrMagnitude) / (settings.maxVelocity * settings.maxVelocity);
         playerModel.Rigidbody.AddRelativeForceY(forceModifier * settings.accelerationForce);
     }
@@ -43,8 +41,8 @@ public class PlayerMover : IFixedTickable
     void Turn(bool clockwise)
     {
         var turnDirection = clockwise ? 1 : -1;
-        var turnAmount = settings.turnSpeed * Time.deltaTime * turnDirection ;
-        playerModel.LocalRotation *= Quaternion.Euler(0, 0, turnAmount);
+        var turnAmount = settings.turnSpeed * Time.fixedDeltaTime * turnDirection ;
+        playerModel.Rotation *= Quaternion.Euler(0, 0, turnAmount);
     }
 
     [Serializable]

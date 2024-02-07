@@ -242,7 +242,7 @@ MonoBehaviour:
   playerObject: {fileID: 6382182082139526084}
   settings:
     rigidbody: {fileID: 767682083691188615}
-    assetReferenceSpawner: {fileID: 1490943798436030589}
+    projectileSpawnTransform: {fileID: 1457852087668590877}
 --- !u!114 &1805995882368995413
 MonoBehaviour:
   m_ObjectHideFlags: 0
