@@ -16,8 +16,6 @@ MonoBehaviour:
     sceneLoaderSettings:
       mainMenuKey: Assets/Scenes/MainMenu.unity
       levelKey: Assets/Scenes/Level.unity
-    pointsControllerSettings:
-      playerPrefsHighScoreKey: HighScore
   playerSettings:
     playerMoverSettings:
       accelerationForce: 10
@@ -47,12 +45,13 @@ MonoBehaviour:
       startRocks: 3
       timeBetweenRockSpawns: 5
       startDistanceFromEdge: 2
-    levelUIMenuOpenerSettings:
-      newHighScoreString: New High Score!
-      scoreString: Better Luck Next Time!
-      pausedString: Paused
   rockSettings:
     rockMoverSettings:
       initSpeed: 3
     rockDamageTakerSettings:
       splitSpeed: 0.5
+  uiSettings:
+    gameMenuTitleTextSettings:
+      newHighScoreString: New High Score!
+      scoreString: Better Luck Next Time!
+      pausedString: Paused

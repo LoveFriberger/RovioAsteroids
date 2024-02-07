@@ -7,47 +7,47 @@ using UnityEngine.AddressableAssets;
 public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
 {
     [SerializeField]
-    GameSettings gameSettings = null;
+    GameSettings gameSettings;
     [SerializeField]
-    PlayerSettings playerSettings = null;
+    PlayerSettings playerSettings;
     [SerializeField]
-    LevelSettings levelSettings = null;
+    LevelSettings levelSettings;
     [SerializeField]
-    RockSettings rockSettings = null;
+    RockSettings rockSettings;
     [SerializeField]
-    UISettings uiSettings = null;
+    UISettings uiSettings;
 
     [Serializable]
     public class GameSettings
     {
-        public SceneLoadingController.Settings sceneLoaderSettings = null;
+        public SceneLoadingController.Settings sceneLoaderSettings;
     }
 
     [Serializable]
     public class PlayerSettings
     {
-        public PlayerMover.Settings playerMoverSettings = null;
-        public PlayerShooter.Settings playerShooterSettings = null;
+        public PlayerMover.Settings playerMoverSettings;
+        public PlayerShooter.Settings playerShooterSettings;
     }
 
     [Serializable]
     public class LevelSettings
     {
-        public PlayerSpawner.Settings playerSpawnerSettings = null;
-        public RockSpawner.Settings rockSpawnerSettings = null;
+        public PlayerSpawner.Settings playerSpawnerSettings;
+        public RockSpawner.Settings rockSpawnerSettings;
     }
 
     [Serializable]
     public class UISettings
     {
-        public GameMenuTitleText.Settings gameMenuTitleTextSettings = null;
+        public GameMenuTitleText.Settings gameMenuTitleTextSettings;
     }
 
     [Serializable]
     public class RockSettings
     {
-        public RockMover.Settings rockMoverSettings = null;
-        public RockDamageTaker.Settings rockDamageTakerSettings = null;
+        public RockMover.Settings rockMoverSettings;
+        public RockDamageTaker.Settings rockDamageTakerSettings;
     }
 
     public override void InstallBindings()
