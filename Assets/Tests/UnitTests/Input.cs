@@ -9,7 +9,6 @@ public class Input : ZenjectUnitTestFixture
     {
         Container.Bind<InputModel>().AsSingle();
         Container.Bind<InputView>().AsSingle();
-        Container.Bind<InputController>().AsSingle();
 
         Container.Inject(this);
     }
@@ -22,36 +21,36 @@ public class Input : ZenjectUnitTestFixture
     [Test]
     public void PlayerMovement()
     {
-        Assert.IsFalse(inputModel.upInputHold);
+        Assert.IsFalse(inputView.UpInputHold);
         inputModel.upInputHold = true;
-        Assert.IsTrue(inputModel.upInputHold);
+        Assert.IsTrue(inputView.UpInputHold);
 
-        Assert.IsFalse(inputModel.leftInputHold);
+        Assert.IsFalse(inputView.LeftInputHold);
         inputModel.leftInputHold = true;
-        Assert.IsTrue(inputModel.leftInputHold);
+        Assert.IsTrue(inputView.LeftInputHold);
 
-        Assert.IsFalse(inputModel.rightInputHold);
+        Assert.IsFalse(inputView.RightInputHold);
         inputModel.rightInputHold = true;
-        Assert.IsTrue(inputModel.rightInputHold);
+        Assert.IsTrue(inputView.RightInputHold);
     }
 
     [Test]
     public void MenuMovement()
     {
-        Assert.IsFalse(inputModel.upInputDown);
+        Assert.IsFalse(inputView.UpInputDown);
         inputModel.upInputDown = true;
-        Assert.IsTrue(inputModel.upInputDown);
+        Assert.IsTrue(inputView.UpInputDown);
 
-        Assert.IsFalse(inputModel.downInputDown);
+        Assert.IsFalse(inputView.DownInputDown);
         inputModel.downInputDown = true;
-        Assert.IsTrue(inputModel.downInputDown);
+        Assert.IsTrue(inputView.DownInputDown);
     }
 
     [Test]
     public void Action()
     {
-        Assert.IsFalse(inputModel.actionInputDown);
+        Assert.IsFalse(inputView.ActionInputDown);
         inputModel.actionInputDown = true;
-        Assert.IsTrue(inputModel.actionInputDown);
+        Assert.IsTrue(inputView.ActionInputDown);
     }
 }
