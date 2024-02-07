@@ -12,12 +12,13 @@ public class ScoreIndicator : MonoBehaviour
     TextMeshProUGUI scoreText = null;
 
     [Inject]
-    PointsView pointsView = null;
+    PointsView pointsView;
     [Inject]
-    PointsController pointsController = null;
+    PointsController pointsController;
 
     int oldHighScore = 0;
 
+    [Inject]
     void Start()
     {
         oldHighScore = pointsView.HighScore;
@@ -32,6 +33,7 @@ public class ScoreIndicator : MonoBehaviour
 
     void UpdateScoreIndicator()
     {
-        scoreText.text = string.Format(scoreString, pointsView.CurrentPoints, oldHighScore);
+        if(scoreText != null)
+            scoreText.text = string.Format(scoreString, pointsView.CurrentPoints, oldHighScore);
     }
 }

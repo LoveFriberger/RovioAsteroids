@@ -2,6 +2,8 @@ using Zenject;
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using TMPro;
 
 [TestFixture]
 public class UI : ZenjectUnitTestFixture
@@ -17,7 +19,9 @@ public class UI : ZenjectUnitTestFixture
         Container.Bind<InputModel>().AsSingle();
         Container.Bind<InputView>().AsSingle();
         Container.Bind<MenuController>().AsSingle();
-
+        Container.Bind<PointsModel>().AsSingle();
+        Container.Bind<PointsView>().AsSingle();
+        Container.Bind<PointsController>().AsSingle();
         Container.Inject(this);
     }
 
@@ -33,6 +37,8 @@ public class UI : ZenjectUnitTestFixture
     InputModel inputModel = null;
     [Inject]
     MenuController mainMenuController = null;
+    [Inject]
+    PointsController pointsController = null;
 
     [Test]
     public void StartMenuOnFirstButton()
@@ -60,5 +66,24 @@ public class UI : ZenjectUnitTestFixture
         inputModel.upInputDown = true;
         mainMenuController.Tick();
         Assert.IsTrue(mainMenuModel.SelectedButtonIndex == 0);
+    }
+
+    [Test]
+    public void ScoreIndicator()
+    {
+        pointsController.AddPoints(3);
+        pointsController.NewHighScore(4);
+
+        var scoreIndicatorObject = new GameObject().AddComponent<ScoreIndicator>();
+        var serializedScoreIndicator = new SerializedObject(scoreIndicatorObject);
+
+        var scoreTMPObject = new GameObject().AddComponent<TextMeshProUGUI>();
+        serializedScoreIndicator.FindProperty("scoreText").objectReferenceValue = scoreTMPObject;
+        var scoreString = serializedScoreIndicator.FindProperty("scoreString").stringValue;
+        serializedScoreIndicator.ApplyModifiedProperties();
+
+        Container.Inject(scoreIndicatorObject);
+
+        Assert.IsTrue(scoreTMPObject.text == string.Format(scoreString, 3, 4));
     }
 }
