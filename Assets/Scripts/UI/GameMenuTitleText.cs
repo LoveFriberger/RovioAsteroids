@@ -16,6 +16,7 @@ public class GameMenuTitleText : MonoBehaviour
     [Inject]
     PointsView pointsView;
 
+    [Inject]
     void Start()
     {
         titleText.text = settings.pausedString;

@@ -7,14 +7,15 @@ using Zenject;
 public class HighScoreIndicator : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI highScoreText = null;
+    TextMeshProUGUI highScoreText;
 
     [SerializeField]
     string highScoreString = "High Score: {0}";
 
     [Inject]
-    PointsView pointsView = null;
+    PointsView pointsView;
 
+    [Inject]
     void Start()
     {
         highScoreText.text = pointsView.HighScore > 0 ? string.Format(highScoreString, pointsView.HighScore) : "";

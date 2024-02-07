@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PointsController
 {
-    readonly PointsModel model = null;
-    readonly PointsView view = null;
+    readonly PointsModel model;
+    readonly PointsView view;
 
     public PointsController(PointsModel model, PointsView view)
     {
