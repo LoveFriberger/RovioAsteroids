@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [TestFixture]
-public class MainMenu : ZenjectUnitTestFixture
+public class UI : ZenjectUnitTestFixture
 {
     [SetUp]
     public void Install()
@@ -13,10 +13,10 @@ public class MainMenu : ZenjectUnitTestFixture
         menuButtons.Add(CreateMenuButton());
         menuButtons.Add(CreateMenuButton());
 
-        Container.Bind<MainMenuModel>().AsSingle().WithArguments(menuButtons);
+        Container.Bind<MenuModel>().AsSingle().WithArguments(menuButtons);
         Container.Bind<InputModel>().AsSingle();
         Container.Bind<InputView>().AsSingle();
-        Container.Bind<MainMenuController>().AsSingle();
+        Container.Bind<MenuController>().AsSingle();
 
         Container.Inject(this);
     }
@@ -28,21 +28,21 @@ public class MainMenu : ZenjectUnitTestFixture
     }
 
     [Inject]
-    MainMenuModel mainMenuModel = null;
+    MenuModel mainMenuModel = null;
     [Inject]
     InputModel inputModel = null;
     [Inject]
-    MainMenuController mainMenuController = null;
+    MenuController mainMenuController = null;
 
     [Test]
-    public void StartOnFirstButton()
+    public void StartMenuOnFirstButton()
     {
         mainMenuController.Tick();
         Assert.IsTrue(mainMenuModel.SelectedButtonIndex == 0);
     }
 
     [Test]
-    public void MoveButton()
+    public void MoveMenuButton()
     {
         mainMenuController.Tick();
         Assert.IsTrue(mainMenuModel.SelectedButtonIndex == 0);
