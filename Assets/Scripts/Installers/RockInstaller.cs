@@ -7,13 +7,13 @@ using UnityEngine.AddressableAssets;
 public class RockInstaller : MonoInstaller
 {
     [SerializeField]
-    RockObject rockObject = null;
+    RockObject rockObject;
     [SerializeField]
-    Settings settings = null;
+    Settings settings;
 
     public override void InstallBindings()
     {
-        Container.Bind<RockModel>().AsSingle().WithArguments(settings);
+        Container.Bind<RockModel>().AsSingle().WithArguments(settings.smallerRock, settings.rockCollider, settings.rigidbody);
 
         Container.Bind<RockDamageTaker>().AsSingle();
         Container.BindInterfacesAndSelfTo<RockMover>().AsSingle(); 

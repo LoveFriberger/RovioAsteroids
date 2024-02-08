@@ -7,18 +7,14 @@ using Zenject;
 
 public class RockObject : MonoBehaviour, IHitable
 {
-    RockDamageTaker rockDamageTaker = null;
-    RockMover rockMover = null;
-    RockSpawner rockSpawner = null;
-    GameManagerController gameController = null;
+    RockDamageTaker rockDamageTaker;
+    RockMover rockMover;
 
     [Inject]
-    public void Construct(RockDamageTaker rockDamageTaker, RockMover rockMover, RockSpawner rockSpawner, GameManagerController gameController)
+    public void Construct(RockDamageTaker rockDamageTaker, RockMover rockMover)
     {
         this.rockDamageTaker = rockDamageTaker;
         this.rockMover = rockMover;
-        this.rockSpawner = rockSpawner;
-        this.gameController = gameController;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

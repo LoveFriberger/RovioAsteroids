@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 public class RockDamageTaker
 {
-    readonly RockModel rockModel = null;
-    readonly AssetReferenceSpawner spawner = null;
-    readonly PointsController pointsController = null;
-    readonly Settings settings = null;
+    readonly RockModel rockModel;
+    readonly AssetReferenceSpawner spawner;
+    readonly PointsController pointsController;
+    readonly Settings settings;
 
     public RockDamageTaker(RockModel rockModel, AssetReferenceSpawner spawner, PointsController pointsController, Settings settings)
     {
@@ -22,41 +23,47 @@ public class RockDamageTaker
     {
         GivePoints();
 
-         if (rockModel.SmallerRock.RuntimeKeyIsValid())
-        {
-            var firstSpawnPosition = rockModel.Position + rockModel.Right * rockModel.SplitRocksDistanceFromCenter;
-            var secondSpawnPosition = rockModel.Position - rockModel.Right * rockModel.SplitRocksDistanceFromCenter;
-
-            var bigRockRightDirection = rockModel.Right;
-            var smallerRock = rockModel.SmallerRock;
-            var rotation = rockModel.Rotation;
-
-            await spawner.Spawn(
-                smallerRock, 
-                firstSpawnPosition, 
-                rotation,
-                (r) => {
-                    r.GetComponent<RockObject>().AddVelocity(bigRockRightDirection * settings.splitSpeed);
-                });
-
-            await spawner.Spawn(
-                smallerRock,
-                secondSpawnPosition,
-                rotation,
-                (r) =>
-                {
-                    r.GetComponent<RockObject>().AddVelocity(-bigRockRightDirection * settings.splitSpeed);
-                });
-        }
+        if (rockModel.SmallerRock.RuntimeKeyIsValid())
+            await SpawnSmallerRocks();
     }
+
+    async Task SpawnSmallerRocks()
+    {
+        var firstSpawnPosition = rockModel.Position + rockModel.Right * rockModel.SplitRocksDistanceFromCenter;
+        var secondSpawnPosition = rockModel.Position - rockModel.Right * rockModel.SplitRocksDistanceFromCenter;
+
+        var bigRockRightDirection = rockModel.Right;
+        var smallerRock = rockModel.SmallerRock;
+        var rotation = rockModel.Rotation;
+
+        await spawner.Spawn(
+            smallerRock,
+            firstSpawnPosition,
+            rotation,
+            (r) =>
+            {
+                r.GetComponent<RockObject>().AddVelocity(bigRockRightDirection * settings.splitSpeed);
+            });
+
+        await spawner.Spawn(
+            smallerRock,
+            secondSpawnPosition,
+            rotation,
+            (r) =>
+            {
+                r.GetComponent<RockObject>().AddVelocity(-bigRockRightDirection * settings.splitSpeed);
+            });
+    }
+
     void GivePoints()
     {
-        pointsController.AddPoints(1);
+        pointsController.AddPoints(settings.points);
     }
 
     [Serializable]
     public class Settings
     {
+        public int points = 1;
         public float splitSpeed = 0.5f;
     }
 }

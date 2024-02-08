@@ -8,9 +8,9 @@ using Zenject;
 
 public class RockSpawner : IInitializable, ITickable
 {
-    readonly AssetReferenceSpawner spawner = null;
-    readonly Settings settings = null;
-    readonly BoxCollider2D exitLevelBoxCollider = null;
+    readonly AssetReferenceSpawner spawner;
+    readonly Settings settings;
+    readonly BoxCollider2D exitLevelBoxCollider;
 
     float lastRockSpawnTime = 0;
 
