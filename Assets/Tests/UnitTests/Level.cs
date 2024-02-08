@@ -49,8 +49,12 @@ public class Level : ZenjectUnitTestFixture
     [Test]
     public void SetLevelColliderToCameraSize()
     {
-        var camera = new GameObject().AddComponent<Camera>();
-        var cameraOrthographicWidth = camera.orthographicSize * camera.aspect;
+        if (Camera.main == null)
+        {
+            var camera = new GameObject().AddComponent<Camera>();
+            camera.tag = "MainCamera";
+        }
+        var cameraOrthographicWidth = Camera.main.orthographicSize * Camera.main.aspect;
         Assert.IsFalse(levelCollider.size == new Vector2(cameraOrthographicWidth, Camera.main.orthographicSize) * 2);
 
         exitLevelTrigger.Initialize();
