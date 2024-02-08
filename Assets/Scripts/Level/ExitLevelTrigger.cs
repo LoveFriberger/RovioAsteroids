@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class ExitLevelTrigger : IInitializable
 {
-    BoxCollider2D exitLevelBoxCollider = null;
+    BoxCollider2D exitLevelBoxCollider;
 
     public ExitLevelTrigger([Inject(Id ="exitLevelCollider")] BoxCollider2D exitLevelBoxCollider)
     {
@@ -21,10 +19,12 @@ public class ExitLevelTrigger : IInitializable
     {
         var cameraOrthographicWidth = Camera.main.orthographicSize * Camera.main.aspect;
         exitLevelBoxCollider.size = new Vector2(cameraOrthographicWidth, Camera.main.orthographicSize) * 2;
+        Debug.Log(string.Format("Setting level trigger size to fit {0}", Camera.main.name));
     }
 
     public void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log(string.Format("{0} exited level trigger", collision.name));
         var velocity = collision.GetComponent<Rigidbody2D>().velocity;
         if (collision.bounds.max.x > exitLevelBoxCollider.bounds.max.x && velocity.x > 0)
             TeleportXAxisPosition(collision, false);
@@ -39,7 +39,10 @@ public class ExitLevelTrigger : IInitializable
     
     void TeleportXAxisPosition(Collider2D collision, bool leftToRight)
     {
+        Debug.Log(string.Format("Teleporting {0} on the x-axis, from", leftToRight? "left to right" : "right to left"));
         var oldXValue = collision.transform.position.x;
+
+        //Calculate an offset to just not place the teleported object outside of the level trigger
         var collisionBoundsEdgeValue = leftToRight ? collision.bounds.min.x : collision.bounds.max.x;
         var collisionBoundingBoxOffset = oldXValue - collisionBoundsEdgeValue;
 
@@ -49,7 +52,10 @@ public class ExitLevelTrigger : IInitializable
 
     void TeleportYAxisPosition(Collider2D collision, bool bottomToTop)
     {
+        Debug.Log(string.Format("Teleporting {0} on the y-axis, from", bottomToTop? "bottom to top" : "left to right"));
         var oldYValue = collision.transform.position.y;
+
+        //Calculate an offset to just not place the teleported object outside of the level trigger
         var collisionBoundsEdgeValue = bottomToTop ? collision.bounds.min.y : collision.bounds.max.y;
         var collisionBoundingBoxOffset = oldYValue - collisionBoundsEdgeValue;
 

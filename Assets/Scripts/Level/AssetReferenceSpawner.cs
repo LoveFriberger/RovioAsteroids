@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine;
@@ -19,16 +18,21 @@ public class AssetReferenceSpawner
         if (!asset.IsValid())
             await Load(asset);
 
+        Debug.Log(string.Format("Starting spawning of {0}", asset.editorAsset.name));
         assetReferenceSpawnerObject.Spawn((GameObject)asset.OperationHandle.Result, startPosition, startRotation, onSpawnedObject);
     }
 
     async Task Load(AssetReferenceGameObject asset)
     {
+        Debug.Log(string.Format("Starting loading of {0}", asset.editorAsset.name));
         asset.LoadAssetAsync();
 
         await asset.OperationHandle.Task;
 
         if (asset.OperationHandle.Status == AsyncOperationStatus.Failed)
-            Debug.LogError(asset.RuntimeKey + " failed to load!");
+            Debug.LogError(string.Format("{0} failed to load!", asset.editorAsset.name));
+        else
+            Debug.Log(string.Format("Loaded {0}", asset.editorAsset.name));
+
     }
 }

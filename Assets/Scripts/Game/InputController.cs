@@ -23,6 +23,7 @@ public class InputController : ITickable
 
     public void SetInputType(InputModel.Type type)
     {
+        Debug.Log(string.Format("Input type set to {0}", type));
         model.inputType = type;
     }
 }

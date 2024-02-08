@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class ExitLevelTriggerObject : MonoBehaviour
 {
-    ExitLevelTrigger exitLevelTrigger = null;
+    ExitLevelTrigger exitLevelTrigger;
 
     [Inject]
     public void Construct(ExitLevelTrigger exitLevelTrigger)

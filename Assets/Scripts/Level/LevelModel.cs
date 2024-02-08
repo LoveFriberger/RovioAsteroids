@@ -1,13 +1,8 @@
-using System.Collections.Generic;
-using System;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using TMPro;
 
 public class LevelModel
 {
-    readonly GameObject menuObject = null;
+    readonly GameObject menuObject;
 
     public LevelModel(GameObject menuObject)
     {

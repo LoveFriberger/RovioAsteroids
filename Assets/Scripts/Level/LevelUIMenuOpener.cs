@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -31,6 +29,7 @@ public class LevelUIMenuOpener : ITickable
 
     public void OpenMenu(bool died)
     {
+        Debug.Log(string.Format("Menu opened from {0}", died? "player dying" : "user input"));
         inputController.SetInputType(InputModel.Type.Menu);
 
         gameManagerController.SetPause(true);
@@ -40,6 +39,7 @@ public class LevelUIMenuOpener : ITickable
 
     public void CloseMenu()
     {
+        Debug.Log("Menu closed");
         inputController.SetInputType(InputModel.Type.Player);
         gameManagerController.SetPause(false);
         levelModel.MenuObjectActivated = false;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -25,6 +23,5 @@ public class LevelUIObject : MonoBehaviour
     {
         gameController.RemovePlayerKilledAction(levelUIMenuOpener.OnPlayerKilled);
         gameController.RemoveResetGameAction(levelUIMenuOpener.CloseMenu);
-        gameController.SetPause(false);
     }
 }
