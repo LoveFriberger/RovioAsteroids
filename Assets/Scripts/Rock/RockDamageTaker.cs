@@ -33,22 +33,27 @@ public class RockDamageTaker
         var firstSpawnPosition = rockModel.Position + rockModel.Right * rockModel.SplitRocksDistanceFromCenter;
         var secondSpawnPosition = rockModel.Position - rockModel.Right * rockModel.SplitRocksDistanceFromCenter;
 
+        //Since the spawn function is async we have to copy the values from rockModel before it's destroyed
+        var smallerRock = rockModel.SmallerRock;
+        var rotation = rockModel.Rotation;
+        var forwardDirection = rockModel.Right;
+
         await spawner.Spawn(
-            rockModel.SmallerRock,
+            smallerRock,
             firstSpawnPosition,
-            rockModel.Rotation,
+            rotation,
             (r) =>
             {
-                r.GetComponent<RockObject>().AddVelocity(rockModel.Right * settings.splitSpeed);
+                r.GetComponent<RockObject>().AddVelocity(forwardDirection * settings.splitSpeed);
             });
 
         await spawner.Spawn(
-            rockModel.SmallerRock,
+            smallerRock,
             secondSpawnPosition,
-            rockModel.Rotation,
+            rotation,
             (r) =>
             {
-                r.GetComponent<RockObject>().AddVelocity(-rockModel.Right * settings.splitSpeed);
+                r.GetComponent<RockObject>().AddVelocity(-forwardDirection * settings.splitSpeed);
             });
     }
 
