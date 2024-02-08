@@ -1,7 +1,8 @@
 <linker>
-  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+  <assembly fullname="ScriptAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="AssetReferenceSpawnerObject" preserve="all" />
-    <type fullname="ExitLevelCollider" preserve="all" />
+    <type fullname="ExitLevelTriggerObject" preserve="all" />
+    <type fullname="GameMenuTitleText" preserve="all" />
     <type fullname="HighScoreIndicator" preserve="all" />
     <type fullname="LevelInstaller" preserve="all" />
     <type fullname="LevelObject" preserve="all" />
@@ -21,12 +22,12 @@
     <type fullname=".PlayerInstaller/Settings" preserve="nothing" serialized="true" />
     <type fullname=".RockInstaller/Settings" preserve="nothing" serialized="true" />
     <type fullname=".MainMenuInstaller/Settings" preserve="nothing" serialized="true" />
+    <type fullname=".GameMenuTitleText/Settings" preserve="nothing" serialized="true" />
     <type fullname=".LevelInstaller/Settings" preserve="nothing" serialized="true" />
-    <type fullname=".LevelUIMenuOpener/Settings" preserve="nothing" serialized="true" />
     <type fullname=".PlayerMover/Settings" preserve="nothing" serialized="true" />
     <type fullname=".PlayerShooter/Settings" preserve="nothing" serialized="true" />
     <type fullname=".PlayerSpawner/Settings" preserve="nothing" serialized="true" />
-    <type fullname=".PointsController/Settings" preserve="nothing" serialized="true" />
+    <type fullname=".Projectile/Settings" preserve="nothing" serialized="true" />
     <type fullname=".RockDamageTaker/Settings" preserve="nothing" serialized="true" />
     <type fullname=".RockMover/Settings" preserve="nothing" serialized="true" />
     <type fullname=".RockSpawner/Settings" preserve="nothing" serialized="true" />
@@ -35,6 +36,7 @@
     <type fullname=".SettingsInstaller/LevelSettings" preserve="nothing" serialized="true" />
     <type fullname=".SettingsInstaller/PlayerSettings" preserve="nothing" serialized="true" />
     <type fullname=".SettingsInstaller/RockSettings" preserve="nothing" serialized="true" />
+    <type fullname=".SettingsInstaller/UISettings" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
@@ -84,9 +86,6 @@
     <type fullname="UnityEngine.PolygonCollider2D" preserve="all" />
     <type fullname="UnityEngine.Rigidbody2D" preserve="all" />
   </assembly>
-  <assembly fullname="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="UnityEngine.Font" preserve="all" />
-  </assembly>
   <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
     <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
@@ -108,8 +107,5 @@
     <type fullname="UnityEngine.TextCore.Glyph" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.TextCore.GlyphMetrics" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.TextCore.GlyphRect" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.TextCore.LowLevel.GlyphAdjustmentRecord" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.TextCore.LowLevel.GlyphPairAdjustmentRecord" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.TextCore.LowLevel.GlyphValueRecord" preserve="nothing" serialized="true" />
   </assembly>
 </linker>
