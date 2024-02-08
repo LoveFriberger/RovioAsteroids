@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameManagerController
 {
-    readonly GameManagerModel model = null;
+    readonly GameManagerModel model;
 
     public GameManagerController(GameManagerModel model) 
     {
@@ -23,6 +23,7 @@ public class GameManagerController
     public void InvokePlayerKilledAction()
     {
         model.onPlayerKilled?.Invoke();
+        Debug.Log("Player killed action invoked");
     }
 
     public void AddResetGameAction(Action action)
@@ -38,10 +39,12 @@ public class GameManagerController
     public void InvokeResetGameAction()
     {
         model.onResetGame?.Invoke();
+        Debug.Log("Reset game action invoked");
     }
 
     public void SetPause(bool pause)
     {
         Time.timeScale = pause ? 0 : 1;
+        Debug.Log(string.Format("Game {0}paused", pause? "":"un"));
     }
 }

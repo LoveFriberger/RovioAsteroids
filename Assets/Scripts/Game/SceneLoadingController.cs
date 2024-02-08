@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadingController
 {
-    readonly SceneLoadingModel model = null;
-    readonly Settings settings = null;
+    readonly SceneLoadingModel model;
+    readonly Settings settings;
     
     public SceneLoadingController(SceneLoadingModel model, Settings settings) 
     {
@@ -19,19 +19,26 @@ public class SceneLoadingController
 
     IEnumerator ChangeScene(string key)
     {
+        Debug.Log(string.Format("Starting scene change to {0}", key));
         var oldLoadedSceneHandle = model.loadedSceneHandle;
         var loadMode = oldLoadedSceneHandle.IsValid() ? LoadSceneMode.Additive : LoadSceneMode.Single;
         model.loadedSceneHandle = Addressables.LoadSceneAsync(key, loadMode);
         yield return model.loadedSceneHandle;
 
         if (oldLoadedSceneHandle.IsValid())
+        {
+            Debug.Log(string.Format("Unloading scene {0}", oldLoadedSceneHandle.DebugName));
             Addressables.UnloadSceneAsync(oldLoadedSceneHandle);
+        }
 
         if (model.loadedSceneHandle.Status == AsyncOperationStatus.Failed)
-            Debug.LogError(key + " failed to load!");
+            Debug.LogError(string.Format("{0} failed to load!", key));
 
         else if (model.loadedSceneHandle.Status == AsyncOperationStatus.Succeeded)
+        {
             SceneManager.SetActiveScene(model.loadedSceneHandle.Result.Scene);
+            Debug.Log(string.Format("Loaded scene {0}", key));
+        }
     }
 
     public IEnumerator ChangeSceneToLevel()
