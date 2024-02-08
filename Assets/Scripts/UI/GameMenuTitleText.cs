@@ -16,7 +16,7 @@ public class GameMenuTitleText : MonoBehaviour
     PointsView pointsView;
 
     [Inject]
-    void Start()
+    void OnEnable()
     {
         titleText.text = settings.pausedString;
         if (levelModel.PlayerDied)
