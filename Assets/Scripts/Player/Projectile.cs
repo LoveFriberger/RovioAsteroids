@@ -1,31 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
+using System;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField]
-    float lifeTime = 2;
-
+    float lifeTime = 0;
     float startTime = 0;
-    void Start()
+
+    [Inject]
+    public void Construct(Settings settings)
     {
+        lifeTime = settings.lifeTime;
         startTime = Time.time;
     }
 
     void Update()
     {
         if (startTime + lifeTime < Time.time)
-            Destroy(gameObject);
+            DestroyProjectile();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         var hitable = collision.gameObject.GetComponent<IHitable>();
         if (hitable != null)
             hitable.TakeDamage();
 
+        DestroyProjectile();
+    }
+
+    void DestroyProjectile()
+    {
+        Debug.Log("Destroying projectile");
         Destroy(gameObject);
     }
 
+    [Serializable]
+    public class Settings
+    {
+        public float lifeTime = 2;
+    }
 }

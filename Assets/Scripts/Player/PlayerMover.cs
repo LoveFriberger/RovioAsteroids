@@ -1,4 +1,3 @@
-using System.Collections;
 using System;
 using UnityEngine;
 using Zenject;
@@ -29,6 +28,13 @@ public class PlayerMover : IFixedTickable
             Turn(false);
     }
 
+
+    /*
+     * Force is modified depending on how close we are to the max speed. However we only want to reduce the force
+     * when moving in the direction of the velocity, if we are at full speed and turn our player around 180 degrees 
+     * we want to get the full movement force. Thats why we add another modifier depending on the angle between our 
+     * forward and the current velocity. 
+     */
     void Accelerate()
     {
         var signedAngle = Vector2.SignedAngle(playerModel.MovementDirecetion, playerModel.Velocity);

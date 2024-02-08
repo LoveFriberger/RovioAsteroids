@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerDamageTaker : IHitable
 {
-    readonly GameManagerController gameController = null;
+    readonly GameManagerController gameController;
 
     public PlayerDamageTaker(GameManagerController gameController)
     {

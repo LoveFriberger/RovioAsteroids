@@ -6,14 +6,14 @@ using Zenject;
 public class PlayerShooter : ITickable
 {
     readonly InputView inputView;
-    readonly AssetReferenceSpawner spawner;
+    readonly AssetReferenceSpawner projectileSpawner;
     readonly PlayerModel playerModel;
     readonly Settings settings;
 
-    public PlayerShooter(PlayerModel playerModel, AssetReferenceSpawner spawner, InputView inputView, Settings settings)
+    public PlayerShooter(PlayerModel playerModel, AssetReferenceSpawner projectileSpawner, InputView inputView, Settings settings)
     {
         this.playerModel = playerModel;
-        this.spawner = spawner;
+        this.projectileSpawner = projectileSpawner;
         this.inputView = inputView;
         this.settings = settings;
     }
@@ -30,9 +30,10 @@ public class PlayerShooter : ITickable
 
     async void Shoot()
     {
+        Debug.Log("Player shooting");
         playerModel.TimeLastShot = Time.time;
 
-        await spawner.Spawn(
+        await projectileSpawner.Spawn(
             settings.projectilePrefabReference, 
             playerModel.projectileSpawnPosition.position,
             playerModel.projectileSpawnPosition.rotation, 
@@ -50,6 +51,6 @@ public class PlayerShooter : ITickable
     {
         public float cooldown = 0.5f;
         public float projectileVelocity = 5;
-        public AssetReferenceGameObject projectilePrefabReference = null;
+        public AssetReferenceGameObject projectilePrefabReference;
     }
 }

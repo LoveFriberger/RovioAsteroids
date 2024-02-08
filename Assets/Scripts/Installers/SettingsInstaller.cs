@@ -28,6 +28,7 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
     {
         public PlayerMover.Settings playerMoverSettings;
         public PlayerShooter.Settings playerShooterSettings;
+        public Projectile.Settings projectileSettings;
     }
 
     [Serializable]
@@ -55,6 +56,7 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
         Container.BindInstances(gameSettings.sceneLoaderSettings);
         Container.BindInstances(playerSettings.playerMoverSettings);
         Container.BindInstances(playerSettings.playerShooterSettings);
+        Container.BindInstances(playerSettings.projectileSettings);
         Container.BindInstances(levelSettings.playerSpawnerSettings);
         Container.BindInstances(levelSettings.rockSpawnerSettings);
         Container.BindInstances(uiSettings.gameMenuTitleTextSettings);
