@@ -12,7 +12,6 @@ public class Player : ZenjectIntegrationTestFixture
 
         var rigidbody = new GameObject().AddComponent<Rigidbody2D>();
         Container.Bind<PlayerModel>().AsSingle().WithArguments(rigidbody, rigidbody.transform);
-        Container.Bind<PlayerMover.Settings>().AsSingle();
 
         Container.Bind<InputModel>().AsSingle();
         Container.Bind<InputView>().AsSingle();
