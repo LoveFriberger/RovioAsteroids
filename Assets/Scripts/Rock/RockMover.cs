@@ -20,7 +20,7 @@ public class RockMover : IInitializable
 
     public void AddVelocity(Vector2 velocity)
     {
-        Debug.Log(string.Format("", velocity));
+        Debug.Log(string.Format("Added velocity {0} to rock", velocity));
         rockModel.Velocity += velocity;
     }
 
