@@ -18,12 +18,12 @@ MonoBehaviour:
       levelKey: Assets/Scenes/Level.unity
   playerSettings:
     playerMoverSettings:
-      accelerationForce: 10
+      accelerationForce: 12
       maxVelocity: 5
-      turnSpeed: 50
+      turnSpeed: 180
     playerShooterSettings:
-      cooldown: 0.5
-      projectileVelocity: 5
+      cooldown: 0.3
+      projectileVelocity: 7
       projectilePrefabReference:
         m_AssetGUID: f21862b8394616340bd9470a40882938
         m_SubObjectName: 
@@ -44,12 +44,12 @@ MonoBehaviour:
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
-      startRocks: 3
+      startRocks: 2
       timeBetweenRockSpawns: 5
       startDistanceFromEdge: 2
   rockSettings:
     rockMoverSettings:
-      initSpeed: 3
+      initSpeed: 2
     rockDamageTakerSettings:
       points: 1
       splitSpeed: 0.5
