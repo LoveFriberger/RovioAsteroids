@@ -660,7 +660,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 428136288273565124, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: m_Name
-      value: Restart Button
+      value: Reset Game Button
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.size
@@ -668,7 +668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -684,7 +684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ResetGameButton, Assembly-CSharp
+      value: ResetGameButton, ScriptAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -829,18 +833,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1327070010}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1327070013}
+    - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
@@ -848,11 +864,23 @@ PrefabInstance:
       value: LoadScene
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ResetGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SceneLoaderButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ResetGameButton, ScriptAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439736233002426694, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6099095640168818610, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
@@ -946,6 +974,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 428136288273565124, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1327070010}
+    - targetCorrespondingSourceObject: {fileID: 428136288273565124, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1327070013}
   m_SourcePrefab: {fileID: 100100000, guid: bf3ed747d52421b4cbc2d48f3a8d052a, type: 3}
 --- !u!224 &1327070007 stripped
 RectTransform:
@@ -981,6 +1012,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToChangeTo: 0
+--- !u!114 &1327070013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327070009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb44e2fa0b739674e9e30ce6373108fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1344567653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,7 +1531,6 @@ MonoBehaviour:
   levelUIObject: {fileID: 450512185}
   settings:
     assetReferenceSpawnerObject: {fileID: 6855908490376689513}
-    levelCollider: {fileID: 1557863633}
     playerStart: {fileID: 1344567654}
     menuButtons:
     - {fileID: 1186556252}

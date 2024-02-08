@@ -13,20 +13,29 @@ public class ScoreIndicator : MonoBehaviour
     PointsView pointsView;
     [Inject]
     PointsController pointsController;
+    [Inject]
+    GameManagerController gameManagerController;
 
     int oldHighScore = 0;
 
     [Inject]
     void Start()
     {
-        oldHighScore = pointsView.HighScore;
         pointsController.AddScoreUpdatedAction(UpdateScoreIndicator);
-        UpdateScoreIndicator();
+        gameManagerController.AddResetGameAction(ResetScoreIndicator);
+        ResetScoreIndicator();
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         pointsController.RemoveScoreUpdatedAction(UpdateScoreIndicator);
+        gameManagerController.RemoveResetGameAction(ResetScoreIndicator);
+    }
+
+    void ResetScoreIndicator()
+    {
+        oldHighScore = pointsView.HighScore;
+        UpdateScoreIndicator();
     }
 
     void UpdateScoreIndicator()
