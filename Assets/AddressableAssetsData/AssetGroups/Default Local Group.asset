@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: dace35578983f24489e84857de0dae57
   m_SerializeEntries:
   - m_GUID: f21862b8394616340bd9470a40882938
-    m_Address: Assets/Scenes/Prefabs/Projectile.prefab
+    m_Address: Assets/Prefabs/Projectile.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
