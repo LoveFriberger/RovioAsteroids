@@ -6,7 +6,7 @@ using Zenject;
 public class MainMenuInstaller : MonoInstaller
 {
     [SerializeField]
-    Settings settings = null;
+    Settings settings;
 
     public override void InstallBindings()
     {
@@ -18,6 +18,6 @@ public class MainMenuInstaller : MonoInstaller
     [Serializable]
     public class Settings
     {
-        public List<MenuButton> menuButtons = null;
+        public List<MenuButton> menuButtons;
     }
 }

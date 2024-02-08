@@ -1,4 +1,3 @@
-using System.Collections;
 using System;
 using UnityEngine;
 using TMPro;
@@ -7,7 +6,7 @@ using Zenject;
 public class GameMenuTitleText : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI titleText = null;
+    TextMeshProUGUI titleText;
 
     [Inject]
     Settings settings;
@@ -22,6 +21,8 @@ public class GameMenuTitleText : MonoBehaviour
         titleText.text = settings.pausedString;
         if (levelModel.PlayerDied)
             titleText.text = pointsView.NewHighScore ? settings.newHighScoreString : settings.scoreString;
+
+        Debug.Log(string.Format("Changed game menu title text to \"{0}\"", titleText.text));
     }
 
     [Serializable]

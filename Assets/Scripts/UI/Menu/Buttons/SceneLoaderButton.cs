@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -12,7 +10,7 @@ public class SceneLoaderButton : MonoBehaviour
     }
 
     [Inject]
-    SceneLoadingController sceneLoadingController = null;
+    SceneLoadingController sceneLoadingController;
 
     [SerializeField]
     Scene sceneToChangeTo = Scene.MainMenu;
@@ -27,7 +25,6 @@ public class SceneLoaderButton : MonoBehaviour
             case Scene.Level:
                 StartCoroutine(sceneLoadingController.ChangeSceneToLevel());
                 break;
-
         }
     }
 }

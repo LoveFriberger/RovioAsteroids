@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class MenuModel
 {
-    readonly List<MenuButton> menuButtons = null;
+    readonly List<MenuButton> menuButtons = new();
 
     public MenuModel(List<MenuButton> menuButtons)
     {

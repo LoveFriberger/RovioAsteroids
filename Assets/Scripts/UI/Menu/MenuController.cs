@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class MenuController : ITickable
 {
-    readonly MenuModel mainMenuModel = null;
-    readonly InputView inputView = null;
+    readonly MenuModel mainMenuModel;
+    readonly InputView inputView ;
 
     public MenuController(MenuModel mainMenuModel, InputView inputView)
     {
@@ -31,6 +29,7 @@ public class MenuController : ITickable
     }
     void ChangeSelectedButton(bool up)
     {
+        Debug.Log(string.Format("Moving menu selection {0}", up ? "up" : "down"));
         var currentSelectedIndex = mainMenuModel.SelectedButtonIndex;
         if (currentSelectedIndex < 0)
             return;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Zenject;
@@ -19,5 +17,6 @@ public class HighScoreIndicator : MonoBehaviour
     void Start()
     {
         highScoreText.text = pointsView.HighScore > 0 ? string.Format(highScoreString, pointsView.HighScore) : "";
+        Debug.Log(string.Format("Changed high score text to \"{0}\"", highScoreText.text));
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Zenject;
@@ -9,7 +7,7 @@ public class ScoreIndicator : MonoBehaviour
     [SerializeField]
     string scoreString = "{0} ({1})";
     [SerializeField]
-    TextMeshProUGUI scoreText = null;
+    TextMeshProUGUI scoreText;
 
     [Inject]
     PointsView pointsView;
@@ -35,5 +33,7 @@ public class ScoreIndicator : MonoBehaviour
     {
         if(scoreText != null)
             scoreText.text = string.Format(scoreString, pointsView.CurrentPoints, oldHighScore);
+
+        Debug.Log(string.Format("Updated score indicator to \"{0}\"", scoreText.text));
     }
 }

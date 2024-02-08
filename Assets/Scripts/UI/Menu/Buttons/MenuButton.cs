@@ -6,9 +6,9 @@ using UnityEngine.Events;
 public class MenuButton : MonoBehaviour
 {
     [SerializeField]
-    GameObject selectionIndicator = null;
+    GameObject selectionIndicator;
     [SerializeField]
-    UnityEvent onClick = null;
+    UnityEvent onClick;
 
     public static MenuButton Selected { get; private set; }
 
@@ -20,6 +20,8 @@ public class MenuButton : MonoBehaviour
         Selected = this;
         if(selectionIndicator != null)
             selectionIndicator.SetActive(true);
+
+        Debug.Log(string.Format("Selected {0} menu button", this.name));
     }
 
     public void Deselect()
@@ -30,6 +32,7 @@ public class MenuButton : MonoBehaviour
 
     public void Click()
     {
+        Debug.Log(string.Format("Clicked menu button", this.name));
         onClick?.Invoke();
     }
 }
