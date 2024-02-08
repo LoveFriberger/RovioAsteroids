@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 public class RockDamageTaker
 {
@@ -21,6 +19,7 @@ public class RockDamageTaker
 
     public async void TakeDamage()
     {
+        Debug.Log("A rock is taking damage");
         GivePoints();
 
         if (rockModel.SmallerRock.RuntimeKeyIsValid())
@@ -29,29 +28,27 @@ public class RockDamageTaker
 
     async Task SpawnSmallerRocks()
     {
+        Debug.Log("Spawning smaller rocks");
+
         var firstSpawnPosition = rockModel.Position + rockModel.Right * rockModel.SplitRocksDistanceFromCenter;
         var secondSpawnPosition = rockModel.Position - rockModel.Right * rockModel.SplitRocksDistanceFromCenter;
 
-        var bigRockRightDirection = rockModel.Right;
-        var smallerRock = rockModel.SmallerRock;
-        var rotation = rockModel.Rotation;
-
         await spawner.Spawn(
-            smallerRock,
+            rockModel.SmallerRock,
             firstSpawnPosition,
-            rotation,
+            rockModel.Rotation,
             (r) =>
             {
-                r.GetComponent<RockObject>().AddVelocity(bigRockRightDirection * settings.splitSpeed);
+                r.GetComponent<RockObject>().AddVelocity(rockModel.Right * settings.splitSpeed);
             });
 
         await spawner.Spawn(
-            smallerRock,
+            rockModel.SmallerRock,
             secondSpawnPosition,
-            rotation,
+            rockModel.Rotation,
             (r) =>
             {
-                r.GetComponent<RockObject>().AddVelocity(-bigRockRightDirection * settings.splitSpeed);
+                r.GetComponent<RockObject>().AddVelocity(-rockModel.Right * settings.splitSpeed);
             });
     }
 

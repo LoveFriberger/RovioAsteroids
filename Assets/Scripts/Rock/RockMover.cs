@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -21,6 +20,7 @@ public class RockMover : IInitializable
 
     public void AddVelocity(Vector2 velocity)
     {
+        Debug.Log(string.Format("", velocity));
         rockModel.Velocity += velocity;
     }
 

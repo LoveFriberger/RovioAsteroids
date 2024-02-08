@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 public class RockObject : MonoBehaviour, IHitable
@@ -17,7 +13,7 @@ public class RockObject : MonoBehaviour, IHitable
         this.rockMover = rockMover;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         var hitable = collision.gameObject.GetComponent<IHitable>();
         if (hitable != null)
