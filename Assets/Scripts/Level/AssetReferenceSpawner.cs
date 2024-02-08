@@ -18,21 +18,21 @@ public class AssetReferenceSpawner
         if (!asset.IsValid())
             await Load(asset);
 
-        Debug.Log(string.Format("Starting spawning of {0}", asset.editorAsset.name));
+        Debug.Log(string.Format("Starting spawning of {0}", asset.AssetGUID));
         assetReferenceSpawnerObject.Spawn((GameObject)asset.OperationHandle.Result, startPosition, startRotation, onSpawnedObject);
     }
 
     async Task Load(AssetReferenceGameObject asset)
     {
-        Debug.Log(string.Format("Starting loading of {0}", asset.editorAsset.name));
+        Debug.Log(string.Format("Starting loading of {0}", asset.AssetGUID));
         asset.LoadAssetAsync();
 
         await asset.OperationHandle.Task;
 
         if (asset.OperationHandle.Status == AsyncOperationStatus.Failed)
-            Debug.LogError(string.Format("{0} failed to load!", asset.editorAsset.name));
+            Debug.LogError(string.Format("{0} failed to load!", asset.AssetGUID));
         else
-            Debug.Log(string.Format("Loaded {0}", asset.editorAsset.name));
+            Debug.Log(string.Format("Loaded {0}", asset.AssetGUID));
 
     }
 }
