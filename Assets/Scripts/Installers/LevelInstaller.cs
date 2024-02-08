@@ -8,22 +8,23 @@ using TMPro;
 public class LevelInstaller : MonoInstaller
 {
     [SerializeField]
-    LevelObject levelObject = null;
+    LevelObject levelObject;
     [SerializeField]
-    LevelUIObject levelUIObject = null;
+    LevelUIObject levelUIObject;
     [SerializeField]
-    Settings settings = null;
+    Settings settings;
 
     public override void InstallBindings()
     {
         Container.Bind<LevelModel>().AsSingle().WithArguments(settings.menuObject);
+
         Container.Bind<MenuModel>().AsTransient().WithArguments(settings.menuButtons);
         Container.BindInterfacesAndSelfTo<MenuController>().AsSingle();
         Container.BindInterfacesAndSelfTo<LevelUIMenuOpener>().AsSingle();
 
         Container.BindInstance(settings.exitLevelTriggerObject.GetComponent<BoxCollider2D>()).WithId("exitLevelCollider").AsSingle();
-
         Container.BindInterfacesAndSelfTo<ExitLevelTrigger>().AsSingle();
+
         Container.BindInterfacesAndSelfTo<PlayerSpawner>().AsSingle();
         Container.BindInterfacesAndSelfTo<RockSpawner>().AsSingle();
         Container.Bind<AssetReferenceSpawner>().AsSingle();
@@ -38,11 +39,10 @@ public class LevelInstaller : MonoInstaller
     [Serializable]
     public class Settings
     {
-        public AssetReferenceSpawnerObject assetReferenceSpawnerObject = null;
-        public BoxCollider2D levelCollider = null;
-        public Transform playerStart = null;
-        public List<MenuButton> menuButtons = new();
-        public GameObject menuObject = null;
-        public ExitLevelTriggerObject exitLevelTriggerObject = null;
+        public AssetReferenceSpawnerObject assetReferenceSpawnerObject;
+        public Transform playerStart;
+        public List<MenuButton> menuButtons;
+        public GameObject menuObject;
+        public ExitLevelTriggerObject exitLevelTriggerObject;
     }
 }
