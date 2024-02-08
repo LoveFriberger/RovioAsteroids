@@ -12,35 +12,33 @@ public class Player : ZenjectUnitTestFixture
     [SetUp]
     public void Install()
     {
-        var rigidbody = new GameObject().AddComponent<Rigidbody2D>();
-        Container.Bind<PlayerModel>().AsSingle().WithArguments(rigidbody, rigidbody.transform);
-
         Container.Bind<GameManagerModel>().AsSingle();
         Container.Bind<GameManagerController>().AsSingle();
+
+        var projectile = new AssetReferenceGameObject(AssetDatabase.AssetPathToGUID("Assets/Prefabs/Projectile.prefab"));
+        var player = new AssetReferenceGameObject(AssetDatabase.AssetPathToGUID("Assets/Prefabs/Player.prefab"));
+        
+        var rigidbody = new GameObject().AddComponent<Rigidbody2D>();
+        var transform = new GameObject().transform;
+        Container.BindInstance(transform);
+
         var spawnerGameObject = new GameObject().AddComponent<AssetReferenceSpawnerObject>();
         Container.Inject(spawnerGameObject);
         Container.BindInstance(spawnerGameObject).AsSingle();
         Container.Bind<AssetReferenceSpawner>().AsSingle().WithArguments(spawnerGameObject);
-        Container.Bind<PlayerMover.Settings>().AsSingle();
 
+        Container.Bind<PlayerModel>().AsSingle().WithArguments(rigidbody, rigidbody.transform);
+        Container.Bind<PlayerMover.Settings>().AsSingle();
         Container.Bind<InputModel>().AsSingle();
         Container.Bind<InputView>().AsSingle();
-
+        Container.Bind<PlayerDamageTaker>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerMover>().AsSingle();
-
-        var projectile = new AssetReferenceGameObject(AssetDatabase.AssetPathToGUID("Assets/Prefabs/Projectile.prefab"));
 
         Container.Bind<PlayerShooter.Settings>().AsSingle().OnInstantiated((i, o) => { (o as PlayerShooter.Settings).projectilePrefabReference = projectile; });
         Container.BindInterfacesAndSelfTo<PlayerShooter>().AsSingle();
 
-        var transform = new GameObject().transform;
-        Container.BindInstance(transform);
-        var player = new AssetReferenceGameObject(AssetDatabase.AssetPathToGUID("Assets/Prefabs/Player.prefab"));
         Container.Bind<PlayerSpawner.Settings>().AsSingle().OnInstantiated((i, o) => { (o as PlayerSpawner.Settings).playerPrefabReference = player; });
         Container.Bind<PlayerSpawner>().AsSingle();
-
-        Container.Bind<PlayerDamageTaker>().AsSingle();
-
         Container.Inject(this);
     }
 
@@ -122,6 +120,9 @@ public class Player : ZenjectUnitTestFixture
             yield return null;
 
         Assert.True(assetReferenceSpawnerObject.transform.childCount == 1);
+        var playerObject = assetReferenceSpawnerObject.transform.GetChild(0).GetComponent<PlayerObject>();
         Assert.True(assetReferenceSpawnerObject.transform.GetChild(0).GetComponent<PlayerObject>() != null);
+
+        Object.DestroyImmediate(playerObject);
     }
 }
