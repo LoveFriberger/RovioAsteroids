@@ -24,8 +24,8 @@ public class RockInstaller : MonoInstaller
     [Serializable]
     public class Settings
     {
-        public AssetReferenceGameObject smallerRock = null;
-        public CircleCollider2D rockCollider = null;
-        public Rigidbody2D rigidbody = null;
+        public AssetReferenceGameObject smallerRock;
+        public CircleCollider2D rockCollider;
+        public Rigidbody2D rigidbody;
     }
 }
