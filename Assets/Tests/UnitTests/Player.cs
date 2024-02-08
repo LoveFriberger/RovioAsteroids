@@ -84,11 +84,10 @@ public class Player : ZenjectUnitTestFixture
         Assert.True(assetReferenceSpawnerObject.transform.childCount == 0);
 
         inputModel.inputType = InputModel.Type.Player;
-
         inputModel.actionInputDown = true;
         playerShooter.Tick();
-
         inputModel.actionInputDown = false;
+
         //Wait some frames to make sure the asset is loaded
         for (int i = 0; i < 500; i++)
             yield return null;
@@ -97,6 +96,7 @@ public class Player : ZenjectUnitTestFixture
         var projectile = assetReferenceSpawnerObject.transform.GetChild(0).GetComponent<Projectile>();
         Assert.True(projectile != null);
         Assert.True(projectile.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > 0);
+
         Object.DestroyImmediate(projectile);
     }
 

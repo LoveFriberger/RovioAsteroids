@@ -24,8 +24,6 @@ public class Player : ZenjectIntegrationTestFixture
     }
 
     [Inject]
-    PlayerMover playerMover;
-    [Inject]
     InputModel inputModel;
     [Inject]
     PlayerModel playerModel;
