@@ -35,7 +35,6 @@ public class PointsController
     {
         model.currentPoints = 0;
         model.newHighScore = false;
-        PlayerPrefs.SetInt(model.playerPrefsHighScoreKey, 0);
 
         Debug.Log("Points reset");
 

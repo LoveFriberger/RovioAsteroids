@@ -32,12 +32,14 @@ public class Points : ZenjectUnitTestFixture
     }
 
     [Test]
-    public void ResetHighScore()
+    public void ResetCurrentPoints()
     {
         pointsController.AddPoints(1);
         Assert.That(pointsView.HighScore > 0);
+        Assert.That(pointsView.CurrentPoints > 0);
         pointsController.Reset();
-        Assert.That(pointsView.HighScore == 0);
+        Assert.That(pointsView.HighScore > 0);
+        Assert.That(pointsView.CurrentPoints == 0);
         Assert.That(!pointsView.NewHighScore);
     }
 
