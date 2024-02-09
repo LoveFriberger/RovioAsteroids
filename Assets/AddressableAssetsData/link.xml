@@ -31,6 +31,7 @@
     <type fullname=".RockDamageTaker/Settings" preserve="nothing" serialized="true" />
     <type fullname=".RockMover/Settings" preserve="nothing" serialized="true" />
     <type fullname=".RockSpawner/Settings" preserve="nothing" serialized="true" />
+    <type fullname=".RockSplitter/Settings" preserve="nothing" serialized="true" />
     <type fullname=".SceneLoadingController/Settings" preserve="nothing" serialized="true" />
     <type fullname=".SettingsInstaller/GameSettings" preserve="nothing" serialized="true" />
     <type fullname=".SettingsInstaller/LevelSettings" preserve="nothing" serialized="true" />
