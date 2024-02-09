@@ -37,7 +37,7 @@ public class Points : ZenjectUnitTestFixture
         pointsController.AddPoints(1);
         Assert.That(pointsView.HighScore > 0);
         Assert.That(pointsView.CurrentPoints > 0);
-        pointsController.Reset();
+        pointsController.ResetGamePoints();
         Assert.That(pointsView.HighScore > 0);
         Assert.That(pointsView.CurrentPoints == 0);
         Assert.That(!pointsView.NewHighScore);
@@ -46,7 +46,8 @@ public class Points : ZenjectUnitTestFixture
     [Test]
     public void NewHighScore()
     {
-        pointsController.Reset();
+        pointsController.ResetHighScore();
+        pointsController.ResetGamePoints();
         Assert.That(!pointsView.NewHighScore);
         pointsController.AddPoints(1);
         Assert.That(pointsView.NewHighScore);
