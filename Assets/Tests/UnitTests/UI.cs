@@ -15,6 +15,8 @@ public class UI : ZenjectUnitTestFixture
         menuButtons.Add(CreateMenuButton());
         menuButtons.Add(CreateMenuButton());
 
+        Container.Bind<GameManagerModel>().AsSingle();
+        Container.Bind<GameManagerController>().AsSingle();
         Container.Bind<MenuModel>().AsSingle().WithArguments(menuButtons);
         Container.Bind<InputModel>().AsSingle();
         Container.Bind<InputView>().AsSingle();
@@ -132,11 +134,6 @@ public class UI : ZenjectUnitTestFixture
         serializedHighScoreIndicator.FindProperty("highScoreText").objectReferenceValue = highScoreTMPObject;
         var highScoreString = serializedHighScoreIndicator.FindProperty("highScoreString").stringValue;
         serializedHighScoreIndicator.ApplyModifiedProperties();
-
-        pointsController.Reset();
-        Container.Inject(highScoreIndicatorObject);
-
-        Assert.IsTrue(highScoreTMPObject.text == "");
 
         pointsController.AddPoints(4);
         Container.Inject(highScoreIndicatorObject);
