@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
+#if UNITY_EDITOR
 public class TestAssetReferenceSpawner : IAssetReferenceSpawner
 {
 
@@ -23,3 +24,4 @@ public class TestAssetReferenceSpawner : IAssetReferenceSpawner
     }
 
 }
+#endif
