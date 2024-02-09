@@ -7,7 +7,8 @@
         "Zenject-TestFramework",
         "Zenject",
         "ScriptAssembly",
-        "Zenject-IntegrationTests-Editor"
+        "Zenject-IntegrationTests-Editor",
+        "Unity.Addressables"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
