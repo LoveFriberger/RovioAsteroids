@@ -27,7 +27,7 @@ public class LevelInstaller : MonoInstaller
 
         Container.BindInterfacesAndSelfTo<PlayerSpawner>().AsSingle();
         Container.BindInterfacesAndSelfTo<RockSpawner>().AsSingle();
-        Container.Bind<AssetReferenceSpawner>().AsSingle();
+        Container.Bind<IAssetReferenceSpawner>().To<AssetReferenceSpawner>().AsSingle();
         Container.BindInstance(settings.playerStart).WhenInjectedInto<PlayerSpawner>();
         Container.BindInstance(settings.assetReferenceSpawnerObject).AsSingle();
 
