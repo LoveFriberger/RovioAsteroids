@@ -16,10 +16,10 @@ public class TestAssetReferenceSpawner : IAssetReferenceSpawner
         this.assetReferenceSpawnerObject = assetReferenceSpawnerObject;
     }
 
-    public Task Spawn(AssetReferenceGameObject asset, Vector2 startPosition, Quaternion startRotation, Action<GameObject> onSpawnedObject = null)
+    public async Task Spawn(AssetReferenceGameObject asset, Vector2 startPosition, Quaternion startRotation, Action<GameObject> onSpawnedObject = null)
     {
         assetReferenceSpawnerObject.Spawn(asset.editorAsset, startPosition, startRotation, onSpawnedObject);
-        return null;
+        await Task.CompletedTask;
     }
 
 }
