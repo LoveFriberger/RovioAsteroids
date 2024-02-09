@@ -11,6 +11,7 @@ public class AssetReferenceSpawnerObject : MonoBehaviour
     public void Construct(GameManagerController gameController)
     {
         this.gameController = gameController;
+        gameController.AddResetGameAction(DestroyAllSpawnedObjects);
     }
 
     public void Spawn(GameObject gameObject, Vector2 startPosition, Quaternion startRotation, Action<GameObject> onSpawnedObject = null)
@@ -18,11 +19,6 @@ public class AssetReferenceSpawnerObject : MonoBehaviour
         Debug.Log(string.Format("Spawning {0}", gameObject.name));
         var spawnedObject = Instantiate(gameObject, startPosition, startRotation, transform);
         onSpawnedObject?.Invoke(spawnedObject);
-    }
-
-    void OnEnable()
-    {
-        gameController.AddResetGameAction(DestroyAllSpawnedObjects);
     }
 
     void OnDisable()
