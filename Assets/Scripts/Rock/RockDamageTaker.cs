@@ -5,11 +5,11 @@ using UnityEngine;
 public class RockDamageTaker
 {
     readonly RockModel rockModel;
-    readonly AssetReferenceSpawner spawner;
+    readonly IAssetReferenceSpawner spawner;
     readonly PointsController pointsController;
     readonly Settings settings;
 
-    public RockDamageTaker(RockModel rockModel, AssetReferenceSpawner spawner, PointsController pointsController, Settings settings)
+    public RockDamageTaker(RockModel rockModel, IAssetReferenceSpawner spawner, PointsController pointsController, Settings settings)
     {
         this.rockModel = rockModel;
         this.spawner = spawner;

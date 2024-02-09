@@ -6,11 +6,11 @@ using Zenject;
 public class PlayerShooter : ITickable
 {
     readonly InputView inputView;
-    readonly AssetReferenceSpawner projectileSpawner;
+    readonly IAssetReferenceSpawner projectileSpawner;
     readonly PlayerModel playerModel;
     readonly Settings settings;
 
-    public PlayerShooter(PlayerModel playerModel, AssetReferenceSpawner projectileSpawner, InputView inputView, Settings settings)
+    public PlayerShooter(PlayerModel playerModel, IAssetReferenceSpawner projectileSpawner, InputView inputView, Settings settings)
     {
         this.playerModel = playerModel;
         this.projectileSpawner = projectileSpawner;

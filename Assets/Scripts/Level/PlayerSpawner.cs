@@ -5,12 +5,12 @@ using Zenject;
 
 public class PlayerSpawner : IInitializable
 {
-    readonly AssetReferenceSpawner spawner;
+    readonly IAssetReferenceSpawner spawner;
     readonly Settings settings;
     readonly Transform playerStart;
 
     public PlayerSpawner(
-        AssetReferenceSpawner spawner, 
+        IAssetReferenceSpawner spawner, 
         Settings settings,
         Transform playerStart)
     {

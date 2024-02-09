@@ -5,7 +5,7 @@ using Zenject;
 
 public class RockSpawner : IInitializable, ITickable
 {
-    readonly AssetReferenceSpawner spawner;
+    readonly IAssetReferenceSpawner spawner;
     readonly Settings settings;
     readonly BoxCollider2D exitLevelBoxCollider;
 
@@ -13,7 +13,7 @@ public class RockSpawner : IInitializable, ITickable
 
     public RockSpawner(
         [Inject(Id = "exitLevelCollider")] BoxCollider2D exitLevelBoxCollider,
-        AssetReferenceSpawner spawner, 
+        IAssetReferenceSpawner spawner, 
         Settings settings)
     {
         this.exitLevelBoxCollider = exitLevelBoxCollider;

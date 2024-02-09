@@ -4,7 +4,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class AssetReferenceSpawner
+public class AssetReferenceSpawner: IAssetReferenceSpawner
 {
     readonly AssetReferenceSpawnerObject assetReferenceSpawnerObject;
 

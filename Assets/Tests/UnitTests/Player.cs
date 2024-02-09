@@ -22,10 +22,10 @@ public class Player : ZenjectUnitTestFixture
         var transform = new GameObject().transform;
         Container.BindInstance(transform);
 
-        var spawnerGameObject = new GameObject().AddComponent<AssetReferenceSpawnerObject>();
+        var spawnerGameObject= new GameObject().AddComponent<AssetReferenceSpawnerObject>();
         Container.Inject(spawnerGameObject);
         Container.BindInstance(spawnerGameObject).AsSingle();
-        Container.Bind<AssetReferenceSpawner>().AsTransient().WithArguments(spawnerGameObject);
+        Container.Bind<IAssetReferenceSpawner>().To<TestAssetReferenceSpawner>().AsSingle().WithArguments(spawnerGameObject);
 
         Container.Bind<PlayerModel>().AsSingle().WithArguments(rigidbody, rigidbody.transform);
         Container.Bind<PlayerMover.Settings>().AsSingle();
@@ -56,6 +56,12 @@ public class Player : ZenjectUnitTestFixture
     PlayerDamageTaker playerDamageTaker;
     [Inject]
     GameManagerController gameManagerController;
+    [Inject]
+    PlayerShooter playerShooter;
+    [Inject]
+    AssetReferenceSpawnerObject assetReferenceSpawnerObject;
+    [Inject]
+    PlayerSpawner playerSpawner;
 
     [Test]
     public void Turn()
@@ -84,5 +90,35 @@ public class Player : ZenjectUnitTestFixture
         gameManagerController.AddPlayerKilledAction(() => playerKilled = true);
         playerDamageTaker.TakeDamage();
         Assert.IsTrue(playerKilled);
+    }
+
+    [Test]
+    public void Shoot()
+    {
+        Assert.True(assetReferenceSpawnerObject.transform.childCount == 0);
+
+        inputModel.inputType = InputModel.Type.Player;
+        inputModel.actionInputDown = true;
+        playerShooter.Tick();
+        inputModel.actionInputDown = false;
+
+        Assert.True(assetReferenceSpawnerObject.transform.childCount == 1);
+        var projectile = assetReferenceSpawnerObject.transform.GetChild(0).GetComponent<Projectile>();
+        Assert.True(projectile != null);
+        Assert.True(projectile.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > 0);
+
+        Object.DestroyImmediate(projectile);
+    }
+
+    [Test]
+    public void Spawner()
+    {
+        Assert.True(assetReferenceSpawnerObject.transform.childCount == 0);
+        playerSpawner.Initialize();
+
+        Assert.True(assetReferenceSpawnerObject.transform.childCount == 1);
+        Assert.True(assetReferenceSpawnerObject.transform.GetChild(0).GetComponent<PlayerObject>() != null);
+
+        Object.DestroyImmediate(assetReferenceSpawnerObject.transform.GetChild(0).gameObject);
     }
 }
