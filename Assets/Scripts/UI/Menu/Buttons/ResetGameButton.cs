@@ -10,7 +10,7 @@ public class ResetGameButton : MonoBehaviour
 
     public void ResetGame(bool invokeResetAction)
     {
-        pointsController.Reset();
+        pointsController.ResetGamePoints();
         if(invokeResetAction)
             gameController.InvokeResetGameAction();
     }

@@ -31,7 +31,7 @@ public class PointsController
         model.onScoreUpdated?.Invoke();
     }
 
-    public void Reset()
+    public void ResetGamePoints()
     {
         model.currentPoints = 0;
         model.newHighScore = false;
@@ -39,6 +39,12 @@ public class PointsController
         Debug.Log("Points reset");
 
         model.onScoreUpdated?.Invoke();
+    }
+    
+    //Only used in the editor for testing
+    public void ResetHighScore()
+    {
+        PlayerPrefs.SetInt(model.playerPrefsHighScoreKey, 0);
     }
 
     public void AddScoreUpdatedAction(Action action)
