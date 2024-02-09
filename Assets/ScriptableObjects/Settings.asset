@@ -52,6 +52,7 @@ MonoBehaviour:
       initSpeed: 2
     rockDamageTakerSettings:
       points: 1
+    rockSplitterSettings:
       splitSpeed: 0.5
   uiSettings:
     gameMenuTitleTextSettings:

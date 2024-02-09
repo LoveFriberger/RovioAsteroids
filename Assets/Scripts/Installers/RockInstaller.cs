@@ -15,6 +15,7 @@ public class RockInstaller : MonoInstaller
     {
         Container.Bind<RockModel>().AsSingle().WithArguments(settings.smallerRock, settings.rockCollider, settings.rigidbody);
 
+        Container.Bind<RockSplitter>().AsSingle();
         Container.Bind<RockDamageTaker>().AsSingle();
         Container.BindInterfacesAndSelfTo<RockMover>().AsSingle(); 
 

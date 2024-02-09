@@ -49,6 +49,7 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
     {
         public RockMover.Settings rockMoverSettings;
         public RockDamageTaker.Settings rockDamageTakerSettings;
+        public RockSplitter.Settings rockSplitterSettings;
     }
 
     public override void InstallBindings()
@@ -62,5 +63,6 @@ public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
         Container.BindInstances(uiSettings.gameMenuTitleTextSettings);
         Container.BindInstances(rockSettings.rockMoverSettings);
         Container.BindInstances(rockSettings.rockDamageTakerSettings);
+        Container.BindInstances(rockSettings.rockSplitterSettings);
     }
 }
